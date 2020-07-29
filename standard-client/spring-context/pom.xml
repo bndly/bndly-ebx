@@ -147,6 +147,7 @@
               <value>http://localhost:8081/bndly</value>
             </property>
           </systemProperties>
+          <excludedGroups>integration</excludedGroups>
         </configuration>
       </plugin>
       <plugin>

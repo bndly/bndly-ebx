@@ -41,7 +41,7 @@ import org.testng.annotations.Test;
 
 public class SpringContextSetupTest {
     
-	@Test
+	@Test(groups = {"integration"})
 	public void testSetup() throws ClassNotFoundException {
 		SchemaServiceStub countrySchemaServiceStub = new SchemaServiceStub();
 		countrySchemaServiceStub.setSchemaName("ebx");
