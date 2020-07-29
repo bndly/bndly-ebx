@@ -123,7 +123,6 @@
 				"org.bndly.common.schema:org.bndly.common.schema.schema-vendor:jar:${bndly.common.version}",
 				"org.bndly.common.schema:org.bndly.common.schema.schema-json-beans:jar:${bndly.common.version}",
 				"org.bndly.common.search:org.bndly.common.search.search-api:jar:${bndly.common.version}",
-				"org.bndly.common.search:org.bndly.common.search.search-impl:jar:${bndly.common.version}",
 				"org.bndly.common.search:org.bndly.common.search.search-schema:jar:${bndly.common.version}",
 				"org.bndly.common.ssl:org.bndly.common.ssl.ssl-api:jar:${bndly.common.version}",
 				"org.bndly.common.ssl:org.bndly.common.ssl.ssl-httpclient:jar:${bndly.common.version}",
@@ -358,7 +357,6 @@
 				"javax.mail:javax.mail-api:jar:1.6.2",
 				"com.sun.mail:javax.mail:jar:1.6.2",
 
-				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.solr-solrj:jar:4.8.1_1",
 				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.velocity:jar:1.7_6",
 				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.velocity-tools:jar:2.0_1",
 
@@ -442,8 +440,6 @@
 				"org.bndly.common.schema:org.bndly.common.schema.schema-repository-datastore:jar:${bndly.common.version}"
 			],
 			"25": [
-				"org.bndly.ebx:org.bndly.ebx.solr-webapp:jar:${bndly.ebx.version}",
-
 				"org.bndly.ebx:org.bndly.ebx.cors-filter:jar:${bndly.ebx.version}",
 				"org.bndly.ebx:org.bndly.ebx.bpm-tasks:jar:${bndly.ebx.version}",
 				"org.bndly.ebx:org.bndly.ebx.data-deployment:jar:${bndly.ebx.version}",
@@ -555,7 +551,6 @@
 				"tag.description.schema": "Implementation that is related to a deployed schema",
 				"tag.description.paginated": "Lists that can be browsed in a paginated way",
 				"tag.description.templating": "Implementation that is based on rendering a template",
-				"tag.description.solr": "Operations that are involved into the embedded SOLR",
 				"tag.description.default": "Convenience operations around the application",
 				"tag.description.maintenance": "Entities that are more about technical configuration",
 				"tag.description.ebxadmin": "Operations that are only implemented to be used in the eBX Admin",
@@ -590,23 +585,6 @@
 			"org.bndly.schema.repository.datastore.impl.PackageInstaller": {
 				"enabled": true,
 				"dataNameRegex": "\\/?[a-zA-Z0-9\\-\\_\\.]+\\.zip"
-			},
-			"org.bndly.search.impl.SolrConfiguration-ebx": {
-				"name": "default",
-				"baseUrl": "${org.bndly.search.impl.SolrConfiguration-ebx.baseUrl}"
-			},
-			"org.bndly.search.impl.SolrServerFactory": {
-				"queueSize": 100,
-				"threadCount": 10
-			},
-			"org.bndly.ssl.impl.HttpClientConfiguration-solr": {
-				"name": "solr",
-				"maxConnectionsPerHost": 100,
-				"maxConnections": 200,
-				"connectionKeepAlive": true,
-				"redirectsEnabled": true,
-				"connectionRequestTimeout": 30000,
-				"connectionTimeout": 30000
 			},
 			"org.bndly.search.schema.impl.SchemaRecordIndexerImpl": {
 				"excludedTypes": "repository:Node,repository:Property,repository:Value"
