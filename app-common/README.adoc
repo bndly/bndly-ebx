@@ -1,0 +1,3 @@
+= Bndly ebx app-common
+
+Shared file resources, that are required or useful in customized eBX applications

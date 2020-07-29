@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html lang="$template.locale.language">
+<head>
+	<title>$!{model.getProperty("name")} - $!{model.getProperty("version")}</title>
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/TypeAheadInput.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/SchemaView.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/Common.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/BarChart.css" rel="stylesheet" media="screen">
+	<link rel="shortcut icon" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+	<link rel="icon" type="image/ico" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+	<script data-main="$baseUrl/data/store/bin/shop-admin/scripts/main" src="$baseUrl/data/store/bin/shop-admin/scripts/require.js"></script>
+</head>
+<body>
+</body>
+</html>

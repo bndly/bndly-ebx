@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="$template.locale.language">
+	<head>
+		<title>Repository Resource #xss("html" $model.path)</title>
+		<link rel="shortcut icon" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+		<link rel="icon" type="image/ico" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+		<link href="$baseUrl/repo/libs/vendor/bin/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="$baseUrl/data/store/bin/quill/quill.base.css" rel="stylesheet" type="text/css" />
+		<link href="$baseUrl/data/store/bin/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+		<script src="$baseUrl/data/store/bin/codemirror/lib/codemirror.js"></script>
+		<script src="$baseUrl/data/store/bin/codemirror/mode/javascript/javascript.js"></script>
+		<link href="$baseUrl/data/store/bin/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css" />
+		<link href="$baseUrl/data/store/bin/form-colors.css" rel="stylesheet" type="text/css" />
+		<script data-main="$baseUrl/data/store/bin/node.edit.main.js" src="$baseUrl/repo/libs/vendor/bin/require/require.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid page-header">
+				<div class="btn-group pull-right">
+					<a class="btn btn-danger js-removenode" href="${baseUrl}/repo${currentPath}.html?%23remove=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> remove</a>
+					<a class="btn btn-default" href="${baseUrl}/repo${currentPath}.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> back</a>
+				</div>
+				<h1>#xss("html" $model.path) <small>$model.type</small> </h1>
+
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					#partial($model "node.parentlink.vm")
+					#partial($model "node.childlinks.vm")
+					#partial($model "node.fileupload.vm")
+				</div>
+				<div class="col-md-9">
+					<div class="panel panel-danger js-removemodal" style="display: none;">
+						<div class="panel-body">
+							<strong>Warning!</strong> Do you really want to remove this node?
+						</div>
+						<div class="panel-footer">
+							<form action="${baseUrl}/repo${currentPath}.html?%23remove=true" method="post">
+								<button type="button" class="btn btn-default js-dismiss">Cancel</button>
+								<button type="submit" class="btn btn-primary">Go for it!</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title">Properties</h3></div>
+						<div class="panel-body">
+							#partial( $null.null "removebutton.vm" "removebutton")
+							#set( $multipropertymovehandle = "<span class=""input-group-addon"" draggable=""true""><span class=""glyphicon glyphicon-menu-hamburger"" aria-hidden=""true""></span></span>")
+							#set( $editor = $nodeEditorFactory.createEditor($model) )
+							#partial( $null.null "property.multitoolbar.vm" "multitoolbar")
+							<form
+								class="js-nodeproperties"
+								action="${baseUrl}/repo${currentPath}"
+								method="post"
+								enctype="multipart/form-data"
+								data-multitoolbar-template="#xss("htmlattribute" ${multitoolbar})"
+								data-multipropertymovehandle-template="#xss("htmlattribute" ${multipropertymovehandle})"
+								data-multipropertyinput-template="#xss("htmlattribute" "<div class=""input-group js-input-border"">
+<span class=""input-group-addon"" draggable=""true""><span class=""glyphicon glyphicon-menu-hamburger"" aria-hidden=""true""></span></span>
+<div class=""js-replace-me"" />
+<span class=""input-group-btn"">
+${removebutton}
+</span>
+</div>")"
+								>
+								#partial( $null.null "node.addproperty.vm")
+								#foreach( $widget in $editor.widgets )
+								<div
+									class="form-group js-property-border"
+									data-multi="${widget.propertyMultiValued}"
+									data-propertyname="${widget.propertyName}"
+									#partial($null.null "property.${widget.propertyType}.vm" "inputtemplate")
+									data-input-template="#xss("htmlattribute" $inputtemplate)"
+									data-type="#xss("htmlattribute" ${widget.propertyType})"
+									#foreach( $metaDataEntry in $widget.metaData.entrySet() )
+										data-md-#xss("html" $metaDataEntry.key)="#xss("htmlattribute" $metaDataEntry.value)"
+									#end
+								>
+									<label for="TODO">$widget.title</label>
+									#if($widget.propertyMultiValued)
+										$multitoolbar
+									#end
+									#foreach( $namedValue in $widget.namedValues )
+										<div class="input-group js-input-border"
+										#if($widget.propertyMultiValued)
+										data-dd-target=true
+										data-dd-group="property-#xss("htmlattribute" $widget.propertyName)"
+										#end
+										>
+											#if($widget.propertyMultiValued)
+												<span class="input-group-addon" draggable="true"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></span>
+											#end
+											<input class="form-control" name="$namedValue.name" type="$widget.inputType" #if ($namedValue.value) value="#xss("htmlattribute" $namedValue.value)" #end>
+											<span class="input-group-btn">
+												${removebutton}
+											</span>
+										</div>
+
+									#end
+								</div>
+								#end
+								<div
+									class="form-group"
+								>
+									<button type="submit" class="btn btn-primary">Save changes</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title">Create child</h3></div>
+						<div class="panel-body">
+							<form class="form-inline js-createchild" action="${baseUrl}/repo${currentPath}" method="post">
+								<div class="form-group">
+									<input type="text" placeholder="Name of the child" name="n" class="form-control">
+								</div>
+								<div class="form-group">
+									<select name="nt" class="form-control">
+										<option value="fs:folder">Folder</option>
+										<option value="fs:file">File</option>
+										<option value="cy:unstructured">Unstructured</option>
+										<option value="cy:bean">Bean instance</option>
+										<option value="cy:beanDef">Bean definition</option>
+										<option value="cy:beanPropertyDef">Bean property definition</option>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary">Create</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

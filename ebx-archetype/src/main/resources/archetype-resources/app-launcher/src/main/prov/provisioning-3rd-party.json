@@ -1,0 +1,90 @@
+{
+	"3rdparty": {
+		"bundles": {
+			"2": [
+				"org.slf4j:slf4j-api:jar:1.7.7",
+				"ch.qos.logback:logback-classic:jar:1.1.3",
+				"ch.qos.logback:logback-core:jar:1.1.3",
+				
+				"com.google.guava:guava:jar:18.0",
+				"io.netty:netty:jar:3.10.5.Final",
+				"com.ning:compress-lzf:jar:1.0.2",
+				
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.elasticsearch:jar:2.3.5_1",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.javax.mail:jar:1.4.1_5",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.solr-solrj:jar:4.8.1_1",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.velocity:jar:1.7_6",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.velocity-tools:jar:2.0_1",
+
+				"org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-1.1:jar:2.4.0",
+				"org.apache.servicemix.specs:org.apache.servicemix.specs.jsr250-1.0:jar:2.4.0",
+				
+				"commons-collections:commons-collections:jar:3.2.2",
+				"org.apache.httpcomponents:httpcore-osgi:jar:4.3.2",
+				"org.apache.httpcomponents:httpclient-osgi:jar:4.3.4",
+				
+				"org.mybatis:mybatis:jar:3.2.7",
+				"org.noggit:noggit-osgi:jar:0.5",
+				
+				"joda-time:joda-time:jar:2.6",
+				
+				"org.codehaus.jettison:jettison:jar:1.3.1",
+				
+				"de.odysseus.juel:juel-api:jar:2.2.7",
+				"de.odysseus.juel:juel-impl:jar:2.2.7",
+				
+				"com.fasterxml.jackson.core:jackson-annotations:jar:2.8.4",
+				"com.fasterxml.jackson.core:jackson-databind:jar:2.8.4",
+				"com.fasterxml.jackson.core:jackson-core:jar:2.8.4",
+				"com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.4",
+				"com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.8.4",
+				"org.yaml:snakeyaml:jar:1.15",
+				
+				"org.apache.pdfbox:pdfbox:jar:2.0.0",
+				"org.apache.pdfbox:fontbox:jar:2.0.0",
+				"org.apache.pdfbox:xmpbox:jar:2.0.0",
+				
+				"commons-io:commons-io:jar:2.4",
+				"org.apache.commons:commons-compress:jar:1.8.1",
+				"commons-fileupload:commons-fileupload:jar:1.3",
+				"commons-lang:commons-lang:jar:2.4",
+				"commons-logging:commons-logging:jar:1.1.3",
+				"commons-logging:commons-logging:jar:1.2",
+				"org.apache.commons:commons-lang3:jar:3.3.2",
+				
+				"org.ow2.asm:asm-all:jar:5.0.4",
+				"org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle:jar:1.0.6",
+				
+				"org.apache.aries.jmx:org.apache.aries.jmx:jar:1.1.5",
+				"org.apache.aries.jmx:org.apache.aries.jmx.whiteboard:jar:1.1.5",
+				"org.apache.aries:org.apache.aries.util:jar:1.1.1",
+				
+				"org.activiti:activiti-engine:jar:5.17.0",
+				"org.activiti:activiti-bpmn-model:jar:5.17.0",
+				"org.activiti:activiti-bpmn-converter:jar:5.17.0",
+				"org.activiti:activiti-process-validation:jar:5.17.0",
+				"org.activiti:activiti-image-generator:jar:5.17.0",
+				
+				"org.eclipse.jetty.osgi:jetty-osgi-boot:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.osgi:jetty-httpservice:jar:9.2.17.v20160517",
+				"org.eclipse.equinox.http:servlet:jar:1.0.0-v20070606",
+				"org.eclipse.jetty:jetty-server:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-deploy:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-http:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-io:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.toolchain:jetty-schemas:jar:3.1.M0",
+				"org.eclipse.jetty:jetty-security:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-servlet:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-util:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-webapp:jar:9.2.17.v20160517",
+				"org.eclipse.jetty:jetty-xml:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.websocket:websocket-servlet:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.websocket:websocket-api:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.websocket:websocket-server:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.websocket:websocket-client:jar:9.2.17.v20160517",
+				"org.eclipse.jetty.websocket:websocket-common:jar:9.2.17.v20160517",
+				"javax.servlet:javax.servlet-api:jar:3.1.0"
+			]
+		}
+	}
+}

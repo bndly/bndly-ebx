@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: bndly
+Build-Jdk: 1.8.0_20
+Bundle-Version: 2.2.0.SNAPSHOT
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.bndly.ebx.solrwebapp
+Bundle-Name: Solr Webapp
+Web-ContextPath: /solr
+Import-Package: javax.servlet;version="3.1.0"

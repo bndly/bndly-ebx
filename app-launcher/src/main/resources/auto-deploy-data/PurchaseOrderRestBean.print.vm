@@ -1,0 +1,250 @@
+<document itemId="documentRoot">
+	<page itemId="pageRoot">
+		<pageTemplate itemId="template">
+			#include("pageTemplate.vm")
+			#include("contact.vm")
+			<container itemId="orderHeader" class="orderHeader">
+				<paragraph>
+					<text value="Bestellnummer: #xss("xmlattribute" $model.orderNumber)" class="subTitle" />
+					<text value="Bestelldatum: #xss("xmlattribute" $dateFormatter.format($model.orderDate))" class="subTitle" />
+					<systemText value="Seite !page! von !totalPages!" />
+				</paragraph>
+			</container>
+		</pageTemplate>
+		<container itemId="mainContent" class="mainContent">
+			<paragraph class="spacerTitle">
+				<text value="Bestellung" class="title"/>
+			</paragraph>
+			<paragraph class="colRight">
+				<text value="Bonn, #xss("xmlattribute" $dateFormatter.today())" class="colRight" />
+			</paragraph>
+			<container itemId="spacer" class="spacer5"/>
+			<table itemId="orderPositionTable" class="orderPositionTable">
+				<tableColumn class="position">
+					<tableCell class="orderPositionTableCell tableHeader">
+					</tableCell>
+					#foreach ( $orderItem in $model.items.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $orderItem.position)" />
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn>
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Bezeichnung" />
+					</tableCell>
+					#foreach ( $orderItem in $model.items.items)
+					<tableCell class="orderPositionTableCell">
+						#if ($orderItem.productName)
+						<text value="#xss("xmlattribute" $orderItem.productName)" />
+						<text value="Artikel-Nr.: #xss("xmlattribute" $orderItem.sku)" />
+						#end
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn class="quantity">
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Menge" />
+					</tableCell>
+					#foreach ( $orderItem in $model.items.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $orderItem.quantity)" />
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn class="quantity">
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="MwSt." />
+					</tableCell>
+					#foreach ( $orderItem in $model.items.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $priceFormatter.formatTaxRate($orderItem.taxRate))" />
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn class="unitPrice">
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Einzelpreis" />
+						<!-- <text value="Brutto" /> -->
+					</tableCell>
+					#foreach ( $orderItem in $model.items.items)
+					#set( $currencySymbol = $orderItem.currency.symbol )
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $priceFormatter.formatDecimal($orderItem.priceGross, $orderItem.currency.symbol))" />
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn class="price">
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Summe" />
+						<!-- <text value="Brutto" /> -->
+					</tableCell>
+					#foreach ( $orderItem in $model.items.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $priceFormatter.formatDecimal($orderItem.totalGross, $orderItem.currency.symbol))" />
+					</tableCell>
+					#end
+				</tableColumn>
+			</table>
+			<table itemId="orderSummaryTable" class="orderSummaryTable">
+				<tableColumn class="summaryPosition">
+					<tableCell class="orderPositionTableCell">
+						<text value="Summe" />
+					</tableCell>
+					<tableCell class="orderPositionTableCell">
+						<text value="Versandkosten" />
+					</tableCell>
+					<tableCell class="orderPositionTableCell">
+						<text value="Enth. MwSt." />
+					</tableCell>
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Gesamtsumme" />
+					</tableCell>
+				</tableColumn>
+				<tableColumn class="price">
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $priceFormatter.formatDecimal($model.merchandiseValueGross, $currencySymbol))" />
+					</tableCell>
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $priceFormatter.formatDecimal($model.shipmentOffer.priceGross, $currencySymbol))" />
+					</tableCell>
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $priceFormatter.formatDecimal($model.totalTax, $currencySymbol))" />
+					</tableCell>
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="#xss("xmlattribute" $priceFormatter.formatDecimal($model.totalGross, $currencySymbol))" />
+					</tableCell>
+				</tableColumn>
+			</table>
+			<container itemId="spacer" class="spacer20"/>
+			
+			<table itemId="addressTable" class="addressTable">
+				<tableColumn>
+					<tableCell class="tableHeader">
+						<text value="Kunde:"/>
+					</tableCell>
+					<tableCell>
+						<text value="#xss("xmlattribute" $translator.translate($model.address.salutation.internalName)) #xss("xmlattribute" $model.address.firstName) #xss("xmlattribute" $model.address.lastName)" />
+						#if($model.address.additionalInfo)
+						<text value="#xss("xmlattribute" $model.address.additionalInfo)" />
+						#end
+						<text value="#xss("xmlattribute" $model.address.street) #if($model.address.houseNumber)#xss("xmlattribute" $model.address.houseNumber)#end" />
+						<text value="#xss("xmlattribute" $model.address.postCode) #xss("xmlattribute" $model.address.city)" />
+					</tableCell>
+				</tableColumn>
+				<tableColumn>
+					<tableCell class="tableHeader">
+						<text value="Rechnungsadresse:"/>
+					</tableCell>
+					<tableCell>
+						#if($model.billingAddress)
+						<text value="#xss("xmlattribute" $translator.translate($model.billingAddress.salutation.internalName)) #xss("xmlattribute" $model.billingAddress.firstName) #xss("xmlattribute" $model.billingAddress.lastName)" />
+						#if($model.billingAddress.additionalInfo)
+						<text value="#xss("xmlattribute" $model.billingAddress.additionalInfo)" />
+						#end
+						<text value="#xss("xmlattribute" $model.billingAddress.street) #if($model.billingAddress.houseNumber)#xss("xmlattribute" $model.billingAddress.houseNumber)#end" />
+						<text value="#xss("xmlattribute" $model.billingAddress.postCode) #xss("xmlattribute" $model.billingAddress.city)" />
+						#else
+						<text value="siehe Kundenadresse" />
+						#end
+					</tableCell>
+				</tableColumn>
+				<tableColumn>
+					<tableCell class="tableHeader">
+						<text value="Lieferadresse:"/>
+					</tableCell>
+					<tableCell>
+						#if($model.deliveryAddress)
+						<text value="#xss("xmlattribute" $translator.translate($model.deliveryAddress.salutation.internalName)) #xss("xmlattribute" $model.deliveryAddress.firstName) #xss("xmlattribute" $model.deliveryAddress.lastName)" />
+						#if($model.deliveryAddress.additionalInfo)
+						<text value="#xss("xmlattribute" $model.deliveryAddress.additionalInfo)" />
+						#end
+						<text value="#xss("xmlattribute" $model.deliveryAddress.street) #if($model.deliveryAddress.houseNumber)#xss("xmlattribute" $model.deliveryAddress.houseNumber)#end" />
+						<text value="#xss("xmlattribute" $model.deliveryAddress.postCode) #xss("xmlattribute" $model.deliveryAddress.city)" />
+						#else
+						<text value="siehe Kundenadresse" />
+						#end
+					</tableCell>
+				</tableColumn>
+			</table>
+			<container itemId="spacer" class="spacer20"/>
+			<table itemId="otherDetailsTable" class="otherDetailsTable">
+				<tableColumn class="otherDetailsTableFirstColumn tableHeader">
+					<tableCell>
+						<text value="Zahlungsart:" />
+					</tableCell>
+					#if($model.paidDate)
+					<tableCell>
+						<text value="Bezahlt am:" />
+					</tableCell>
+					#end
+					<tableCell>
+						<text value="Versand:" />
+					</tableCell>
+					<tableCell>
+						<text value="Notizen:" />
+					</tableCell>
+				</tableColumn>
+				<tableColumn>
+					<tableCell>
+						<text value="#xss("xmlattribute" $translator.translate($model.paymentDetails.class.simpleName))" />
+						#if($model.paymentDetails)
+						#if($model.paymentDetails.iban)
+						<text value="Kontoinhaber: #xss("xmlattribute" $model.paymentDetails.owner)"/>
+						<text value="IBAN: #xss("xmlattribute" $formatter.format($model.paymentDetails.iban, 'sensibleNumber'))"/>
+						<text value="BIC: #xss("xmlattribute" $model.paymentDetails.bic)"/>
+						#end
+						#if($model.paymentDetails.accountNumber)
+						<text value="Kontoinhaber: #xss("xmlattribute" $model.paymentDetails.owner)"/>
+						<text value="Kontonummer: #xss("xmlattribute" $formatter.format($model.paymentDetails.accountNumber, 'sensibleNumber'))"/>
+						<text value="Kreditinstitut: #xss("xmlattribute" $model.paymentDetails.bankName)"/>
+						<text value="BLZ: #xss("xmlattribute" $model.paymentDetails.bankCode)"/>
+						#end
+						#if($model.paymentDetails.creditCardNumber)
+						<text value="Kreditkarte: #xss("xmlattribute" $model.paymentDetails.cardBrand.label)"/>
+						<text value="Kreditkarteninhaber: #xss("xmlattribute" $model.paymentDetails.cardHolderName)"/>
+						<text value="Kreditkartennummer: #xss("xmlattribute" $formatter.format($model.paymentDetails.creditCardNumber, 'sensibleNumber'))"/>
+						<text value="Gültig bis: #xss("xmlattribute" $formatter.format($model.paymentDetails.expiry, 'month'))"/>
+						#end
+						#end
+						<text value="#xss("xmlattribute" $translator.translate("${model.paymentDetails.class.simpleName}NOTE"))" />
+					</tableCell>
+					#if($model.paidDate)
+					<tableCell>
+						<text value="#xss("xmlattribute" $dateFormatter.format($model.paidDate))" />
+					</tableCell>
+					#end
+					<tableCell>
+					#if($model.shipmentOffer.shipmentMode.label)
+						<text value="#xss("xmlattribute" $model.shipmentOffer.shipmentMode.label)" />
+					#else
+						<text value="#xss("xmlattribute" $translator.translate($model.shipmentOffer.shipmentMode.name))" />
+					#end
+					</tableCell>
+					<tableCell>
+						#if($model.note)
+							<text value="#xss("xmlattribute" $model.note)" />
+						#else
+							<text value="#xss("xmlattribute" $translator.translate('EMPTY_ORDER_NOTE'))" />
+						#end
+						
+					</tableCell>
+				</tableColumn>
+			</table>
+			<text value="Herzlichen Dank für Ihren Einkauf." />
+		</container>
+	</page>
+	<overflowPage itemId="pageRoot" class="overflow">
+		<pageTemplate itemId="template">
+			#include("pageTemplate.vm")
+			<container itemId="orderHeader" class="orderHeader">
+				<paragraph>
+					<text value="Bestellnummer: #xss("xmlattribute" $model.orderNumber)" class="subTitle" />
+					<text value="Bestelldatum: #xss("xmlattribute" $dateFormatter.format($model.orderDate))" class="subTitle" />
+					<systemText value="Seite !page! von !totalPages!" />
+				</paragraph>
+			</container>
+		</pageTemplate>
+	</overflowPage>
+		
+</document>

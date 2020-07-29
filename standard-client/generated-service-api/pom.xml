@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx.client</groupId>
+    <artifactId>org.bndly.ebx.standard-client</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>org.bndly.ebx.client.generated-service-api</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bndly ebx client generated-service-api</name>
+  <description>Generated service APIs for the eBX REST API client</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../../..</maven.site.root>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.bndly.common.rest</groupId>
+      <artifactId>org.bndly.common.rest.client-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.service</groupId>
+      <artifactId>org.bndly.common.service.model-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.service</groupId>
+      <artifactId>org.bndly.common.service.shared-service-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.ebx</groupId>
+      <artifactId>org.bndly.ebx.schema-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.9.1</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-sources/service</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.bndly.common.schema</groupId>
+        <artifactId>maven-schema-bean-generator</artifactId>
+        <executions>
+          <execution>
+            <id>generateSchemaServices</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generateServices</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <targetFolder>${project.build.directory}/generated-sources/service</targetFolder>
+          <targetPackage>org.bndly.ebx.client.service.api</targetPackage>
+          <customServiceInterfacesPath>${basedir}/src/main/java/org/bndly/ebx/client/service/api</customServiceInterfacesPath>
+          <springBeanDefinitionPath>${project.build.directory}/generated-resources/ebx-services-context.xml</springBeanDefinitionPath>
+          <springBeanServiceImplementationPackage>org.bndly.ebx.client.service.impl</springBeanServiceImplementationPackage>
+          <schemaBeanSourcePackage>org.bndly.ebx.model</schemaBeanSourcePackage>
+          <schemaRestBeanSourcePackage>org.bndly.rest.beans.ebx</schemaRestBeanSourcePackage>
+          <schemaRoot>${basedir}/../../app-common/src/main/resources/schema/ebx-schema.xml</schemaRoot>
+          <schemaExtensions>
+            <schemaExtension>${basedir}/../../app-common/src/main/resources/schema/ebx-schema-jcr-extension.xml</schemaExtension>
+          </schemaExtensions>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

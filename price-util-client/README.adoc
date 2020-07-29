@@ -1,0 +1,3 @@
+= Bndly ebx price util client
+
+Generated client model based adapter implementation, that enables usage of the PriceAdapterManager

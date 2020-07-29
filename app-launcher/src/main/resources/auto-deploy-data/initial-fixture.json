@@ -1,0 +1,66 @@
+{
+	"items": [
+		{
+			"type": "Salutation",
+			"entries": [
+				{
+					"_condition": {
+						"type": "notExists",
+						"values": {
+							"internalName": "MALE"
+						}
+					},
+					"_key": "Salutation_MALE",
+					"internalName": "MALE",
+					"name": {
+						"_condition": "notExists",
+						"translationKey": "MALE"
+					}
+				},
+				{
+					"_condition": {
+						"type": "notExists",
+						"values": {
+							"internalName": "FEMALE"
+						}
+					},
+					"_key": "Salutation_FEMALE",
+					"internalName": "FEMALE",
+					"name": {
+						"_condition": "notExists",
+						"translationKey": "FEMALE"
+					}
+				}
+			]
+		},
+		{
+			"type": "ImporterConfiguration",
+			"entries": [
+				{
+					"_condition": {
+						"type": "notExists",
+						"values": {
+							"name": "it"
+						}
+					},
+					"name": "it",
+					"active": false,
+					"importEnabled": true,
+					"cmsUser": "doesnotmatter",
+					"cmsPassword": "doesnotmatter",
+					"url": "http://localhost:41080/coremedia/ior",
+					"exportMasters": true,
+					"exportMarketingProducts": true,
+					"exportChannels": true,
+					"paths": [
+						{
+							"name": "testDataPath",
+							"contentLanguage": null,
+							"cmsPath": "/eBX/it"
+						}
+					]
+				}
+			]
+		}
+	]
+}

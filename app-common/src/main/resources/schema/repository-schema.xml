@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+  #%L
+  org.bndly.ebx.app-common
+  %%
+  Copyright (C) 2013 - 2020 Cybercon GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<schema namespace="http://www.bndly.org/repository" name="repository">
+	<Named kind="mixin" virtual="true">
+		<name kind="string" mandatory="true" virtual="false" indexed="false"/>
+	</Named>
+	<IndexedItem kind="mixin" virtual="true">
+		<parentIndex kind="decimal" decimalPlaces="0" mandatory="true" virtual="false" indexed="false"/>
+	</IndexedItem>
+	<NodeValue kind="mixin"/>
+	<Node kind="type" mixWith="Named,IndexedItem">
+		<parent kind="type" type="Node" virtual="false" indexed="true"/>
+		<nodeType kind="string" mandatory="true" virtual="false" indexed="false"/>
+	</Node>
+	<Property kind="type" mixWith="Named,IndexedItem">
+		<node kind="type" type="Node" cascadeDelete="true" virtual="false" indexed="true"/>
+		<isMultiValued kind="boolean" mandatory="true" virtual="false" indexed="false"/>
+		<type kind="string" mandatory="true" virtual="false" indexed="false"/>
+	</Property>
+	<Value kind="type" mixWith="IndexedItem">
+		<property kind="type" type="Property" cascadeDelete="true" mandatory="true" virtual="false" indexed="true"/>
+		<stringValue kind="string" virtual="false" indexed="false"/>
+		<textValue kind="string" isLong="true" virtual="false" indexed="false"/>
+		<isText kind="boolean" virtual="false" indexed="false"/>
+		<dateValue kind="date" virtual="false" indexed="false"/>
+		<decimalValue kind="decimal" decimalPlaces="5" length="55" virtual="false" indexed="false"/>
+		<longValue kind="decimal" decimalPlaces="0" virtual="false" indexed="false"/>
+		<doubleValue kind="decimal" decimalPlaces="5" virtual="false" indexed="false"/>
+		<booleanValue kind="boolean" virtual="false" indexed="false"/>
+		<binaryValue kind="binary" virtual="false" indexed="false"/>
+		<entityValue kind="mixin" mixin="NodeValue" virtual="false" indexed="true"/>
+	</Value>
+	<unique type="Node">
+		<parent/>
+		<name/>
+	</unique>
+	<unique type="Property">
+		<node/>
+		<name/>
+	</unique>
+</schema>

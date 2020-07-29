@@ -1,0 +1,193 @@
+<h2>Glossary</h2>
+<h3 id="Bundle">Bundle</h3>
+<p>
+A bundle is a java based module, which can be deployed into an OSGI Container. A bundle can own several states like:
+</p>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Status</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>INSTALLED</td>
+			<td>The bundle has been successfully installed.</td>
+		</tr>
+		<tr>
+			<td>RESOLVED</td>
+			<td>All Java classes that the bundle needs are available. This state indicates that the bundle is either ready to be started or has stopped.</td>
+		</tr>
+		<tr>
+			<td>STARTING</td>
+			<td>The bundle is being started, the BundleActivator.start method will be called, and this method has not yet returned. When the bundle has an activation policy, the bundle will remain in the STARTING state until the bundle is activated according to its activation policy.</td>
+		</tr>
+		<tr>
+			<td>ACTIVE</td>
+			<td>The bundle has been successfully activated and is running; its Bundle Activator start method has been called and returned.</td>
+		</tr>
+		<tr>
+			<td>STOPPING</td>
+			<td>The bundle is being stopped. The BundleActivator.stop method has been called but the stop method has not yet returned.</td>
+		</tr>
+		<tr>
+			<td>UNINSTALLED</td>
+			<td>The bundle has been uninstalled. It cannot move into another state.</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+The eBX Core is developed as bundles and runs in an OSGI Container, including shop specific extension bundles.
+</p>
+
+<h3 id="Controller">Controller</h3>
+<p>
+A controller is a piece of software, responsible for interpretation of ressourcedata, which is deliverd to the eBX client.
+</p>
+
+<h3 id="DomainModel">Domain Model</h3>
+<p>
+The eBX Domain Model is the logical model of your shop. It contains all declarations, definitions and relations of the entities in your shop, such as:  products, variants, prices, shoppingcart, users, wishlists, orders, payment providers, shipping providers, etc. The domain model lives in the memory of your shop. A lot of the entities and attributes are stored in the database, some of the entities are looked up  online in other systems (ERP Systems), some other entities are calculated online and not persisted.
+</p>
+
+<h3 id="eBX">eBX</h3>
+<p>
+Is an abbreviation for "eBusiness eXtension" - a shopping component for Coremedia's Content Management System.
+</p>
+
+<h3 id="eBXClient">eBX Client</h3>
+<p>
+The eBX Client lives in the Coremedia CAE. It lives there for development and deployment and runtime. At runtime the eBX Client will be called for data. The java requests will give back the requested data. At development time, the client is part of your CAE application and will be compiled and deployed together with the CAE. From the logical point of view, the eBX client can be seen as "proxy" between CAE and eBX Core.
+</p>
+
+<h3 id="eBXCore">eBX Core</h3>
+<p>
+The eBX Core is the central part of the eBX. Many eBX clients will connect to one logical eBX Core, which has all of your e-shops logics inside:
+</p>
+<ul>
+	<li>purchaseable products</li>
+	<li>shoppingcart/basket</li>
+	<li>start checkout</li>
+	<li>payment providers, shipping providers</li>
+	<li>fixed order</li>
+</ul>
+<p>
+The eBX core can be extended by your products- and shopping logic.
+</p>
+
+<h3 id="Entity">Entity</h3>
+<p>
+A declaration and definition of an object which belongs together. There is always an unique identifier, attributes and relations to other entities. Relations may be implemented by attributes, that contain the value for the unique identifier of the other entity.
+</p>
+
+<h3 id="HATEOAS">HATEOAS</h3>
+<p>
+An abbreviation for Hypermedia as the Engine of Application State. HATEOAS is an usage constraint of the REST application architecture and will be intensively used in the communication between eBX Core and eBX Client.
+</p>
+<p>
+Using HATEOAS means, that the answer of a REST service call will contain links of the next possible REST service calls. An example is shown on wikipedia: HATEOAS in Wikipedia: http://en.wikipedia.org/wiki/HATEOAS.
+</p>
+<p>
+The response contains the possible links including logical names for these links. These logical names will typically be interpreted from the client (message receiver, and that is exactly one of the eBX Client tasks)
+</p>
+
+<h3 id="HTTP">HTTP</h3>
+<p>
+This technical communication protocol is used inside the eBX, from/to ebx Client and eBX Core. It is used as a basis to implement the REST architecture.
+</p>
+
+<h3 id="JAXB">JAXB</h3>
+<p>
+JAXB is a Java API to ease implementing bindings between XML and Java objects. XML Schema can be generated from the Java classes, that are annotated with JAXB annotations. The JAXB bindings can also be used to generate JSON.
+</p>
+
+<h3 id="MarketingProduct">Marketing Product</h3>
+<p>
+The marketing products are the presentation part of the purchaseable product. These marketing products are under control of the Coremedia system. There is a n:1 relation between marketing product and eBX products. The marketing product is deducted from the master product in den Coremedia system. It depends on the content model, how marketing product are maintained.
+See also "eBX product structure”.
+</p>
+
+<h3 id="MasterProduct">Master Product</h3>
+<p>
+The master product is generated via eBX "eBX export to content server". It is an abstract product, which (at minimum) contains the ebxid. This ebxid is the loosely coupling master product and technical product. The master product passes its behaviour and data to the marketing products. The marketing products are under control of Coremedia authoring mechanisms and can be used by editors, etc.
+</p>
+
+<h3 id="Message">Message</h3>
+<p>
+A message in eBX is a datagram, which contains (as an example) the product definition, the list of a shoppingcart, etc.. A message can also be represented as the payload of den REST Call or the content of a product definition file.
+</p>
+
+<h3 id="OSGI">OSGI</h3>
+<p>
+OSGI is a shortcut of "OSGi Service Platform". The eBX Core runs inside the Felix implementation of an OSGI-Service-Platform. Another name is OSGI Container. An OGSI Container runs in a Java Runtime Engine and can be managed remotely. Bundles are the units/items which can put into and out of the OGSI container (see also: Bundles). The bundles share the OSGI Context, eg. the JVM, the rights of the application user in the machine, etc.
+</p>
+<p>
+More information about OGSI can be found:
+</p>
+<ul>
+<li>Felix from the Apache: http://felix.apache.org</li>
+<li>OSGI in general:  https://en.wikipedia.org/wiki/OSGi</li>
+</ul>
+<p>
+The most benefit of an OSGI Usage is
+</p>
+<ul>
+<li>using multiple versions of Java libraries in one JVM without class loading issues</li>
+<li>the remote administration (JAR files in bundles can be updloaded into the machines and needs not to be copied on OS level)</li>
+<li>ONLNE deployment and undeployment, without restarting the JVM</li>
+</ul>
+
+<h3 id="Ressource">Ressource</h3>
+<p>
+REST deals with resources, which can be objects of a data model, services or similar. The state of a resource can be changed using the links in the resource representations, which are part of the result of a former REST Call (see also REST, HATEOAS)
+</p>
+
+<h3 id="RESTBean">REST Bean</h3>
+<p>
+A RestBean is a Java Class, that is annotated with JAXB Annotations in order to implement a XML-Java-Binding. By inspecting the annotations the binding can be transformed to various other description formats such as XSD, JSON-Schema or the proprietary communication description of the eBX Admin. RestBeans can hold Atom Links in order to implement the HATEOAS constraint. Furthermore Atom Links in a RestBean can be used to identify a resource in the eBX Core.
+</p>
+
+<h3 id="REST">REST</h3>
+<p>
+REST means “Representational State Transfer” and is an paradigm for distributed systems (here Client Server). REST is usually implemented with URLs for resources that, will be accessible over HTTP(S) and requires:
+</p>
+<ul>
+<li>An unique URI represents always the same resource, even if it is called multiple times.</li>
+<li>The interaction between client and server is stateless. No session states are left behind after delivering/receiving the result of an URI-request. This does not mean, that the server is not allowed to store application state. Application state is made available through resources.</li>
+<li>The application state is driven by Hypermedia information from the server.</li>
+</ul>
+<p>
+eBX uses the REST paradigm which includes the HATEOAS constraint for the client / server communication (eBX Core and eBX Client).
+</p>
+
+<h3 id="Schema">Schema</h3>
+<ul>
+<li>Schema for eBX is the same as eBX domain model</li>
+<li>Schema is also used for DB Schema in eBX, but is then explicitly named "database schema". The eBX Core sets up its DB Schema, when it starts.</li>
+</ul>
+
+<h3 id="SmartReference">Smart Reference</h3>
+<p>
+A smart reference is a RestBean that is marked as such with the “smartRef” attribute. Usually a ReferenceRestBean is a simple XML type, that only allows an ID child element. In some cases it might make sense to use the reference with a database ID, but with a natural representation, that can be used to perform a query and find the referenced entity on the server-side. Naturally spoken:
+</p>
+<ul>
+<li>Non-Smart Reference: I want to create an address with the country, where id is equal NUMERICVALUE</li>
+<li>Smart Reference: I want to create an address with the country, where isoCode2 is equal to STRINGVALUE and isoCode3 is equal to OTHERSTRINGVALUE</li>
+</ul>
+<p>
+Look at the use cases for further explanations.
+</p>
+
+<h3 id="eBXProductStructure">eBX product structure</h3>
+<p>
+There are three product types used in eBX context:
+</p>
+<ol>
+<li>Marketing product</li>
+<li>Master product</li>
+<li>Technical product</li>
+</ol>
+<p>
+Master product and marketing product live side by side loosely coupled by the eBX ID. They have an 1:N relationship at runtime. Both products live in the content server and have different content IDs. The marketing products are used or the presentation on the web. Editors can work on the product presentation by adding information to the marketing product. The master product is a replicated technical product from the eBX Core.
+</p>

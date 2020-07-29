@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:requiremodule","name@STRING":"RuleSetRestBean","dependencies@STRING":["/apps/ebx/data/admin/scripts/cy/views/RuleBuilderView"],"script@STRING":"return [\r\n\t{\r\n\t\tname: \"rules\",\r\n\t\tlabelText: \"Rules\",\r\n\t\tviewType: RuleBuilderView\r\n\t}\r\n];","initMethod@STRING":"","proxy@STRING":"","moduleId@STRING":""}}

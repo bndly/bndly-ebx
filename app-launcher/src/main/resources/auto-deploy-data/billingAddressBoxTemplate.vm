@@ -1,0 +1,9 @@
+#if($asHtml)
+<div id="billingAddressBox">
+        <h3>Rechnungsadresse:</h3>
+    $partialRenderer.include($model, "address.vm")
+</div>
+#else
+Rechnungsadresse:
+$partialRenderer.include($model, "address.vm")
+#end

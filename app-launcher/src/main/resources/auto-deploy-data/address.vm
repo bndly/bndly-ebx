@@ -1,0 +1,23 @@
+#if($asHtml)
+    #if($model)
+    $translator.translate($model.salutation.internalName) $translator.translate($model.title.internalName) $model.firstName $model.lastName              <br>
+    #if($model.additionalInfo)
+        $model.additionalInfo                        <br>
+    #end
+    $model.street #if($model.houseNumber) $model.houseNumber #end              <br>
+    $model.postCode $model.city<br>
+    #else
+    Siehe Kundenadresse
+    #end
+#else
+#if($model)
+$model.firstName $model.lastName
+#if($model.additionalInfo)
+$model.additionalInfo
+#end
+$model.street #if($model.houseNumber) $model.houseNumber #end
+$model.postCode $model.city
+#else
+siehe Kundenadresse
+#end
+#end

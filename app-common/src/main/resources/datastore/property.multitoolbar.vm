@@ -1,0 +1,9 @@
+<div class="btn-toolbar form-group js-multitoolbar" role="toolbar">
+	<div class="btn-group" role="group">
+		<button class="btn btn-default" data-semantic="add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+		<button class="btn btn-default" data-semantic="remove"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+	</div>
+	<div class="btn-group" role="group">
+		#partial($null.null "removebutton.vm")
+	</div>
+</div>

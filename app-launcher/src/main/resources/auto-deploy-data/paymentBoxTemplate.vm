@@ -1,0 +1,67 @@
+#if($model && $model.paymentDetails)
+#set($paymentType = $model.paymentDetails.class.simpleName)
+#if($asHtml)
+    <table id="paymentTable" class="tableNoBorder" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="inherit">
+                #if($paymentType eq "CashOnDeliveryPaymentDetails")
+                    <p>
+
+                    <h3>Zahlungsart:&nbsp;</h3>Nachnahme
+                    </p>
+                #elseif($paymentType eq "ClassicBankPaymentDetails" || $paymentType eq "IBANBankPaymentDetails")
+                    <p>
+
+                    <h3>Zahlungsart:&nbsp;</h3>Lastschrift
+                    </p>
+                #elseif($paymentType eq "TransferPaymentDetails")
+                    <h3>Zahlungsart:&nbsp;</h3>Vorkasse<br>
+                    Bitte überweisen Sie uns den Rechnungsbetrag $priceFormatter.formatDecimal( $model.totalGross, '€') auf das folgende Konto:<br>
+                    <br>
+                    $translator.translate('SHOPNAME')       <br>
+                    Meine Bank <br>
+                    Konto: 12345678 <br>
+                    BLZ: 1234567 <br>
+                #elseif($paymentType eq "InvoicePaymentDetails")
+                    <h3>Zahlungsart:&nbsp;</h3>Rechnung<br>
+                    Bitte überweisen Sie die offene Summe innerhalb von 14 Tagen auf das folgende Konto:<br>
+                    <br>
+                    $translator.translate('SHOPNAME')       <br>
+                    Meine Bank <br>
+                    Konto: 12345678 <br>
+                    BLZ: 1234567 <br>
+                #elseif($paymentType eq "CreditCardPaymentDetails")
+                    <p>
+
+                    <h3>Zahlungsart:&nbsp;</h3>Kreditkarte
+                    </p>
+                #end
+            </td>
+        </tr>
+    </table>
+#else
+#if($paymentType eq "CashOnDeliveryPaymentDetails")
+Zahlungsart: Nachnahme
+#elseif($paymentType eq "ClassicBankPaymentDetails" || $paymentType eq "IBANBankPaymentDetails")
+Zahlungsart: Lastschrift
+#elseif($paymentType eq "TransferPaymentDetails")
+Zahlungsart: Vorkasse
+Bitte überweisen Sie uns den Rechnungsbetrag $priceFormatter.formatDecimal( $model.totalGross, '€') auf das folgende Konto:
+
+$translator.translate('SHOPNAME')
+Meine Bank
+Konto: 12345678
+BLZ: 1234567
+#elseif($paymentType eq "InvoicePaymentDetails")
+Zahlungsart: Rechnung
+Bitte überweisen Sie die offene Summe innerhalb von 14 Tagen auf das folgende Konto:
+
+$translator.translate('SHOPNAME')
+Meine Bank
+Konto: 12345678
+BLZ: 1234567
+#elseif($paymentType eq "CreditCardPaymentDetails")
+Zahlungsart: Kreditkarte
+#end
+#end
+#end

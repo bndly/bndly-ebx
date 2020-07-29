@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"app@STRING":"/apps/ebx/data/application","hero@STRING":"/apps/ebx/data/admin/hero","beanType@STRING":"cy:ui","title@STRING":"","requiremodules@STRING":["/apps/ebx/data/application/loader"]},"children":{"hero":{},"scripts":{},"purchasable":{},"purchasing":{},"purchased":{},"configuration":{}}}

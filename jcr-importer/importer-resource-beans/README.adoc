@@ -1,0 +1,3 @@
+= Bndly ebx jcr importer resource beans
+
+JAXB classes to communicate with the JCR importer REST API

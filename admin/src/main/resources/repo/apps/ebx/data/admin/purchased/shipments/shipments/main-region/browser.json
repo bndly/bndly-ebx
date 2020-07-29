@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"Shipment","title@STRING":"Shipments","entityfields@STRING":["number","date","orderNumber","address"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new shipment","existingItemTitle@STRING":"Update shipment \"{{model}}\""}}

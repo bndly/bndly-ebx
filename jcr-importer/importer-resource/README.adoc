@@ -1,0 +1,3 @@
+= Bndly ebx jcr importer resource
+
+REST API resource, that exposes the Java API of the JCR importer

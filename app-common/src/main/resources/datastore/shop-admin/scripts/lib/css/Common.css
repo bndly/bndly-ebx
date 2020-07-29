@@ -1,0 +1,8 @@
+/* line 1, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/Common.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/Common\.less}line{font-family:\000031}}
+.modal.large {
+  width: 50%;
+  /* respsonsive width */
+  margin-left: -25%;
+  /* width/2) */
+}

@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"Salutation","title@STRING":"Salutations","entityfields@STRING":["internalName","label"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new salutation","existingItemTitle@STRING":"Update salutation \"{{model}}\""}}

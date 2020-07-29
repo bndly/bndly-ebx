@@ -1,0 +1,3 @@
+= Bndly ebx standard client service api
+
+Generated service APIs for the eBX REST API client

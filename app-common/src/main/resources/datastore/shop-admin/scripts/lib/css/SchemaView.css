@@ -1,0 +1,19 @@
+/* line 1, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/SchemaView.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/SchemaView\.less}line{font-family:\000031}}
+circle.node {
+  stroke: #fff;
+  stroke-width: 3px;
+}
+/* line 6, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/SchemaView.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/SchemaView\.less}line{font-family:\000036}}
+line.link {
+  stroke-width: 2px;
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+/* line 12, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/SchemaView.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/SchemaView\.less}line{font-family:\0000312}}
+marker#arrow {
+  stroke: #999;
+  fill: #999;
+}

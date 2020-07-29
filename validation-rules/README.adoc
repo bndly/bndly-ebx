@@ -1,0 +1,3 @@
+= Bndly ebx validation rules
+
+Java based rule definitions, that shall be applied to the RestBeans for the eBX schema upon creation or modification

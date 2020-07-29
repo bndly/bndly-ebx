@@ -1,0 +1,3 @@
+= Bndly ebx crypto-config
+
+Default implementation for encrypted storage of OSGI configurations

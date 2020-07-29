@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"PersonTitle","title@STRING":"Person titles","entityfields@STRING":["internalName","label"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new person title","existingItemTitle@STRING":"Update person title \"{{model}}\""}}

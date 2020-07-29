@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  org.bndly.ebx.client.spring-context
+  %%
+  Copyright (C) 2013 - 2020 Cybercon GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<!--
+~ Copyright (c) 2011, cyber:con GmbH, Bonn.
+~
+~ All rights reserved. This source file is provided to you for
+~ documentation purposes only. No part of this file may be
+~ reproduced or copied in any form without the written
+~ permission of cyber:con GmbH. No liability can be accepted
+~ for errors in the program or in the documentation or for damages
+~ which arise through using the program. If an error is discovered,
+~ cyber:con GmbH will endeavour to correct it as quickly as possible.
+~ The use of the program occurs exclusively under the conditions
+~ of the licence contract with cyber:con GmbH.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           ">
+    <!--take properties from our pom files-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:/application.properties</value>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+    </bean>
+
+
+    <bean id="imageMappingProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations" value="classpath:image_mapping.properties"/>
+        <property name="ignoreResourceNotFound" value="true" />
+    </bean>
+
+    <context:component-scan base-package="org.bndly.shop.backendimport"/>
+
+    <context:component-scan base-package="org.bndly.shop.client.servicepool.impl"/>
+
+    <context:component-scan base-package="org.bndly.shop.client.service.impl"/>
+    
+    <!--instantiate graph iteration listeners for cross cutting features upon service interaction-->
+    <context:component-scan base-package="org.bndly.shop.client.service.graph"/>
+    
+    <!--instantiate standard shop client mappers-->
+    <context:component-scan base-package="org.bndly.shop.client.mapper">
+        <context:include-filter type="regex" expression=".*Mapper" />
+    </context:component-scan>
+
+    <context:component-scan base-package="org.bndly.shop.client.service.decorator"/>
+
+    <bean name="serviceProxyFactory" class="org.bndly.shop.client.service.wrapper.ServiceProxyFactory">
+        <property name="schemaBeanDaoFactory" ref="schemaBeanDaoFactory"/>
+        <property name="clientFactory" ref="hateoasClientFactory"/>
+    </bean>
+    
+    
+    <bean name="schemaBeanDaoFactory" class="org.bndly.ebx.client.SchemaBeanDaoFactory" init-method="init">
+        <property name="serviceFactory" ref="clientServiceFactory"/>
+    </bean>
+    
+    <!--build a client service factory, that generates CRUD-like DAO objects dynamically-->    
+    <bean name="clientServiceFactory" class="org.bndly.rest.client.hateoas.ServiceFactoryImpl" init-method="init">
+        <property name="clientFactory" ref="hateoasClientFactory" />
+        <property name="rootResource">
+            <bean class="org.bndly.rest.beans.Services" />
+        </property>
+        <property name="hostUrl" value="${ebx.host.url}" />
+    </bean>
+    
+    <!--build a http client that will work with our keystore-->
+    <bean name="httpClientFactory" class="org.bndly.ssl.impl.SSLHttpClientFactory"/>
+    <bean name="keyStoreAccessProvider" class="org.bndly.ssl.impl.KeyStoreAccessProviderImpl">
+        <property name="keyStoreLocation" value="${ssl.keyStoreLocation}"/>
+        <property name="keyStorePassword" value="${ssl.keyStorePassword}"/>
+    </bean>
+    
+    <!--build a hateoas client factory that can wrap around rest beans-->
+    <!--<bean name="httpClient" factory-bean="httpClientFactory" factory-method="build">-->
+    <bean name="httpClient" factory-bean="httpClientFactory" factory-method="buildLegacy">
+        <constructor-arg ref="keyStoreAccessProvider"/>
+        <constructor-arg value="${ssl.ignore.host}"/>
+    </bean>
+    <bean name="messageClassesProvider" class="org.bndly.rest.client.hateoas.MessageClassesProviderImpl">
+        <property name="restBeanPackage" value="org.bndly"/>
+    </bean>
+    <bean name="exceptionThrower" class="org.bndly.rest.client.hateoas.ExceptionThrowerImpl" />
+    <bean name="hateoasClientFactory" class="org.bndly.rest.client.hateoas.HATEOASClientFactoryImpl">
+        <constructor-arg ref="httpClient"/>
+        <constructor-arg ref="messageClassesProvider"/>
+        <constructor-arg ref="backendAccountProvider"/>
+        <constructor-arg ref="languageProvider"/>
+        <constructor-arg ref="exceptionThrower"/>
+    </bean>
+    
+    <bean class="org.bndly.spring.ContextFragmentScanner" >
+        <property name="packageToScan" value="META-INF.spring" />
+        <property name="contextSuffix" value="-context.xml" />
+    </bean>
+    
+</beans>

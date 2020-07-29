@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx</groupId>
+  <artifactId>org.bndly.ebx.admin</artifactId>
+  <packaging>pom</packaging>
+
+  <name>Bndly ebx admin user interface</name>
+  <description>eBX admin UI data</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+  </properties>
+
+  <build>
+    <finalName>ebx-admin-${project.version}-repo</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4.1</version>
+        <executions>
+          <execution>
+            <id>distro-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/assembly/bin.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

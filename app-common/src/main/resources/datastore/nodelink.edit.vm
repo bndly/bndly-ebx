@@ -1,0 +1,8 @@
+<a
+	href="#xss("htmlattribute" $baseUrl)/repo#xss("htmlattribute" ${model.path}).edit.html?node" 
+	class="btn btn-mini btn-inverse edit-button hidden"
+	title="" 
+	data-toggle="tooltip"
+	data-placement="top"
+	data-original-title="edit properties of #xss("htmlattribute" ${model.path})"
+>edit</a>

@@ -1,0 +1,3 @@
+= Bndly ebx 3rd-party-bom
+
+Project contains a pom with the dependencies to 3rd party maven artefacts

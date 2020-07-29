@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"PropertySet","title@STRING":"Properties","entityfields@STRING":["name"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new property set","existingItemTitle@STRING":"Update property set \"{{model}}\""}}

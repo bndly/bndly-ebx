@@ -1,23 +1,54 @@
-# Compiled class file
-*.class
+# Mac OS X
+.DS_Store
 
-# Log file
-*.log
+# gedit backup files
+*~
 
-# BlueJ files
-*.ctxt
+# Maven
+*overlays/
+!apache-overlays/
+*target/
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Eclipse project and settings files and directories
+*.classpath
+*.project
+*.settings
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# IntelliJ Idea files and directories
+*.iml
+*.ipr
+*.iws
+.idea/
+atlassian-ide-plugin.xml
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# artifacts of resources from Netbeans and jBPM/Activiti and Apache Solr
+#solr
+test-output
+nb-configuration.xml
+nbactions.xml
+.bpmn
+*.psd
+
+.~lock.Dokumentation eBusiness Plugin.odm#
+.~lock.CAE - Checkout.odt#
+coremedia.log
+
+# csv exported files #
+*.stored
+*.*.tmp
+
+#netbeans configs
+*nbproject/
+
+# exclude mongo db
+mongodb-osx-x86_64-3.0.0
+
+#release plugin files
+pom.xml.tag
+pom.xml.next
+pom.xml.releaseBackup
+/ebx/bootstrap-branding/node_modules/
+
+#flatten and sortpom files
+.flattened-pom.xml
+pom.xml.bak

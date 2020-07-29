@@ -1,0 +1,3 @@
+= Bndly ebx solr webapp
+
+A solr webapp, that will store replicated eBX entities

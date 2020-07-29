@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx</groupId>
+  <artifactId>org.bndly.ebx.schema-rest-beans</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bndly ebx schema-rest-beans</name>
+  <description>Generated JAXB classes for representing eBX entities in the REST API</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.rest</groupId>
+      <artifactId>org.bndly.common.rest.annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.rest</groupId>
+      <artifactId>org.bndly.common.rest.beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.cmpn</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>${project.build.directory}/generated-sources/schema</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.bndly.common.schema</groupId>
+        <artifactId>maven-schema-bean-generator</artifactId>
+        <executions>
+          <execution>
+            <id>generateSchemaBeans</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generateXmlBeans</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <targetFolder>${project.build.directory}/generated-sources/schema</targetFolder>
+          <targetPackage>org.bndly.rest.beans.ebx</targetPackage>
+          <schemaRoot>${basedir}/../app-common/src/main/resources/schema/ebx-schema.xml</schemaRoot>
+          <schemaExtensions>
+            <schemaExtension>${basedir}/../app-common/src/main/resources/schema/ebx-schema-jcr-extension.xml</schemaExtension>
+          </schemaExtensions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

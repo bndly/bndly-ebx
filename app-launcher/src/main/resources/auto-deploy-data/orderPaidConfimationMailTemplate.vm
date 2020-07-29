@@ -1,0 +1,95 @@
+#set($salutation = '')
+#if($customer.salutation == 'MALE')
+#set($salutation = $MALE)
+#end
+
+#if($customer.salutation == 'FEMALE')
+#set($salutation = $FEMALE)
+#end
+
+#set($title = '')
+#if($customer.title == 'DR')
+#set($title = $DR)
+#end
+
+#if($customer.title == 'PROF')
+#set($title = $PROF)
+#end
+
+#if($customer.title == 'PROF_DR')
+#set($title = $PROF_DR)
+#end
+
+#if($asHtml)
+<html>
+<head>
+    #if($headerWithCssStyle)
+        $headerWithCssStyle
+    #end
+</head>
+<body>
+    #if ($order && $addresses.customer)
+
+        #set($customer = $addresses.customer)
+    <div id="body" class="left">
+        <div id="header" class="inherit">
+            <div class="left p50" style="margin: 0 0 10px 0;">
+                <h1>$translator.translate('SHOPNAME') </h1>
+
+                <h2>$headline</h2>
+            </div>
+        </div>
+
+        <div id="message" class="inherit">
+            <div id="salutation" class="inherit">
+                Sehr geehrte(r) $salutation $title $customer.firstName $customer.lastName, <br>
+
+                <p>
+                    wir haben Ihre Zahlung in Höhe von EUR $string.priceAsString( $order.totalGross, false ) für Ihre Bestellung
+                    $order.id vom $dateFormatter.format($order.date) erhalten.
+                </p>
+            </div>
+            <br>
+            <br>
+        </div>
+    <br>
+        #if ($serviceCallbackInformationBox)
+        <div id="serviceCallbackInformationBox" class="left">
+            $serviceCallbackInformationBox
+        </div>
+        #end
+    <br>
+        #if ($footer)
+        <div id="footer" class="left">
+            <div id="footerBox" class="inherit">
+                $footer
+            </div>
+        </div>
+        #end
+    </div>
+    #end
+</body>
+</html>
+#else
+#if ($order && $addresses.customer)
+#set($customer = $addresses.customer)
+$translator.translate('SHOPNAME')
+
+$headline
+
+Sehr geehrte(r) $salutation $title $customer.firstName $customer.lastName,
+
+wir haben Ihre Zahlung in Höhe von EUR $string.priceAsString( $order.totalGross, false ) für Ihre Bestellung
+$order.id vom $dateFormatter.format($order.date) erhalten.
+
+
+
+#if ($serviceCallbackInformationBox)
+$serviceCallbackInformationBox
+#end
+
+#if ($footer)
+$footer
+#end
+#end
+#end

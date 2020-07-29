@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"StockItem","title@STRING":"Stock items","entityfields@STRING":["sku","stock"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new stock item","existingItemTitle@STRING":"Update stock item \"{{model}}\""}}

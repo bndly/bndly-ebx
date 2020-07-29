@@ -1,0 +1,3 @@
+= Bndly ebx virtual-attribute-adapter
+
+Adapter implementations, that will hook logic into schema beans

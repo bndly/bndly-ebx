@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:requiremodule","name@STRING":"PurchaseOrderTracking","script@STRING":"return {\r\n\titems: [{\r\n\t\t\tmember: \"trackingNumber\",\r\n\t\t\tlabelText: \"Tracking Number\"\r\n\t}]\r\n};","initMethod@STRING":"","proxy@STRING":"","moduleId@STRING":""}}

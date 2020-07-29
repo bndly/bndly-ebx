@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"DynamicProductProperty","title@STRING":"Dynamic properties","entityfields@STRING":["name"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new dynamic property","existingItemTitle@STRING":"Update dynamic property \"{{model}}\""}}

@@ -1,0 +1,5 @@
+= Bndly ebx bpm-tasks
+
+Tasks for manipulating schema data using activiti BPMN processes.
+
+The BPMN files can be found in app-launcher (`app-launcher/src/main/resources/auto-deploy-data`)

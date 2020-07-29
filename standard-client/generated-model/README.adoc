@@ -1,0 +1,3 @@
+= Bndly ebx standard client model
+
+Generated model classes from the eBX schema for usage in the REST API client

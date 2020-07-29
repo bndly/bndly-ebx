@@ -1,0 +1,3 @@
+= Bndly ebx Bill Of Materials
+
+Project contains a pom imported by parent pom with all dependencies of ebx modules.

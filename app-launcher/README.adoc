@@ -1,0 +1,26 @@
+= Bndly ebx app-launcher
+
+eBX application for usage during integration tests
+
+eBX can be started from here (after build) with
+
+`mvn bndly:run`
+
+which launches a felix with all bundles and configurations from `app-launcher/src/main/prov/provisioning-ebx.json` and starts a jetty webserver on port 8082 configurable in pom.xml:
+[code,xml]
+----
+    <jetty.port>8082</jetty.port>
+----
+
+The provisioning format is comparable with sling osgi features format, but was developed by cybercon a couple of years earlier.
+
+The main entry point is http://localhost:8082/bndly with user ebx and password ebx configurable in provisioning-ebx.json:
+[code,json]
+----
+"org.bndly.rest.api.account.InitialAccount-ebx": {
+    "accountName": "ebx",
+    "password": "ebx"
+},
+----
+Swagger-Documentation can be reached by http://localhost:8082/bndly/swagger.json.
+Be prepared, it is a very large json file.

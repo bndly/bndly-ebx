@@ -1,0 +1,3 @@
+= Bndly ebx trainiling zero removal
+
+Removes trailing zeros in serialized BigDecimal values, that are serialized to JSON

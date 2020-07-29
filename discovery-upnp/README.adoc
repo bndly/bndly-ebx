@@ -1,0 +1,3 @@
+= Bndly ebx UPnP discovery
+
+UPnP based discovery of eBX instances in a local network

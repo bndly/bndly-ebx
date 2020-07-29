@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx</groupId>
+  <artifactId>org.bndly.ebx.jcr-velocity</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bndly ebx jcr-velocity</name>
+  <description>Template data provider, that uses a JCR as a source</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax.jcr</groupId>
+      <artifactId>jcr</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common</groupId>
+      <artifactId>org.bndly.common.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.templating</groupId>
+      <artifactId>org.bndly.common.templating.velocity-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.ebx.jcr</groupId>
+      <artifactId>org.bndly.ebx.jcr.importer-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jackrabbit</groupId>
+      <artifactId>jackrabbit-jcr-commons</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jackrabbit</groupId>
+      <artifactId>jackrabbit-jcr2dav</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jackrabbit</groupId>
+      <artifactId>jackrabbit-spi2dav</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.cmpn</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.10.19</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Bundle-Category>jcr</Bundle-Category>
+            <Require-Capability>osgi.serviceloader; filter:="(osgi.serviceloader=javax.jcr.RepositoryFactory)";cardinality:=multiple,osgi.extender; filter:="(|(osgi.extender=osgi.serviceloader.processor)(osgi.extender=osgi.serviceloader.registrar))"</Require-Capability>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

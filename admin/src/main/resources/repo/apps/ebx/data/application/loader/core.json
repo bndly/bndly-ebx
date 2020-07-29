@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:requiremoduleloader"},"children":{"bootstrap":{},"Browser":{},"eBXForms":{},"eBXLabelFunctions":{},"eBXRelations":{},"eBXSearchConfiguration":{},"eBXTableConfigurations":{},"EditUI":{},"RequireView":{},"RestBeans":{}}}

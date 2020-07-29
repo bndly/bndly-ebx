@@ -1,0 +1,3 @@
+= Bndly ebx data-provider
+
+DataProvider for template rendering and DataStore implementation based on the eBX entity 'BinaryData'

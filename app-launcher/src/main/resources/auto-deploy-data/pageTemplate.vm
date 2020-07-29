@@ -1,0 +1,42 @@
+<image itemId="companyLogo" class="logo" source="bndlylogo.jpg" />
+<table itemId="footerTable" class="footerTable">
+	<tableColumn>
+		<tableCell>
+			<text value="Rechtsform" />
+		</tableCell>
+		<tableCell>
+			<text value="Sitz der Gesellschaft" />
+		</tableCell>
+		<tableCell>
+			<text value="USt-ID" />
+		</tableCell>
+		<tableCell>
+			<text value="Steuernummer" />
+		</tableCell>
+	</tableColumn>
+	<tableColumn>
+		<tableCell>
+			<text value="Registergericht" />
+		</tableCell>
+		<tableCell>
+			<text value="Handelsregisternummer" />
+		</tableCell>
+		<tableCell>
+			<text value="Geschäftsführer" />
+		</tableCell>
+		<tableCell>
+			<text value="Aufsichtsrat" />
+		</tableCell>
+	</tableColumn>
+	<tableColumn>
+		<tableCell>
+			<text value="Meine Bank" />
+		</tableCell>
+		<tableCell>
+			<text value="Konotonummer: 12345678900" />
+		</tableCell>
+		<tableCell>
+			<text value="BLZ 30040050" />
+		</tableCell>
+	</tableColumn>
+</table>

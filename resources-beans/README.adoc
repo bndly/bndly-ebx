@@ -1,0 +1,3 @@
+= Bndly ebx resources beans
+
+JAXB classes for custom resources of the eBX REST API

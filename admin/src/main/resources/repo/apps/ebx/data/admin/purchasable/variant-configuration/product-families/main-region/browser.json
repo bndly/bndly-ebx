@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"ProductFamily","title@STRING":"Product families","entityfields@STRING":["name"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new product family","existingItemTitle@STRING":"Update product family \"{{model}}\""}}

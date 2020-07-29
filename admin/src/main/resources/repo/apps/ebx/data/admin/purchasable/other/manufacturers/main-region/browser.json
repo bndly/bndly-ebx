@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"Manufacturer","title@STRING":"Manufacturers","entityfields@STRING":["name","description","homepage"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new manufacturer","existingItemTitle@STRING":"Update manufacturer \"{{model}}\""}}

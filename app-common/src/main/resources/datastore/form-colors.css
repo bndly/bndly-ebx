@@ -1,0 +1,79 @@
+@media screen {
+    .cy-info {
+        border-color: #3a87ad;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        color: #3a87ad;
+    }
+
+    .cy-error {
+        border-color: #b94a48;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        color: #b94a48;
+    }
+
+    .cy-warning {
+        border-color: #c09853;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        color: #c09853;
+    }
+
+    .cy-inverse-gradient {
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #363636;
+        background-image: -moz-linear-gradient(top, #444444, #222222);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+        background-image: -webkit-linear-gradient(top, #444444, #222222);
+        background-image: -o-linear-gradient(top, #444444, #222222);
+        background-image: linear-gradient(to bottom, #444444, #222222);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+        border-color: #222222 #222222 #000000;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    }
+
+    span.add-on.cy-inverse-gradient {
+        border-color: #222222 #222222 #000000;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-toolbar.multitoolbar {
+        margin-top: 0;
+    }
+
+    .form-horizontal .input-multi-spacer {
+        margin-bottom: 10px;
+    }
+    .form-horizontal div.input-multi-spacer::after {
+		display: block;
+    }
+
+	.child-nodes .drop-highlight,
+	.drop-highlight .input-multi-spacer {
+		box-shadow: 0 0px 8px 0px rgb(136, 198, 63);
+	}
+
+	.child-nodes .drop-highlight a {
+		background-color: #88C63F;
+		color: white;
+	}
+
+	.drop-highlight [draggable='true']{
+		background-color: #88C63F;
+		color: white;
+	}
+
+	.dragged {
+		opacity: 0.4;
+	}
+
+	a[data-toggle-edit-buttons='true'] {
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"CreditCardBrand","title@STRING":"Creditcard brands","entityfields@STRING":["name","label"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new creditcard brand","existingItemTitle@STRING":"Update creditcard brand \"{{model}}\""}}

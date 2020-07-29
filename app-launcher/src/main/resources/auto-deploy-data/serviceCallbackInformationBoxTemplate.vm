@@ -1,0 +1,11 @@
+#if($asHtml)
+<table id="serviceCallbackInformationTable" class="tableNoBorder" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="inherit">
+            Falls Sie Rückfragen haben, erreichen Sie uns von Montag-Freitag von 09:00 - 20:00 Uhr unter der Telefonnummer 0228/12345678 oder per Mail unter shop@meinshop.de.
+        </td>
+    </tr>
+</table>
+#else
+Falls Sie Rückfragen haben, erreichen Sie uns von Montag-Freitag von 09:00 - 20:00 Uhr unter der Telefonnummer 0228/12345678 oder per Mail unter shop@meinshop.de.
+#end

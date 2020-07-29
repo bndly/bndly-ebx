@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"WishList","title@STRING":"Wish lists","entityfields@STRING":["name","privacy"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new wish list","existingItemTitle@STRING":"Update wish list \"{{model}}\""}}

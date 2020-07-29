@@ -1,0 +1,10 @@
+{
+	"metaproc": {
+		"bundles": {
+			"10": [
+				"org.bndly.common.testfixture:org.bndly.common.testfixture.resource:jar:\${bndly.common.version}",
+				"org.bndly.common.testfixture:org.bndly.common.testfixture.resource-beans:jar:\${bndly.common.version}"
+			]
+		}
+	}
+}

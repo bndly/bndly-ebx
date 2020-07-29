@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:requiremodule","name@STRING":"UserRestBean","script@STRING":"return [\r\n\t{\r\n\t\titems: [{\r\n\t\t\t\tmember: \"identifier\",\r\n\t\t\t\tlabelText: \"User ID\",\r\n\t\t\t\tmandatory: true\r\n\t\t\t}]\r\n\t}\r\n];","initMethod@STRING":"","proxy@STRING":"","moduleId@STRING":""}}

@@ -1,0 +1,3 @@
+= Bndly ebx translation resolver
+
+A translation resolver implementation, that targets the eBX schema entity 'Translation'

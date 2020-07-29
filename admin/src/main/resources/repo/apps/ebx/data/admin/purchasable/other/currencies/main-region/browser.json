@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"Currency","title@STRING":"Currencies","entityfields@STRING":["code","symbol","decimalPlaces"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new currency","existingItemTitle@STRING":"Update currency \"{{model}}\""}}

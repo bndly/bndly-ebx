@@ -1,0 +1,4 @@
+#if($model.parent)
+	<h3>Parent</h3>
+	#partial($model.parent "nodelink.button.vm")
+#end

@@ -1,0 +1,35 @@
+#if($asHtml)
+<hr>
+<div class="left p50">
+    <b>#xss("html" $translator.translate('SHOPNAME'))</b><br>
+    Eick Eigentümer<br>
+    Straße 4 <br>
+    00000 Firmensitzstadt <br>
+    Telefon: +49 228 123456789 <br>
+    Fax: +49 228 12345677 <br>
+    www.meinshop.de <br>
+
+</div>
+<div class="right">
+    <br>
+    Registergericht, <br>
+    Handelsregisternummer <br>
+    Ust-ID: <br>
+    Geschäftsführer <br>
+    Aufsichtsrat <br>
+</div>
+#else
+$translator.translate('SHOPNAME')
+Eick Eigentümer
+Straße 4
+00000 Firmensitzstadt
+Telefon: +49 228 123456789
+Fax: +49 228 12345677
+www.meinshop.de
+
+Registergericht
+Handelsregisternummer
+Ust-ID:
+Geschäftsführer
+Aufsichtsrat
+#end

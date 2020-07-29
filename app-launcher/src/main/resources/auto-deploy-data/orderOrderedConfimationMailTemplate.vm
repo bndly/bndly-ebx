@@ -1,0 +1,197 @@
+#set($customer = $model.orderer)
+#set($customerAddress = $model.address)
+
+#set($salutation = '')
+#if($customerAddress.salutation.name.translationKey == 'MALE')
+#set($salutation = $MALE)
+#end
+
+#if($customerAddress.salutation.name.translationKey == 'FEMALE')
+#set($salutation = $FEMALE)
+#end
+
+#set($title = '')
+#if($customerAddress.title.name.translationKey == 'DR')
+#set($title = $DR)
+#end
+
+#if($customerAddress.title.name.translationKey == 'PROF')
+#set($title = $PROF)
+#end
+
+#if($customerAddress.title.name.translationKey == 'PROF_DR')
+#set($title = $PROF_DR)
+#end
+
+#if($asHtml)
+<html>
+<head>
+$partialRenderer.include($model, "headerWithCssStyleTemplate.vm")
+</head>
+<body>
+    #if ($model)
+
+    <div id="body" class="left">
+        <div id="header" class="inherit">
+            <div class="left p50" style="margin: 0 0 10px 0;">
+                <h1>$translator.translate('SHOPNAME') </h1>
+
+                <h2>Bestellung</h2>
+            </div>
+
+            <div class="right">
+                Bestellnummer: $model.orderNumber<br>
+                Bestelldatum: $dateFormatter.format($model.orderDate)
+            </div>
+        </div>
+
+        <div id="message" class="inherit">
+            <div id="salutation" class="inherit">
+                Sehr geehrte(r) $translator.translate($customerAddress.salutation.internalName) $translator.translate($customerAddress.title.internalName) $customerAddress.firstName $customerAddress.lastName, <br>
+
+                <p>
+                    vielen Dank für Ihre Bestellung im $translator.translate('SHOPNAME').
+                    Mit dieser E-Mail bestätigen wir den Eingang Ihrer Bestellung in unserem System.
+                </p>
+            </div>
+            <br>
+            <br>
+            <br>
+
+            <table id="orderItemsTable" class="tableNoBorder" cellpadding="0" cellspacing="0">
+                <thead style="background-color: $colHeaderColor;">
+                <th>Position</th>
+                <th>Artikel-Nr.</th>
+                <th>Bezeichnung</th>
+                <th class="right">Menge</th>
+                <th class="right">MwSt.</th>
+                <th class="right">Einzelpreis</th>
+                <th class="right">Summe</th>
+                </thead>
+                #if ($model.items)
+                    #set ($rowCount = 1)
+                    #foreach ( $orderItem in $model.items)
+                        #if ($rowCount %2 == 0)
+                            #set ($cls = "even")
+                        #else
+                            #set ($cls = "odd")
+                        #end
+                        <tr>
+                            <td class="$cls">$rowCount</td>
+                            <td class="$cls">$orderItem.sku</td>
+                            <td class="$cls">$orderItem.productName #if ($orderItem.wishListName) <br> Wunschzettel "$orderItem.wishListName" #end</td>
+                            <td class="right $cls">$orderItem.quantity</td>
+                            <td class="right $cls">$priceFormatter.formatTaxRate( $orderItem.taxRate )</td>
+                            <td class="right $cls">$priceFormatter.formatDecimal( $orderItem.priceGross, '€')</td>
+                            <td class="right $cls">$priceFormatter.formatDecimal( $orderItem.totalGross, '€')</td>
+                        </tr>
+                        #set ($rowCount = $rowCount + 1)
+                    #end
+                #end
+            </table>
+        </div>
+        <div id="orderCosts" class="right p30">
+            <table id="orderCostsTable" class="tableNoBorder" cellpadding="0" cellspacing="0">
+                #if ($model.merchandiseValueGross)
+                <tr>
+                    <td>Summe</td>
+                    <td class="right">$priceFormatter.formatDecimal( $model.merchandiseValueGross, '€')</td>
+                </tr>
+                #end
+                #if($model.shipmentOffer)
+                    <tr>
+                        <td class="even">Versandkosten</td>    <!-- vorher $'colNormalColor -->
+                        <td class="right even">$priceFormatter.formatDecimal( $model.shipmentOffer.priceGross, '€' )</td>
+                    </tr>
+                #end
+                #if ($model.totalTax)
+                    <tr>
+                        <td class="even">Enth. MwSt</td>
+                        <td class="right even">$priceFormatter.formatDecimal( $model.totalTax, '€')</td>
+                    </tr>
+                #end
+                #if ($model.totalGross)
+                    <tr>
+                        <td class="even"><b>Gesamtsumme</b></td><!-- vorher $'colNormalColor -->
+                        <td class="right even"><b>$priceFormatter.formatDecimal( $model.totalGross, '€')</b></td>
+                    </tr>
+                #end
+            </table>
+        </div>
+
+        <br>
+        <div id="addressesBox" class="left">
+            $partialRenderer.include($model, "addressesBoxTemplate.vm")
+        </div>
+        <br>
+        <div id="paymentBox" class="left">
+            $partialRenderer.include($model, "paymentBoxTemplate.vm")
+        </div>
+        <br>
+        <div id="shipmentBox" class="left">
+            $partialRenderer.include($model, "shipmentBoxTemplate.vm")
+        </div>
+        <br>
+        <div id="footer" class="left">
+            <div id="footerBox" class="inherit">
+                $partialRenderer.include($model, "footerBoxTemplate.vm")
+            </div>
+        </div>
+    </div>
+    #end
+</body>
+</html>
+#else
+$translator.translate('SHOPNAME')
+
+Bestellung
+
+Bestellnummer: $model.orderNumber                Bestelldatum:  $dateFormatter.format($model.orderDate)
+
+Sehr geehrte(r) $translator.translate($salutation) $translator.translate($title) $customerAddress.firstName $customerAddress.lastName,
+
+vielen Dank für Ihre Bestellung im $translator.translate('SHOPNAME').
+Mit dieser E-Mail bestätigen wir den Eingang Ihrer Bestellung in unserem System.
+
+#if ($model.items)#if ($table)
+#set( $orderListItemTable = $table)
+#if( $orderListItemTable)
+$orderListItemTable.setTh( "Position", "Artikel-Nr." ,"Bezeichnung", "Menge", "MwSt.", "Einzelpreis", "Summe" )
+#set ($rowCount = 1)
+
+#foreach ( $orderItem in $model.items)
+#set($productNameAndWishListNameIfExists = $orderItem.productName)
+#if ($orderItem.wishListName)
+#set($productNameAndWishListNameIfExists = $productNameAndWishListNameIfExists + ' Wunschzettel ' + $orderItem.wishListName)
+#end
+
+#set($taxRate = $orderItem.taxRate + '%')
+$orderListItemTable.addRow( [$rowCount, $orderItem.sku, $productNameAndWishListNameIfExists , $orderItem.quantity, $priceFormatter.formatTaxRate( $orderItem.taxRate ), $priceFormatter.formatDecimal( $orderItem.priceGross, $orderItem.currency.symbol), $priceFormatter.formatDecimal( $orderItem.totalGross, $orderItem.currency.symbol)] )
+#set ($rowCount = $rowCount + 1)
+#end
+$orderListItemTable.renderPlainTextTable()
+#end
+#set( $orderCostsTable = $table)
+#if( $orderCostsTable && $model.merchandiseValueGross)
+    #set($orderMechandiseValueGroosAsString = $model.merchandiseValueGross + "")
+$orderCostsTable.setTh( "Summe", $priceFormatter.formatDecimal( $model.merchandiseValueGross, '€'))
+#end
+#if($model.shipmentOffer)
+$orderCostsTable.addRow( ["Versandkosten", $priceFormatter.formatDecimal( $model.shipmentOffer.priceGross, $model.shipmentOffer.currency.symbol)] )
+#end
+#if ($model.totalTax)
+$orderCostsTable.addRow( ["Enth. MwSt", $priceFormatter.formatDecimal( $model.totalTax, '€')] )
+#end
+#end
+#if ($model.totalGross)
+$orderCostsTable.addRow( ["Gesamtsumme", $priceFormatter.formatDecimal( $model.totalGross, '€')] )
+#end
+$orderCostsTable.renderPlainTextTable()
+#end
+
+$partialRenderer.include($model, "addressesBoxTemplate.vm")
+$partialRenderer.include($model, "paymentBoxTemplate.vm")
+$partialRenderer.include($model, "shipmentBoxTemplate.vm")
+$partialRenderer.include($model, "footerBoxTemplate.vm")
+#end
+

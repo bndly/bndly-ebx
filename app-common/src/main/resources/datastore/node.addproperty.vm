@@ -1,0 +1,43 @@
+#partial( $null.null "removebutton.vm" "removebutton")
+<div
+	class="input-group js-newproperty"
+	data-input-template="#xss("htmlattribute" "<div class=""form-group js-property-border"" data-multi="""" data-propertyname="""">
+		<label for=""""></label>
+		<div class=""input-group js-input-border"">
+			<span class=""input-group-btn"">
+				${removebutton}
+			</span>
+		</div>
+	</div>")"
+>
+	<input class="js-propertyname form-control" placeholder="property name" type="text">
+	<span class="input-group-btn">
+		<button class="btn btn-default dropdown-toggle js-propertytype" data-toggle="dropdown">Add property <span class="caret"></span></button>
+		<ul class="dropdown-menu js-propertytype-selection">
+			#partial($null.null "property.STRING.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="STRING" data-input-template="#xss("htmlattribute" $inputtemplate)">String</a></li>
+			#partial($null.null "property.DATE.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="DATE" data-input-template="#xss("htmlattribute" $inputtemplate)">Date</a></li>
+			#partial($null.null "property.DECIMAL.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="DECIMAL" data-input-template="#xss("htmlattribute" $inputtemplate)">Decimal</a></li>
+			#partial($null.null "property.LONG.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="LONG" data-input-template="#xss("htmlattribute" $inputtemplate)">Long</a></li>
+			#partial($null.null "property.DOUBLE.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="DOUBLE" data-input-template="#xss("htmlattribute" $inputtemplate)">Double</a></li>
+			#partial($null.null "property.BOOLEAN.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="BOOLEAN" data-input-template="#xss("htmlattribute" $inputtemplate)">Boolean</a></li>
+			#partial($null.null "property.BINARY.vm" "inputtemplate")
+			<li><a href="#" class="js-propertytype-choice" data-multi="false" data-type="BINARY" data-input-template="#xss("htmlattribute" $inputtemplate)">Binary</a></li>
+			<li class="divider"></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="STRING">String[]</a></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="DATE">Date[]</a></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="DECIMAL">Decimal[]</a></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="LONG">Long[]</a></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="DOUBLE">Double[]</a></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="BOOLEAN">Boolean[]</a></li>
+			<li><a href="#" class="js-propertytype-choice" data-multi="true" data-type="BINARY">Binary[]</a></li>
+		</ul>
+	</span>
+</div>
+
+<hr class="js-newproperty-target">

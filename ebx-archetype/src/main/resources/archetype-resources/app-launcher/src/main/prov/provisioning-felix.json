@@ -1,0 +1,19 @@
+{
+	"felix": {
+		"bundles": {
+			"0": [
+				"org.apache.felix:org.apache.felix.metatype:jar:1.1.2",
+				"org.apache.felix:org.apache.felix.configadmin:jar:1.8.10",
+				"org.apache.felix:org.apache.felix.eventadmin:jar:1.4.6",
+				"org.apache.felix:org.apache.felix.http.api:jar:3.0.0",
+				"org.apache.felix:org.apache.felix.http.bridge:jar:3.0.2",
+				"org.apache.felix:org.apache.felix.log:jar:1.0.1",
+				"org.apache.felix:org.apache.felix.scr:jar:2.0.2",
+				"org.apache.felix:org.apache.felix.webconsole:jar:all:4.2.16"
+			],
+			"1": [
+				"org.apache.felix:org.apache.felix.fileinstall:jar:3.5.4"
+			]
+		}
+	}
+}

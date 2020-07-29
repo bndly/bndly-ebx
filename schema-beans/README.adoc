@@ -1,0 +1,3 @@
+= Bndly ebx schema-beans
+
+Java interfaces generated from the eBX schema

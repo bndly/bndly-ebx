@@ -1,0 +1,176 @@
+document {
+}
+text {
+	font-family: "times";
+	font-size: 10pt;
+	font-baseline-shift: 0.15;	
+}
+systemText {
+	font-family: "times";
+	font-size: 10pt;
+	font-baseline-shift: 0.15;	
+}
+overflowPage {
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+	text-align: left;
+	width: 595.4069pt;
+	height: 842.0754pt;
+}
+page {
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+	text-align: left;
+	width: 595.4069pt;
+	height: 842.0754pt;
+}
+pageTemplate {
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+	text-align: left;
+	width: 595.4069pt;
+	height: 370pt;
+}
+container {
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+}
+table {
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+	overflow: "split";
+	border: 0;
+}
+tableColumn {
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+}
+tableCell {
+	margin-top: 2pt;
+	margin-right: 0pt;
+	margin-bottom: 3pt;
+	margin-left: 0pt;
+}
+.logo {
+	width: 595.4069pt;
+	height: 82pt;	
+}
+page > .mainContent {
+	margin-top: 110pt;
+	margin-right: 20pt;
+	margin-bottom: 95pt;
+	margin-left: 20pt;
+}
+page > .orderHeader {
+	margin-top: 134pt;
+	margin-right: 20pt;
+	margin-bottom: 20pt;
+	margin-left: 20pt;
+}
+.overflow > .mainContent {
+	margin-top: 135pt;
+	margin-right: 20pt;
+	margin-bottom: 90pt;
+	margin-left: 20pt;
+}
+.overflow > .orderHeader {
+	margin-top: 80pt;
+	margin-right: 20pt;
+	margin-bottom: 20pt;
+	margin-left: 20pt;
+}
+.title {
+	font-size: 20pt;
+	line-height: 1.5;
+	font-weight: bold;
+}
+.subTitle {
+	line-height: 1.4;
+}
+.orderPositionTable {
+	border: 0.125pt;
+}
+.orderPositionTableCell {
+	margin-left: 5pt;
+	margin-right: 5pt;
+}
+.position {
+	width: 30pt;
+	text-align: left;
+}
+.quantity {
+	width: 50pt;
+}
+.unitPrice {
+	width: 90pt;
+	text-align: right;
+}
+.price {
+	width: 90pt;
+	text-align: right;
+}
+.priceCell {
+	text-align: right;
+}
+.addressTable {
+	overflow: "full";
+	border: 0;
+}
+.otherDetailsTable {
+	overflow: "split";
+	border: 0;
+}
+.spacer5 {
+	height: 5pt;
+}
+.spacer20 {
+	height: 20pt;
+}
+.spacerTitle {
+	height: 35pt;
+}
+.otherDetailsTableFirstColumn {
+	width: 60pt;
+}
+.summaryPosition {
+	text-align: right;
+}
+.tableHeader > text {
+	font-weight: bold;
+}
+.footerTable {
+	font-size: 8pt;
+	top: 750pt;
+	left: 20pt;
+	border: 0;
+}
+.contact {
+	font-size: 10pt;
+	top: 80pt;
+	left: 455pt;
+	text-align: right;
+}
+.recipientHeader {
+	top: 40pt;
+	left: 20pt;
+}
+
+.colLeft {
+	text-align: left;
+}
+
+.colRight {
+	text-align: right;
+}

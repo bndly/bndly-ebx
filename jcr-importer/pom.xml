@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx.jcr</groupId>
+  <artifactId>org.bndly.ebx.jcr-importer</artifactId>
+  <packaging>pom</packaging>
+
+  <name>Bndly ebx jcr-importer parent</name>
+  <description>Parent module for all JCR importer sub-modules</description>
+
+  <modules>
+    <module>importer-api</module>
+    <module>importer-impl</module>
+    <module>importer-resource-beans</module>
+    <module>importer-resource</module>
+  </modules>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+  </properties>
+</project>

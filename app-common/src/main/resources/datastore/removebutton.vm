@@ -1,0 +1,6 @@
+<button class="btn btn-danger js-removeproperty" type="button"
+data-label-remove="remove?"
+data-label-revert="will be removed!"
+data-icon-remove="glyphicon glyphicon-remove"
+data-icon-revert="glyphicon glyphicon-ok"
+><span class="glyphicon glyphicon-remove js-icon" aria-hidden="true"></span> <span class="js-removeproperty-label">remove?</span></button>

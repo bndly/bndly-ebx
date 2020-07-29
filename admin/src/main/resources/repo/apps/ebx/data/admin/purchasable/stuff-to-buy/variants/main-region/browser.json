@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"Variant","title@STRING":"Variants","entityfields@STRING":["sku","name","supplierPID","product"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new variant of a product","existingItemTitle@STRING":"Update variant \"{{model}}\""}}

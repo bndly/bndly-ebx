@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~ Copyright (c) 2013, cyber:con GmbH, Bonn.
+~
+~ All rights reserved. This source file is provided to you for
+~ documentation purposes only. No part of this file may be
+~ reproduced or copied in any form without the written
+~ permission of cyber:con GmbH. No liability can be accepted
+~ for errors in the program or in the documentation or for damages
+~ which arise through using the program. If an error is discovered,
+~ cyber:con GmbH will endeavour to correct it as quickly as possible.
+~ The use of the program occurs exclusively under the conditions
+~ of the licence contract with cyber:con GmbH.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx</groupId>
+  <artifactId>org.bndly.ebx.search-engine-exporter-api</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bndly ebx search-engine-exporter-api</name>
+  <description>API for creating custom search engine exporters</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.bndly.ebx</groupId>
+      <artifactId>org.bndly.ebx.schema-beans</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

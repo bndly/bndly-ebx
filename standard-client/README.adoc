@@ -1,0 +1,3 @@
+= Bndly ebx standard client parent
+
+Parent module for the generated REST API client sub-modules

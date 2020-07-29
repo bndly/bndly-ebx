@@ -1,0 +1,4 @@
+= bndly-ebx
+
+bndly eBusiness eXtensions is a headless eBusiness Server (shop, customer care processes etc.)
+

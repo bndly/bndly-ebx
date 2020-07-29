@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  org.bndly.ebx.ebx-archetype
+  %%
+  Copyright (C) 2013 - 2020 Cybercon GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>\${groupId}</groupId>
+		<artifactId>\${artifactId}</artifactId>
+		<version>\${version}</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<groupId>\${groupId}.\${artifactId}</groupId>
+	<artifactId>app-launcher</artifactId>
+	<packaging>bndly-application</packaging>
+	
+	<properties>
+		<FelixMain.homeFolder>./framework/</FelixMain.homeFolder>
+		<pathToLicenseFile>\${FelixMain.homeFolder}conf/license</pathToLicenseFile>
+
+		<ebx.host.name>local.ebx</ebx.host.name>
+
+		<jetty.keystore>etc/keystore</jetty.keystore>
+		<jetty.truststore>etc/keystore</jetty.truststore>
+
+		<org.bndly.ssl.impl.HttpClientConfiguration-solr.ignoreSSLHostNames>false</org.bndly.ssl.impl.HttpClientConfiguration-solr.ignoreSSLHostNames>
+
+		<org.bndly.rest.swagger.resource.SwaggerResource.info.version>\${project.version}</org.bndly.rest.swagger.resource.SwaggerResource.info.version>
+		<org.bndly.rest.swagger.resource.SwaggerResource.basePath>/bndly</org.bndly.rest.swagger.resource.SwaggerResource.basePath>
+		<org.bndly.rest.swagger.resource.SwaggerResource.scheme>https</org.bndly.rest.swagger.resource.SwaggerResource.scheme>
+		<org.bndly.rest.swagger.resource.SwaggerResource.host>\${ebx.host.name}:8443</org.bndly.rest.swagger.resource.SwaggerResource.host>
+
+		<org.bndly.rest.impl.ResourceDelegatingServlet.contextPath>\${org.bndly.rest.swagger.resource.SwaggerResource.basePath}</org.bndly.rest.impl.ResourceDelegatingServlet.contextPath>
+		<org.bndly.rest.impl.ResourceDelegatingServlet.linkUri>\${org.bndly.rest.swagger.resource.SwaggerResource.scheme}://\${org.bndly.rest.swagger.resource.SwaggerResource.host}\${org.bndly.rest.swagger.resource.SwaggerResource.basePath}</org.bndly.rest.impl.ResourceDelegatingServlet.linkUri>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>\${groupId}.\${artifactId}</groupId>
+			<artifactId>schema-beans</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>\${groupId}.\${artifactId}</groupId>
+			<artifactId>schema-rest-beans</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>\${artifactId}-app-launcher-\${project.version}</finalName>
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>conf/config.properties</include>
+				</includes>
+				<filtering>true</filtering>
+				<targetPath>\${project.build.directory}/resources</targetPath>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<excludes>
+					<exclude>conf/config.properties</exclude>
+				</excludes>
+				<targetPath>\${project.build.directory}/resources</targetPath>
+			</resource>
+		</resources>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.bndly.common</groupId>
+				<artifactId>bndly-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>default-prepare-package</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>prepare-package</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-start</id>
+						<phase>none</phase>
+					</execution>
+					<execution>
+						<id>default-stop</id>
+						<phase>none</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<systemProperties>
+						<pathToLicenseFile>\${project.build.directory}/app-start/conf/license</pathToLicenseFile>
+					</systemProperties>
+					<saveProvisioningModel>true</saveProvisioningModel>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

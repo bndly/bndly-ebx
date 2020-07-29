@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="$template.locale.language">
+	<head>
+		<title>Repository Resource #xss("html" $model.path)</title>
+		<link rel="shortcut icon" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+		<link rel="icon" type="image/ico" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+		<link href="$baseUrl/repo/libs/vendor/bin/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+		<script type="text/javascript" charset="utf-8" src="$baseUrl/data/store/bin/shop-admin/scripts/lib/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="$baseUrl/repo/libs/vendor/bin/bootstrap/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid page-header">
+				<div class="btn-group pull-right">
+					<a class="btn btn-default" href="${baseUrl}/repo${currentPath}.edit.html?node"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> edit</a>
+				</div>
+				<h1>#xss("html" $model.path) <small>$model.type</small> </h1>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					#partial($model "node.parentlink.vm")
+					#partial($model "node.childlinks.vm")
+				</div>
+				<div class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title">Properties</h3></div>
+						<div class="panel-body">
+						<dl >
+						#foreach( $property in $model.properties )
+							<dt>#xss("html" $property.name) <code>#translate($property.type)</code></dt>
+							<dd>#partial($property "propertyvalue.vm")</dd>
+						#end
+						</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

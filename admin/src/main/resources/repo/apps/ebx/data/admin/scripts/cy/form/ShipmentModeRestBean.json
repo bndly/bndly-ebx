@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:requiremodule","name@STRING":"ShipmentModeRestBean","script@STRING":"return [\r\n\t{\r\n\t\titems: [{\r\n\t\t\t\tmember: \"name\",\r\n\t\t\t\tlabelText: \"Name\",\r\n\t\t\t\tmandatory: true\r\n\t\t\t}]\r\n\t}\r\n];","initMethod@STRING":"","proxy@STRING":"","moduleId@STRING":""}}

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="StockRequest" name="StockRequest" isExecutable="true">
+    <extensionElements>
+      <activiti:executionListener event="start" class="org.bndly.common.bpm.impl.EventExecutionListenerImpl"></activiti:executionListener>
+      <activiti:executionListener event="end" class="org.bndly.common.bpm.impl.EventExecutionListenerImpl"></activiti:executionListener>
+    </extensionElements>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <endEvent id="stockInformationFound" name="End"></endEvent>
+    <serviceTask id="servicetask1" name="find stock item" activiti:class="org.bndly.business.task.FindStockItemForStockRequestTaskImpl"></serviceTask>
+    <sequenceFlow id="flow2" sourceRef="servicetask2" targetRef="servicetask1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow3" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow4" name="stock item does not exist" sourceRef="exclusivegateway1" targetRef="scripttask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${stockItem == null}]]></conditionExpression>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="get available stock" scriptFormat="Groovy Scripting Engine" activiti:autoStoreVariables="false">
+      <script>stockRequest.setStock(stockItem.getStock());stockRequest.update();</script>
+    </scriptTask>
+    <sequenceFlow id="flow5" name="stock item found" sourceRef="exclusivegateway1" targetRef="scripttask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${stockItem != null}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow6" name="stock written to request object" sourceRef="scripttask1" targetRef="inclusivegateway1"></sequenceFlow>
+    <scriptTask id="scripttask2" name="set stock to 0" scriptFormat="Groovy Scripting Engine" activiti:autoStoreVariables="false">
+      <script>stockRequest.setStock(0);stockRequest.update();</script>
+    </scriptTask>
+    <inclusiveGateway id="inclusivegateway1" name="Inclusive Gateway"></inclusiveGateway>
+    <sequenceFlow id="flow7" sourceRef="scripttask2" targetRef="inclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="inclusivegateway1" targetRef="exclusivegateway2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <scriptTask id="scripttask3" name="add 1 to stock" scriptFormat="Groovy Scripting Engine" activiti:autoStoreVariables="false">
+      <script>
+stockRequest.setStock(new java.lang.Long(stockRequest.getStock()+1));stockRequest.update();
+</script>
+    </scriptTask>
+    <inclusiveGateway id="inclusivegateway2" name="Inclusive Gateway"></inclusiveGateway>
+    <sequenceFlow id="flow9" name="is premium user" sourceRef="exclusivegateway2" targetRef="scripttask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isPremiumUser}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" name="is regular user" sourceRef="exclusivegateway2" targetRef="inclusivegateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!isPremiumUser}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="scripttask3" targetRef="inclusivegateway2"></sequenceFlow>
+    <serviceTask id="servicetask2" name="determine if user is premium" activiti:class="org.bndly.business.task.IsUserPremiumTaskImpl"></serviceTask>
+    <sequenceFlow id="flow15" sourceRef="scripttask5" targetRef="servicetask2"></sequenceFlow>
+    <scriptTask id="scripttask5" name="extract user" scriptFormat="Groovy Scripting Engine" activiti:autoStoreVariables="false">
+      <script>user = stockRequest.getUser();execution.setVariable("user", user);</script>
+    </scriptTask>
+    <sequenceFlow id="flow17" sourceRef="inclusivegateway2" targetRef="stockInformationFound"></sequenceFlow>
+    <sequenceFlow id="flow18" sourceRef="startevent1" targetRef="scripttask5"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_StockRequest">
+    <bpmndi:BPMNPlane bpmnElement="StockRequest" id="BPMNPlane_StockRequest">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="270.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="stockInformationFound" id="BPMNShape_stockInformationFound">
+        <omgdc:Bounds height="35.0" width="35.0" x="270.0" y="473.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="685.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="845.0" y="277.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="813.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="1000.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inclusivegateway1" id="BPMNShape_inclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="845.0" y="470.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="717.0" y="470.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="581.0" y="401.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inclusivegateway2" id="BPMNShape_inclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="499.0" y="470.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="520.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask5" id="BPMNShape_scripttask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="520.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="625.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="685.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="790.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="845.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="865.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="865.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1000.0" y="227.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="36.0" width="100.0" x="-43.0" y="-37.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="865.0" y="317.0"></omgdi:waypoint>
+        <omgdi:waypoint x="865.0" y="360.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="12.0" width="80.0" x="10.0" y="0.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="865.0" y="415.0"></omgdi:waypoint>
+        <omgdi:waypoint x="865.0" y="470.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="36.0" width="100.0" x="10.0" y="-22.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="1052.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1052.0" y="489.0"></omgdi:waypoint>
+        <omgdi:waypoint x="885.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="845.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="757.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="737.0" y="470.0"></omgdi:waypoint>
+        <omgdi:waypoint x="736.0" y="429.0"></omgdi:waypoint>
+        <omgdi:waypoint x="686.0" y="428.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="12.0" width="78.0" x="10.0" y="0.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="717.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="539.0" y="490.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="12.0" width="70.0" x="10.0" y="0.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="581.0" y="428.0"></omgdi:waypoint>
+        <omgdi:waypoint x="519.0" y="428.0"></omgdi:waypoint>
+        <omgdi:waypoint x="519.0" y="470.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="572.0" y="215.0"></omgdi:waypoint>
+        <omgdi:waypoint x="572.0" y="270.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="499.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="305.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="287.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="287.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="187.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

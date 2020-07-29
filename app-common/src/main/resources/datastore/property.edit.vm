@@ -1,0 +1,23 @@
+#set( $name = ${model.name}+'@'+${model.type} )#*
+*##if( $model.type.toString() == "STRING" )#*
+*##if( $model.name.endsWith("richtext") )#*
+*##partial($model "property.edit.richtext.vm")#*
+*##else#*
+*#<input type="text" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end" value="#xss("htmlattribute" $model.string)">#*
+*##end
+#*
+*##elseif( $model.type.toString() == "DATE" )#*
+*#<input type="text" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end" value="#xss("htmlattribute" $model.date)">#*
+*##elseif( $model.type.toString() == "DECIMAL" )#*
+*#<input type="number" step="0.00001" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end" value="#xss("htmlattribute" $model.decimal)">#*
+*##elseif( $model.type.toString() == "LONG" )#*
+*#<input type="number" step="1" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end" value="#xss("htmlattribute" $model.long)">#*
+*##elseif( $model.type.toString() == "DOUBLE" )#*
+*#<input type="number" step="0.00001" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end" value="#xss("htmlattribute" $model.double)">#*
+*##elseif( $model.type.toString() == "BOOLEAN" )#*
+*#<select name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end"><option value="true" #if($model.boolean)selected#end>true</option><option value="false" #if(!$model.boolean)selected#end>false</option></select>  value="#xss("htmlattribute" $model.boolean)" checked>#*
+*##elseif( $model.type.toString() == "BINARY" )#*
+*#<input type="file" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end">#*
+*##elseif( $model.type.toString() == "ENTITY" )#*
+*#<input type="text" name="#xss("htmlattribute" $name)#if($model.multiValued)[]#end" value="#xss("htmlattribute" $model.entity)">#*
+*##end

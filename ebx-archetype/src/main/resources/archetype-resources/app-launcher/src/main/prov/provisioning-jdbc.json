@@ -1,0 +1,9 @@
+{
+	"jdbc": {
+		"bundles": {
+			"3": [
+				"com.h2database:h2:jar:1.4.193"
+			]
+		}
+	}
+}

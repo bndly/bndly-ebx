@@ -1,0 +1,115 @@
+{
+	"\${customer}": {
+		"bundles": {
+			"25": [
+				"\${groupId}.\${artifactId}:schema-beans:jar:\${version}",
+				"\${groupId}.\${artifactId}:schema-rest-beans:jar:\${version}"
+			]
+		},
+		"configs": {
+			"org.bndly.rest.api.account.InitialAccount-ebx": {
+				"accountName": "ebx",
+				"password": "ebx"
+			},
+			"org.bndly.common.bpm.impl.ActivitiEngineConfiguration-ebx": {
+				"name": "ebx",
+				"datasource": "ebx",
+				"schema": "DB_SCHEMA_UPDATE_TRUE",
+				"asyncEnabled": true,
+				"asyncCorePoolSize": 10,
+				"asyncMaxPoolSize": 100,
+				"asyncQueueSize": 1000
+			},
+			"org.bndly.common.crypto.impl.SimpleCryptoServiceConfig-account": {
+				"name": "account",
+				"keystoreLocation": "\${FelixMain.homeFolder}conf/account.jks",
+				"keystorePassword": "changeit",
+				"keystoreType": "jks",
+				"encryptionKeyAlias": "account-token",
+				"encryptionKeyPassword": "changeit",
+				"encryptionKeyAlgorithm": "RSA/ECB/PKCS1Padding",
+				"privateKeyEncryption": true,
+				"blockSize":256,
+				"maxDataBlockSize": 245,
+				"defaultInputStringEncoding": "UTF-8"
+			},
+			"org.bndly.common.datasource.DataSourceConfiguration-ebx": {
+				"name": "ebx",
+				"driverClass": "org.h2.Driver",
+				"jdbcUrl": "jdbc:h2:file:\${FelixMain.homeFolder}h2db/ebx",
+				"user": "sa",
+				"password": "sa",
+				"connection.maxConnLifetimeMillis": 1800000,
+				"connection.defaultQueryTimeout": 30,
+				"pool.maxTotal":10
+			},
+			"org.bndly.common.datasource.DataSourceConfiguration-h2": {
+				"name": "h2",
+				"driverClass": "org.h2.Driver",
+				"jdbcUrl": "jdbc:h2:file:\${FelixMain.homeFolder}h2db/default",
+				"user": "sa",
+				"password": "sa",
+				"connection.maxConnLifetimeMillis": 1800000,
+				"connection.defaultQueryTimeout": 30,
+				"pool.maxTotal":10
+			},
+			"org.bndly.ebx.adapter.LabelValueAdapter": {
+				"binding.TranslatedObject": "translationKey",
+				"binding.Country": "name",
+				"binding.CreditCardBrand": "name",
+				"binding.PersonTitle": "name",
+				"binding.ProductAttribute": "name",
+				"binding.ProductAttributeValue": "stringValue",
+				"binding.Salutation": "name",
+				"binding.ShipmentMode": "name",
+				"binding.WishListItemPriority": "name",
+				"binding.WishListPrivacy": "name"
+			},
+			"org.bndly.ebx.resources.authorization.SchemaBasedAuthorizationProvider": {
+				"createDefaultAccount": false,
+				"cachePermissions": false,
+				"cacheAccounts": true,
+				"cachedAccounts": ["ebx", "ANONYMOUS"],
+				"hashService.target": "(name=default)"
+			},
+			"org.bndly.ebx.resources.authorization.SchemaBasedAccountStore": {
+				"secureRandomLength": 8,
+				"simpleCryptoService.target": "(name=account)"
+			},
+			"org.bndly.ebx.translation.generator.PropertiesFilesToTranslationsGeneratorImpl": {
+				"propertiesFileNames": "countries,creditCardBrands,objectListTypes,personTitles,productAttributes,productAttributeValues,salutations,shipmentModes,templating,wishListItemPriorities,wishListPrivacies",
+				"propertyFileLocation": "\${FelixMain.homeFolder}translations"
+			},
+			"org.bndly.schema.activator.impl.SchemaConfiguration-ebx": {
+				"name": "ebx",
+				"root": "\${FelixMain.homeFolder}schema/ebx-schema.xml",
+				"schemaRestBeanPackage": "org.bndly.rest.beans.ebx",
+				"schemaBeanPackage": "org.bndly.ebx.model",
+				"extensions": "\${FelixMain.homeFolder}schema/ebx-schema-jcr-extension.xml,\${FelixMain.homeFolder}schema/ebx-schema.\${customer}.xml"
+			},
+			"org.bndly.schema.impl.factory.EngineConfiguration-ebx": {
+				"schema": "ebx",
+				"datasource": "ebx",
+				"dialect": "h2",
+				"connection": "pooled",
+				"validateOnly": false
+			}
+		},
+		"resources": [
+			{
+				"source": "target/resources",
+				"includes": [
+					"**/*.xml",
+					"**/*.keystore",
+					"**/*.jks",
+					"**/keystore",
+					"**/truststore",
+					"**/*.properties",
+					"**/*.ini",
+					"**/*.html",
+					"auto-deploy-data/**/*"
+				]
+			}
+		]
+	}
+}

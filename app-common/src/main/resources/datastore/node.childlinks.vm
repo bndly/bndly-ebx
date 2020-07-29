@@ -1,0 +1,9 @@
+#set($children = $model.children)
+#if($children.hasNext())
+	<h3>Children</h3>
+	<div class="list-group js-child-nodes">
+		#foreach( $child in $children )
+			#partial($child "nodelink.vm")
+		#end
+	</div>
+#end

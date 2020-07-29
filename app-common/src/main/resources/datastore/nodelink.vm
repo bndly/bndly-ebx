@@ -1,0 +1,11 @@
+<a
+	class="list-group-item js-child-node"
+	data-dd-target="true"
+	data-dd-group="node-children"
+	data-move-url="#xss("htmlattribute" ${baseUrl})/repo#xss("htmlattribute" ${model.path})?%23move="
+	data-index="#xss("htmlattribute" ${model.index})"
+	draggable="true"
+	href="#xss("htmlattribute" ${baseUrl})/repo#xss("htmlattribute" ${model.path}).html"
+>
+	#xss("html" ${model.name}) <small>#xss("html" ${model.type})</small>
+</a>

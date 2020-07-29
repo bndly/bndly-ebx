@@ -1,0 +1,3 @@
+= Bndly ebx search engine exporter resource beans
+
+JAXB classes for communcation with the search engine exporter resource

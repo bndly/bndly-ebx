@@ -1,0 +1,3 @@
+= Bndly ebx translation generator
+
+A generator for 'Translation' entities, that uses properties files as a source

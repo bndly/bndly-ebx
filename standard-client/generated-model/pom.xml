@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx.client</groupId>
+    <artifactId>org.bndly.ebx.standard-client</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>org.bndly.ebx.client.generated-model</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bndly ebx client generated-model</name>
+  <description>Generated model classes from the eBX schema for usage in the REST API client</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../../..</maven.site.root>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.bndly.common.service</groupId>
+      <artifactId>org.bndly.common.service.model-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.ebx</groupId>
+      <artifactId>org.bndly.ebx.schema-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common</groupId>
+      <artifactId>org.bndly.common.reflection</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.bndly.common.schema</groupId>
+        <artifactId>maven-schema-bean-generator</artifactId>
+        <executions>
+          <execution>
+            <id>generate</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generateClientModel</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <targetFolder>${basedir}/src/main/java</targetFolder>
+          <targetPackage>org.bndly.ebx.model.impl</targetPackage>
+          <schemaBeanSourcePackage>org.bndly.ebx.model</schemaBeanSourcePackage>
+          <schemaRoot>${basedir}/../../app-common/src/main/resources/schema/ebx-schema.xml</schemaRoot>
+          <schemaExtensions>
+            <schemaExtension>${basedir}/../../app-common/src/main/resources/schema/ebx-schema-jcr-extension.xml</schemaExtension>
+          </schemaExtensions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

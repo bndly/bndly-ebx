@@ -1,0 +1,3 @@
+= Bndly ebx schema rest beans
+
+Generated JAXB classes for representing eBX entities in the REST API

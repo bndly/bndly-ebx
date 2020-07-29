@@ -1,0 +1,50 @@
+#if($asHtml)
+<html>
+<head>
+    #if($headerWithCssStyle)
+        $headerWithCssStyle
+    #end
+</head>
+<body>
+<div id="body" class="left">
+#if($showHeadline)
+<div class="right">
+    <b><h1>$translator.translate('SHOPNAME')</h1></b>
+    <br>
+    <br>
+</div>
+#end
+<div class="left">
+    Hallo,<br>
+    <br>
+    $model.wishList.wishListOwner.address.firstName $model.wishList.wishListOwner.address.lastName möchte einen Wunschzettel mit Ihnen teilen.<br>
+    Klicken Sie einfach auf den Link unten, um den Wunschzettel anzusehen. <br>
+    Falls er sich nicht in Ihrem Browser öffnet, kopieren Sie bitte den Link und fügen Ihn in die Adresszeile Ihres Browsers ein.<br>
+    <br>
+    <a href="$model.wishListLink" >$model.wishListLink </a><br>
+    <br>
+    Viel Spaß beim Shopping wünscht Ihnen Ihr<br>
+    <br>
+    $translator.translate('SHOPNAME')
+</div>
+</div>
+</body>
+</html>
+#else
+#if($showHeadline)
+$translator.translate('SHOPNAME')
+
+#end
+Hallo,
+
+$model.wishList.wishListOwner.address.firstName $model.wishList.wishListOwner.address.lastName möchte einen Wunschzettel mit Ihnen teilen.
+Klicken Sie einfach auf den Link unten, um den Wunschzettel anzusehen.
+Falls er sich nicht in Ihrem Browser öffnet, kopieren Sie bitte den Link und fügen Ihn in
+die Adresszeile Ihres Browsers ein.
+
+$model.wishListLink
+
+Viel Spaß beim Shopping wünscht Ihnen Ihr
+
+$translator.translate('SHOPNAME')
+#end

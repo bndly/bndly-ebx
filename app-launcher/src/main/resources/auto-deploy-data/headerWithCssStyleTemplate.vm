@@ -1,0 +1,124 @@
+#if($asHtml)
+<title>#xss("html" $translator.translate('SHOPNAME'))</title>
+<style media="screen" type="text/css">
+        #set($colHeaderColor = "#CCCCCC")
+        #set($colNormalColor = "#EEEEEE")
+        #set($colMod2Color = "#FFFFFF")
+        /*
+        sp<=>shop
+        CD<=>Corporate Design
+        spCD<COLOR\H1\...><XXX>
+        set(spCDColor1 = "#7FC31C")
+        */
+        #set($spCDColor1 = "#000000")
+        #set($spCDColor2 = "#FFFFFF")
+
+        #set($spCDTableTDBorder = $spCDColor1)
+        #set($spCDTableTHBorder = $spCDColor2)
+
+
+    body{
+        width: 1024px;
+    }
+
+    h1, h2, h3 {
+        margin: 0;
+    }
+
+    #header {
+        font-family: "'Comic Sans MS'";
+        font-size: large;
+    }
+
+    #header, #message, #salutation, #addressesBox, #invoiceItemsTable, #invoiceCostsTable, #addressesBox, #invoiceCosts, #invoiceItems, #customerAddressBox, #billingAddressBox, #deliveryAddressBox, #footer,#footerBox {
+        width: 100%;
+    }
+
+    div.right {
+        float: right;
+    }
+
+    div.left {
+        float: left;
+    }
+
+    div.inherit {
+        float: inherit;
+    }
+
+    div.p50 {
+        width: 50% !important;
+    }
+
+    div.p30 {
+        width: 30% !important;
+    }
+
+    td.right, th.right {
+        text-align: right !important;
+    }
+
+    table.table {
+        margin: 0 0 20px 0;
+        padding: 0;
+        width: 100%;
+        border: thin solid $spCDTableTDBorder;
+    }
+
+        /* th */
+    table.table th {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        border-bottom: thin solid $spCDTableTHBorder;
+    }
+
+        /* tr */
+    table.table tr {
+        margin: 0;
+        padding: 0;
+    }
+
+        /* td */
+    table.table td {
+        margin: 0;
+        padding: 0;
+        /*border-right: thin solid $spCDTableTDBorder;*/
+    }
+
+    table.tableNoBorder {
+        margin: 0 0 20px 0;
+        padding: 0;
+        width: 100%;
+        border: none;
+    }
+
+        /* th */
+    table.tableNoBorder th {
+        margin: 0;
+        padding: 2px;
+        text-align: left;
+    }
+
+        /* tr */
+    table.tableNoBorder tr {
+        margin: 0;
+        padding: 0;
+    }
+
+        /* td */
+    table.tableNoBorder td {
+        margin: 0;
+        padding: 2px;
+        vertical-align: top;
+    }
+
+    .even {
+        background-color:$colMod2Color;
+    }
+
+    .odd {
+        background-color:$colNormalColor;
+    }
+</style>
+#end

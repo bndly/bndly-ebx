@@ -1,0 +1,82 @@
+<document itemId="documentRoot">
+	<page itemId="pageRoot">
+		<pageTemplate itemId="template">
+			#include("pageTemplate.vm")
+			#include("contact.vm")
+			<container itemId="shipmentHeader" class="shipmentHeader">
+				<paragraph>
+					<text value="Lieferscheinnummer: #xss("xmlattribute" $model.number)" class="subTitle" />
+					<text value="Bestellnummer: #xss("xmlattribute" $model.orderNumber)" class="subTitle" />
+					<text value="Bestelldatum: #xss("xmlattribute" $dateFormatter.format($model.orderDate))" class="subTitle" />
+					<systemText value="Seite !page! von !totalPages!" />
+				</paragraph>
+			</container>
+			<container itemId="recipientHeader" class="recipientHeader">
+				<text value="#xss("xmlattribute" $translator.translate($model.address.salutation.internalName)) #xss("xmlattribute" $model.address.firstName) #xss("xmlattribute" $model.address.lastName)" />
+				#if($model.address.additionalInfo)
+				<text value="#xss("xmlattribute" $model.address.additionalInfo)" />
+				#end
+				<text value="#xss("xmlattribute" $model.address.street) #if($model.address.houseNumber)#xss("xmlattribute" $model.address.houseNumber)#end" />
+				<text value="#xss("xmlattribute" $model.address.postCode) #xss("xmlattribute" $model.address.city)" />
+			</container>
+		</pageTemplate>
+		<container itemId="mainContent" class="mainContent">
+			<text value="Lieferschein" class="title"/>
+			<container class="shipmentSpacerTitle"/>
+			<text value="Bonn, #xss("xmlattribute" $dateFormatter.today())" class="colRight" />
+			<container itemId="spacer" class="spacer5"/>
+			<table itemId="orderPositionTable" class="orderPositionTable">
+				<tableColumn class="position">
+					<tableCell class="orderPositionTableCell tableHeader">
+					</tableCell>
+					#foreach ( $shipmentItem in $model.shipmentItems.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $shipmentItem.pos)" />
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn>
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Artikel" />
+					</tableCell>
+					#foreach ( $shipmentItem in $model.shipmentItems.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $shipmentItem.articleName)" />
+						<text value="Artikel-Nr.: #xss("xmlattribute" $shipmentItem.articleId)" />
+					</tableCell>
+					#end
+				</tableColumn>
+				<tableColumn class="quantity">
+					<tableCell class="orderPositionTableCell tableHeader">
+						<text value="Menge" />
+					</tableCell>
+					#foreach ( $shipmentItem in $model.shipmentItems.items)
+					<tableCell class="orderPositionTableCell">
+						<text value="#xss("xmlattribute" $shipmentItem.quantity)" />
+					</tableCell>
+					#end
+				</tableColumn>
+			</table>
+			<container itemId="spacer" class="spacer20"/>
+			#if($restriction)
+			<text value="#xss("xmlattribute" $restriction)" />
+			#end
+			#if($advertisement)
+			<text value="#xss("xmlattribute" $advertisement)" />
+			#end
+		</container>
+	</page>
+	<overflowPage itemId="pageRoot" class="overflow">
+		<pageTemplate itemId="template">
+			#include("pageTemplate.vm")
+			<container itemId="shipmentHeader" class="shipmentHeader">
+				<paragraph>
+					<text value="Rechnungsnummer: #xss("xmlattribute" $model.number)" class="subTitle" />
+					<text value="Bestellnummer: #xss("xmlattribute" $model.orderNumber)" class="subTitle" />
+					<text value="Bestelldatum: #xss("xmlattribute" $dateFormatter.format($model.orderDate))" class="subTitle" />
+					<systemText value="Seite !page! von !totalPages!" />
+				</paragraph>
+			</container>
+		</pageTemplate>
+	</overflowPage>
+</document>

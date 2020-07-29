@@ -1,0 +1,171 @@
+{
+	"cy": {
+		"bundles": {
+			"2": [
+				"org.bndly.common.rest:org.bndly.common.rest.jetty-bundle-locator:jar:\${bndly.common.version}"
+			],
+			"3": [
+				"org.bndly.common:org.bndly.common.osgi-config:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.osgi:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.json:jar:\${bndly.common.version}",
+				"org.bndly.common.crypto:org.bndly.common.crypto.crypto-api:jar:\${bndly.common.version}",
+				"org.bndly.common.crypto:org.bndly.common.crypto.crypto-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.data:org.bndly.common.data.io:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.reflection:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.lang:jar:\${bndly.common.version}"
+			],
+			"10": [
+				"org.bndly.common:org.bndly.common.html:jar:\${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-api:jar:\${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-datastore-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-schema:jar:\${bndly.common.version}",
+				"org.bndly.common.code:org.bndly.common.code.common:jar:\${bndly.common.version}",
+				"org.bndly.common.code:org.bndly.common.code.model:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.webconsolebranding:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.converter:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.cors:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.classpath:jar:\${bndly.common.version}",
+				"org.bndly.common.data:org.bndly.common.data.data-api:jar:\${bndly.common.version}",
+				"org.bndly.common.data:org.bndly.common.data.file-system-data-impl:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.datasource:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.licensing:jar:\${bndly.common.version}",
+				"org.bndly.common.event:org.bndly.common.event.event-api:jar:\${bndly.common.version}",
+				"org.bndly.common.event:org.bndly.common.event.event-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.graph:org.bndly.common.graph.graph-api:jar:\${bndly.common.version}",
+				"org.bndly.common.graph:org.bndly.common.graph.graph-impl:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.csv:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.osgi-jmx:jar:\${bndly.common.version}",
+				"org.bndly.common.mail:org.bndly.common.mail.mail-api:jar:\${bndly.common.version}",
+				"org.bndly.common.mail:org.bndly.common.mail.mail-impl:jar:\${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.mapper:jar:\${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.document-model:jar:\${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.document-pdfprinter-mapping:jar:\${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.pdfprinter:jar:\${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.stylesheet-model:jar:\${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.templates:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.jetty-bridge:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.annotation-api:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.annotation-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.annotations:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.api:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.api-descriptor:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.swagger-integration:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.bpm-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.bpm-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache-websocket:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.client-api:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.client-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cycle-breaker:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.data-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.data-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.data-cache-invalidation:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.entity-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.global-jaxbcontext-provider:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.jaxb-resource-renderer:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.jsonp-provider:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.link-injector:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.mail-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.mail-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.pdf-provider:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.pdf-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.resources:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.response-postprocessor:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.query-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.query-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-cache-invalidation:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-websocket:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.security:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.security-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.security-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.search-resource:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.search-resource-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.servlet-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.websocket-api:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.websocket-server:jar:\${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.websocket-client:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.deletion-strategy:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-repository:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-definition-parser:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-activator:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.model:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-json:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-api:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-fixtures:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-json-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.search:org.bndly.common.search.search-api:jar:\${bndly.common.version}",
+				"org.bndly.common.search:org.bndly.common.search.search-impl:jar:\${bndly.common.version}",
+				"org.bndly.common.search:org.bndly.common.search.search-schema:jar:\${bndly.common.version}",
+				"org.bndly.common.ssl:org.bndly.common.ssl.ssl-api:jar:\${bndly.common.version}",
+				"org.bndly.common.ssl:org.bndly.common.ssl.ssl-httpclient:jar:\${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity:jar:\${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity-api:jar:\${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity-datastore:jar:\${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity-osgi:jar:\${bndly.common.version}",
+				"org.bndly.common.service:org.bndly.common.service.validation-rules-beans:jar:\${bndly.common.version}",
+				"org.bndly.common.service:org.bndly.common.service.validation-rules-interpreter:jar:\${bndly.common.version}"
+			]
+		},
+		"configs": {
+			"org.bndly.common.crypto.impl.CryptoServiceFactoryImpl": {
+				"keystoreLocation": "conf/cryptoservice.jks",
+				"keystorePassword": "changeit",
+				"keystoreType": "jks",
+				"hashingIterations": "1000",
+				"hashingDefaultSaltLength": "8",
+				"encryptionKeyAlias": "defaultEncKey",
+				"encryptionKeyPassword": "changeit",
+				"encryptionKeyAlgorithm": "RSA",
+				"signatureKeyAlias": "defaultSignKey",
+				"signatureKeyPassword": "changeit",
+				"signatureKeyAlgorithm": "RSA",
+				"messageDigestAlgorithm": "SHA-256",
+				"secureRandomAlorithm": "SHA1PRNG",
+				"defaultInputStringEncoding": "UTF-8"
+			},
+			"org.bndly.common.data.api.DataStore.fs": {
+				"root": "\${FelixMain.homeFolder}datastore",
+				"name": "store"
+			},
+			"org.bndly.rest.data.resources.DataResource": {
+				"repository": "temp"
+			},
+			"org.bndly.rest.pdf.controller.impl.PDFResource": {
+				"pdfTempDirectory": "temp"
+			},
+			"org.bndly.common.licensing.impl.LicenseServiceImpl": {
+				"pathToLicenseFile": "\${pathToLicenseFile}"
+			},
+			"org.bndly.rest.cache.impl.CacheInterceptor": {
+				"cacheRoot": "\${FelixMain.homeFolder}/restcache"
+			},
+			"org.bndly.rest.controller.impl.XMLAndJSONSupport": {
+				"renderWithLocalContext": false,
+				"parseWithLocalContext": false,
+				"xmlToJsonNamespaces": "xs@http://www.w3.org/2001/XMLSchema-instance"
+			}
+		},
+		"resources": [
+			{
+				"target": "log/jetty",
+				"excludes": [
+					"**/*"
+				]
+			},
+			{
+				"target": "restcache",
+				"excludes": [
+					"**/*"
+				]
+			}
+		]
+	}
+}

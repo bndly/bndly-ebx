@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:entitybrowser","entity@STRING":"User","title@STRING":"Users","entityfields@STRING":["identifier"],"referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new user","existingItemTitle@STRING":"Update user \"{{model}}\""}}

@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"name@STRING":"eBX","version@STRING":"2.2","beanType@STRING":"cy:application","requiremodules@STRING":["/libs/vendor/jquery","/libs/vendor/bootstrap","/libs/vendor/d3","/libs/vendor/hogan"],"scripts@STRING":[],"logo@STRING":"/apps/ebx/data/application/logo.png"},"children":{"loader":{},"logo.png":{}}}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="ListShipmentOffers" name="ListShipmentOffers" isExecutable="true">
+    <extensionElements>
+      <activiti:executionListener event="start" class="org.bndly.common.bpm.impl.EventExecutionListenerImpl"></activiti:executionListener>
+      <activiti:executionListener event="end" class="org.bndly.common.bpm.impl.EventExecutionListenerImpl"></activiti:executionListener>
+    </extensionElements>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <endEvent id="offersGenerated" name="offersGenerated"></endEvent>
+    <serviceTask id="forEachShipmentMode" name="for each shipment mode" activiti:class="org.bndly.business.task.ShipmentModeIteratorTaskImpl"></serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow4" sourceRef="exclusivegateway1" targetRef="inclusivegateway1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${shipmentModeIndex != null}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="exclusivegateway1" targetRef="offersGenerated">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${shipmentModeIndex == null}]]></conditionExpression>
+    </sequenceFlow>
+    <inclusiveGateway id="inclusivegateway1" name="Inclusive Gateway"></inclusiveGateway>
+    <sequenceFlow id="flow6" sourceRef="inclusivegateway1" targetRef="forEachShipmentMode"></sequenceFlow>
+    <scriptTask id="definePrice" name="define price" scriptFormat="Groovy Scripting Engine" activiti:autoStoreVariables="false">
+      <script>priceGross = 6.90;
+price = 5.80;execution.setVariable("priceGross", priceGross);execution.setVariable("price", price);</script>
+    </scriptTask>
+    <serviceTask id="generateOffer" name="generate shipment offer" activiti:class="org.bndly.business.task.CreateShipmentOfferTaskImpl"></serviceTask>
+    <sequenceFlow id="flow7" sourceRef="forEachShipmentMode" targetRef="definePrice"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="definePrice" targetRef="generateOffer"></sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="generateOffer" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="startevent1" targetRef="inclusivegateway1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ListShipmentOffers">
+    <bpmndi:BPMNPlane bpmnElement="ListShipmentOffers" id="BPMNPlane_ListShipmentOffers">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="91.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="offersGenerated" id="BPMNShape_offersGenerated">
+        <omgdc:Bounds height="35.0" width="35.0" x="450.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="forEachShipmentMode" id="BPMNShape_forEachShipmentMode">
+        <omgdc:Bounds height="55.0" width="105.0" x="265.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="390.0" y="147.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inclusivegateway1" id="BPMNShape_inclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="297.0" y="147.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="definePrice" id="BPMNShape_definePrice">
+        <omgdc:Bounds height="55.0" width="105.0" x="265.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="generateOffer" id="BPMNShape_generateOffer">
+        <omgdc:Bounds height="55.0" width="105.0" x="265.0" y="410.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="410.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="409.0" y="106.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="106.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="430.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="450.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="317.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="230.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="317.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="317.0" y="375.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="410.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="317.0" y="465.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="496.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="496.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="187.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="126.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="297.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,158 @@
+#set($salutation = '')
+#if($customer.salutation == 'MALE')
+#set($salutation = $MALE)
+#end
+
+#if($customer.salutation == 'FEMALE')
+#set($salutation = $FEMALE)
+#end
+
+#set($title = '')
+#if($customer.title == 'DR')
+#set($title = $DR)
+#end
+
+#if($customer.title == 'PROF')
+#set($title = $PROF)
+#end
+
+#if($customer.title == 'PROF_DR')
+#set($title = $PROF_DR)
+#end
+
+#if($asHtml)
+<html>
+<head>
+    #if($headerWithCssStyle)
+        $headerWithCssStyle
+    #end
+</head>
+<body>
+    #if ($order && $addresses.customer)
+
+        #set($customer = $addresses.customer)
+    <div id="body" class="left">
+        <div id="header" class="inherit">
+            <div class="left p50" style="margin: 0 0 10px 0;">
+                <h1>$translator.translate('SHOPNAME') </h1>
+
+                <h2>$headline</h2>
+            </div>
+
+            <div class="right">
+                Bestellnummer: $order.id<br>
+                Bestelldatum: $dateFormatter.format($order.date)
+            </div>
+        </div>
+        <br>
+        <div id="message" class="inherit">
+            <div id="salutation" class="inherit">
+                Sehr geehrte(r) $salutation $title $customer.firstName $customer.lastName, <br>
+
+                <p>
+                    Ihre Bestellung $order.id vom $dateFormatter.format($order.date) ist versendet worden.<br>
+
+                    #if ($order.orderTrackingNumber)
+                    Ihr Paket hat die Paketverfolgungsnummer $order.orderTrackingNumber.<br>
+                    #end
+                    Ihr Paket wird versendet via: <a href="https://www.dhl.de/content/de/de/paket/kundenservice/sendungsverfolgung.html">DHL</a> <br>
+                </p>
+            </div>
+            <br>
+            <br>
+            <br>
+
+            <h2>Ihre Bestellung</h2>
+            <table id="shipmentItemsTable" class="tableNoBorder" cellpadding="0" cellspacing="0">
+                <thead style="background-color: $colHeaderColor;">
+                <th>Position</th>
+                <th>Artikel-Nr.</th>
+                <th>Bezeichnung</th>
+                <th class="right">Menge</th>
+                </thead>
+                #if ($order.lineItems)
+                    #set ($rowCount = 1)
+                    #foreach ( $orderItem in $order.lineItems)
+                        #if ($rowCount %2 == 0)
+                            #set ($bgcolor = $colMod2Color)
+                        #else
+                            #set ($bgcolor = $colMod2Color)       <!-- vorher $'colNormalColor-->
+                        #end
+                        <tr>
+                            <td bgcolor="$bgcolor">$rowCount</td>
+                            <td bgcolor="$bgcolor">$orderItem.product.number</td>
+                            <td bgcolor="$bgcolor">$orderItem.product.name</td>
+                            <td bgcolor="$bgcolor" class="right">$orderItem.quantity</td>
+                        </tr>
+                        #set ($rowCount = $rowCount + 1)
+                    #end
+                #end
+            </table>
+        </div>
+    <br>
+        #if ($addresses)
+        <div id="addressesBox" class="left">
+            $addressesBox
+        </div>
+        #end
+    <br>
+        #if ($paymentBox)
+        <div id="paymentBox" class="left">
+            $paymentBox
+        </div>
+        #end
+    <br>
+        #if ($serviceCallbackInformationBox)
+        <div id="serviceCallbackInformationBox" class="left">
+            $serviceCallbackInformationBox
+        </div>
+        #end
+    <br>
+        #if ($footer)
+        <div id="footer" class="left">
+            <div id="footerBox" class="inherit">
+                $footer
+            </div>
+        </div>
+        #end
+    </div>
+    #end
+</body>
+</html>
+#else
+#if ($order && $addresses.customer)
+#set($customer = $addresses.customer)
+$translator.translate('SHOPNAME')
+
+$headline
+
+Bestellnummer: $order.id                Bestelldatum:  $dateFormatter.format($order.date)
+
+Sehr geehrte(r) $salutation $title $customer.firstName $customer.lastName,
+
+Ihre Bestellung $order.id vom $order.date ist versendet worden.
+#if ($orderTrackingNumber)
+Ihr Paket hat die Paketverfolgungsnummer $order.orderTrackingNumber.#end
+Ihr Paket wird versendet via: DHL (https://www.dhl.de/content/de/de/paket/kundenservice/sendungsverfolgung.html)
+Ihre Bestellung
+#if ($order.lineItems)#if ($table)#set( $orderListItemTable = $table.getNewInstance() )#if( $orderListItemTable)$orderListItemTable.setTh( "Position", "Artikel-Nr." ,"Bezeichnung", "Menge" )#set ($rowCount = 1)#foreach ( $orderItem in $order.lineItems)$orderListItemTable.addRow( [$rowCount, $orderItem.product.number, $orderItem.product.name, $orderItem.quantity] )#set ($rowCount = $rowCount + 1)#end
+$orderListItemTable.renderPlainTextTable()
+#end
+#end
+#end
+
+
+#if ($addresses)
+$addressesBox
+#end
+#if ($paymentBox)
+$paymentBox
+#end
+#if ($serviceCallbackInformationBox)
+$serviceCallbackInformationBox
+#end
+#if ($footer)
+$footer
+#end
+#end
+#end

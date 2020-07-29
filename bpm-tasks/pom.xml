@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:pom="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx</groupId>
+  <artifactId>org.bndly.ebx.bpm-tasks</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bndly ebx BPMN tasks</name>
+  <description>Shared BPMN task implementations</description>
+
+  <properties>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-engine</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common</groupId>
+      <artifactId>org.bndly.common.reflection</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.bpm</groupId>
+      <artifactId>org.bndly.common.bpm.bpm-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.mail</groupId>
+      <artifactId>org.bndly.common.mail.mail-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.schema</groupId>
+      <artifactId>org.bndly.common.schema.model</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.schema</groupId>
+      <artifactId>org.bndly.common.schema.schema-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.schema</groupId>
+      <artifactId>org.bndly.common.schema.schema-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.common.schema</groupId>
+      <artifactId>org.bndly.common.schema.schema-json-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.ebx</groupId>
+      <artifactId>org.bndly.ebx.price-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.bndly.ebx</groupId>
+      <artifactId>org.bndly.ebx.schema-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.cmpn</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

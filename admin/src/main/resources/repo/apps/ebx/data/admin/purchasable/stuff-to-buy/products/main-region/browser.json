@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"entityfields@STRING":["id","sku","name","manufacturer"],"title@STRING":"Products","entity@STRING":"Product","beanType@STRING":"cy:entitybrowser","referenceRestBean@STRING":"","restBean@STRING":"","listRestBean@STRING":"","newItemTitle@STRING":"Create new product","existingItemTitle@STRING":"Update product \"{{model}}\""}}

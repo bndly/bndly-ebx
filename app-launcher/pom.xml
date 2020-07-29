@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.bndly.ebx</groupId>
+    <artifactId>org.bndly.ebx.parent</artifactId>
+    <version>${revision}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.bndly.ebx</groupId>
+  <artifactId>org.bndly.ebx.app-launcher</artifactId>
+  <packaging>bndly-application</packaging>
+
+  <name>Bnldy ebx app launcher</name>
+  <description>eBX application for usage during integration tests</description>
+
+  <properties>
+    <FelixMain.homeFolder>./framework/</FelixMain.homeFolder>
+    <bndly.ebx.version>${project.version}</bndly.ebx.version>
+
+    <ebx.host.name>localhost</ebx.host.name>
+
+    <jetty.keystore>etc/keystore</jetty.keystore>
+    <jetty.port>8082</jetty.port>
+    <jetty.truststore>etc/keystore</jetty.truststore>
+    <!--used for sharing maven site resources. needs to be overridden by each maven module-->
+    <maven.site.root>${project.basedir}/../..</maven.site.root>
+
+    <org.bndly.ebx.coremedia.importer.impl.ConnectionConfigurationImpl-default.url>http://localhost:41080/coremedia/ior</org.bndly.ebx.coremedia.importer.impl.ConnectionConfigurationImpl-default.url>
+
+    <org.bndly.rest.impl.ResourceDelegatingServlet.contextPath>${org.bndly.rest.swagger.resource.SwaggerResource.basePath}</org.bndly.rest.impl.ResourceDelegatingServlet.contextPath>
+    <org.bndly.rest.impl.ResourceDelegatingServlet.linkUri>${org.bndly.rest.swagger.resource.SwaggerResource.scheme}://${org.bndly.rest.swagger.resource.SwaggerResource.host}${org.bndly.rest.swagger.resource.SwaggerResource.basePath}</org.bndly.rest.impl.ResourceDelegatingServlet.linkUri>
+    <org.bndly.rest.swagger.resource.SwaggerResource.basePath>/bndly</org.bndly.rest.swagger.resource.SwaggerResource.basePath>
+    <org.bndly.rest.swagger.resource.SwaggerResource.host>${ebx.host.name}:${jetty.port}</org.bndly.rest.swagger.resource.SwaggerResource.host>
+
+    <org.bndly.rest.swagger.resource.SwaggerResource.info.version>${project.version}</org.bndly.rest.swagger.resource.SwaggerResource.info.version>
+    <org.bndly.rest.swagger.resource.SwaggerResource.scheme>http</org.bndly.rest.swagger.resource.SwaggerResource.scheme>
+
+    <org.bndly.search.impl.SolrConfiguration-ebx.baseUrl>${org.bndly.rest.swagger.resource.SwaggerResource.scheme}://${org.bndly.rest.swagger.resource.SwaggerResource.host}/solr-4.10.4/eBX</org.bndly.search.impl.SolrConfiguration-ebx.baseUrl>
+
+    <org.bndly.ssl.impl.HttpClientConfiguration-solr.ignoreSSLHostNames>false</org.bndly.ssl.impl.HttpClientConfiguration-solr.ignoreSSLHostNames>
+  </properties>
+
+  <build>
+    <resources>
+      <resource>
+        <targetPath>${project.build.directory}/resources</targetPath>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>conf/config.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <targetPath>${project.build.directory}/resources</targetPath>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <excludes>
+          <exclude>conf/config.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <finalName>ebx-app-launcher-${project.version}</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.bndly.common</groupId>
+        <artifactId>bndly-maven-plugin</artifactId>
+        <version>${bndly.common.version}</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>default-prepare-package</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>prepare-package</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-package</id>
+            <phase>package</phase>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-start</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>default-stop</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <saveProvisioningModel>true</saveProvisioningModel>
+          <runModes>felix,3rdparty,jdbc,ebx,cy,it</runModes>
+          <!--runModeConfigurations>false</runModeConfigurations-->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

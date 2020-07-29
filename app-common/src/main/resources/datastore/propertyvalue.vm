@@ -1,0 +1,81 @@
+#if( $model.type.toString() == "STRING" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.strings )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.string})
+#end#*
+*##elseif( $model.type.toString() == "DATE" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.dates )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.date})
+#end#*
+*##elseif( $model.type.toString() == "DECIMAL" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.decimals )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.decimal})
+#end#*
+*##elseif( $model.type.toString() == "LONG" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.longs )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.long})
+#end#*
+*##elseif( $model.type.toString() == "DOUBLE" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.doubles )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.double})
+#end#*
+*##elseif( $model.type.toString() == "BOOLEAN" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.booleans )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.boolean})
+#end#*
+*##elseif( $model.type.toString() == "BINARY" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.binaries )
+<li><a class="btn btn-primary" href="$baseUrl/repo${model.node.path}.html/#xss("htmlattribute" $model.name)/$foreach.count">download</a></li>
+#end
+</ul>
+#else
+<a class="btn btn-primary" href="$baseUrl/repo${model.node.path}.html/#xss("htmlattribute" $model.name)">download</a>
+#end#*
+*##elseif( $model.type.toString() == "ENTITY" )#*
+*##if( $model.multiValued )
+<ul>
+#foreach( $value in $model.entities )
+<li>#xss("html" ${value})</li>
+#end
+</ul>
+#else
+#xss("html" ${model.entity})
+#end#*
+*##end

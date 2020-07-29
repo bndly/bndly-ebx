@@ -1,0 +1,3 @@
+= Bndly ebx initial-fixture-deployer
+
+Trigger for deployment of the initial-fixture.json

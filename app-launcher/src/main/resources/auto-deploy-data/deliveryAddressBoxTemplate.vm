@@ -1,0 +1,9 @@
+#if($asHtml)
+<div id="deliveryAddressBox">
+    <h3>Lieferadresse:</h3>
+    $partialRenderer.include($model, "address.vm")
+</div>
+#else
+Lieferadresse:
+$partialRenderer.include($model, "address.vm")
+#end

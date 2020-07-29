@@ -1,0 +1,1 @@
+{"type":"cy:bean","properties":{"beanType@STRING":"cy:requiremodule","name@STRING":"VariantProduct","script@STRING":"return {\r\n\tname: \"Parent Product\",\r\n\titems: [{\r\n\t\tmember: \"product\",\r\n\t\tlabelText: \"Product\",\r\n\t\tmandatory: true,\r\n\t\ttypeahead: true\r\n\t}]\r\n};","initMethod@STRING":"","proxy@STRING":"","moduleId@STRING":""}}

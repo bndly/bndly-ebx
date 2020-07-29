@@ -1,0 +1,28 @@
+/* line 1, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/BarChart.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/BarChart\.less}line{font-family:\000031}}
+.bar {
+  fill: steelblue;
+}
+/* line 5, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/BarChart.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/BarChart\.less}line{font-family:\000035}}
+.bar:hover {
+  fill: brown;
+}
+/* line 9, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/BarChart.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/BarChart\.less}line{font-family:\000039}}
+.axis {
+  font: 10px sans-serif;
+}
+/* line 13, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/BarChart.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/BarChart\.less}line{font-family:\0000313}}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+/* line 20, /Users/thomas/Sites/bootstrapdemo/scripts/lib/less/BarChart.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/thomas\/Sites\/bootstrapdemo\/scripts\/lib\/less\/BarChart\.less}line{font-family:\0000320}}
+.x.axis path {
+  display: none;
+}

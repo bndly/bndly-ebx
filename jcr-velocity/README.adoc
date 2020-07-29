@@ -1,0 +1,3 @@
+= Bndly ebx jcr velocity
+
+Template data provider, that uses a JCR as a source

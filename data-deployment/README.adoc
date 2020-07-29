@@ -1,0 +1,3 @@
+= Bndly ebx data-deployment
+
+Deployment of file system resources into the eBX DataStore

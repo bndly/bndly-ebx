@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>#*
+*##set( $ui = $beanRegistry.getBean($model) )#*
+*##set( $hero = $ui.hero )
+<html lang="$template.locale.language">
+	<head
+		data-communication-description="#xss("htmlattribute" $baseUrl)/communicationDescription.jsonp"
+		data-base-url="#xss("htmlattribute" $baseUrl)"
+	>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		#set( $app = $ui.application )
+		<title>$!{app.applicationName} - $!{app.applicationVersion}</title>
+
+		<link href="$baseUrl/repo/libs/vendor/bin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/TypeAheadInput.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/SchemaView.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/Common.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/shop-admin/scripts/lib/css/BarChart.css" rel="stylesheet" media="screen">
+	<link href="$baseUrl/data/store/bin/form-colors.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+	<link rel="icon" type="image/ico" href="$baseUrl/data/store/bin/shop-admin/favicon.ico">
+	#foreach( $script in $app.scripts )
+		<script src="$baseUrl/repo${script.path}.js"></script>
+	#end
+	<script data-main="$baseUrl/repo${ui.path}.require.js?fresh" src="$baseUrl/repo/libs/vendor/bin/require/require.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cy_ui_navbar_collapse" aria-expanded="false">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+				<a class="navbar-brand" href="#">
+					<img alt="#if(${app.applicationName})$!{app.applicationName}#end" height="20" #if($app.properties.logo)src="$baseUrl/repo#xss("htmlattribute" $app.properties.logo)"#end>
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="cy_ui_navbar_collapse">
+			<ul class="nav navbar-nav">
+				#foreach( $navItem in $ui.mainNavigation )
+					#if($navItem.subItems.isEmpty())
+						<li#if($navItem.isActive()) class="active"#end>
+							<a href="${baseUrl}/repo${navItem.ui.path}.html"><span>$navItem.title</span></a>
+						</li>
+					#else
+						<li class="dropdown #if($navItem.isActive()) active #end">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">$navItem.title <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								#set( $first = true )
+								#foreach( $subNavItem in $navItem.subItems )
+									#if( !$first )
+									<li role="separator" class="divider"></li>
+									#end
+									#set( $first = false )
+									#foreach( $subSubNavItem in $subNavItem.subItems )
+										<li><a href="${baseUrl}/repo${subSubNavItem.ui.path}.html">${subSubNavItem.title}</a></li>
+									#end
+								#end
+							</ul>
+						</li>
+					#end
+				#end
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Docs <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${baseUrl}/docs.html">REST API</a></li>
+						<li role="separator" class="divider"></li>
+						#foreach($bundleDocumentation in $bundleDocumentationProvider.availableBundleDocumentation)
+							#set($bundleName = $bundleDocumentation.bundle.headers["Bundle-Name"])
+							#if(!$bundleName)
+								#set($bundleName = $bundleDocumentation.bundle.symbolicName)
+							#end
+							<li><a href="${baseUrl}/docs.html#bundle_$bundleDocumentation.bundle.bundleId">$bundleName</a></li>
+						#end
+
+					</ul>
+				</li>
+				<li><a href="/system/console"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> WebConsole</a></li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	#if($hero)
+	<div>
+		#nest($hero "hero")
+	</div>
+	#else
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span10">
+				#foreach( $region in $ui.regions )
+					<div class="#xss("htmlattribute" $region.regionName)">
+					#nest($region)
+					</div>
+				#end
+			</div>
+		</div>
+	</div>
+	#end
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- <script src="$baseUrl/repo/libs/vendor/bin/jquery/js/jquery-3.2.1.min.js"></script> -->
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- <script src="$baseUrl/repo/libs/vendor/bin/bootstrap/js/bootstrap.min.js"></script> -->
+</body>
+</html>

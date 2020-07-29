@@ -1,0 +1,20 @@
+<!--
+  #%L
+  org.bndly.ebx.app-common
+  %%
+  Copyright (C) 2013 - 2020 Cybercon GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<fields><field name="id" type="long" indexed="true" stored="true" required="true"/><field name="_type" type="string" indexed="true" stored="true" required="true"/><field name="Node_parent" indexed="true" stored="true" type="long"/><field name="Node_nodeType" indexed="true" stored="true" required="true" type="lc_text"/><field name="Property_node" indexed="true" stored="true" type="long"/><field name="Property_isMultiValued" indexed="true" stored="true" required="true" type="boolean"/><field name="Property_type" indexed="true" stored="true" required="true" type="lc_text"/><field name="Value_property" indexed="true" stored="true" required="true" type="long"/><field name="Value_stringValue" indexed="true" stored="true" type="lc_text"/><field name="Value_textValue" indexed="true" stored="true" type="lc_text"/><field name="Value_isText" indexed="true" stored="true" type="boolean"/><field name="Value_dateValue" indexed="true" stored="true" type="tdate"/><field name="Value_decimalValue" indexed="true" stored="true" type="double"/><field name="Value_longValue" indexed="true" stored="true" type="long"/><field name="Value_doubleValue" indexed="true" stored="true" type="double"/><field name="Value_booleanValue" indexed="true" stored="true" type="boolean"/><field name="Value_entityValue" indexed="true" stored="true" type="long"/><field name="Named_name" indexed="true" stored="true" required="true" type="lc_text"/><field name="IndexedItem_parentIndex" indexed="true" stored="true" required="true" type="long"/></fields>

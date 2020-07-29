@@ -1,0 +1,3 @@
+= Bndly ebx search-engine-exporter
+
+Default search engine exporters for 'geizhals' and 'preisroboter' (price comparison portals from Germany).

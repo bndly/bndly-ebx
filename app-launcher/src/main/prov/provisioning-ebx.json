@@ -1,0 +1,639 @@
+{
+	"felix": {
+		"bundles": {
+			"0": [
+				"org.apache.felix:org.apache.felix.metatype:jar:1.2.2",
+				"org.apache.felix:org.apache.felix.eventadmin:jar:1.5.0",
+				"org.apache.felix:org.apache.felix.http.api:jar:3.0.0",
+				"org.apache.felix:org.apache.felix.http.bridge:jar:4.0.8",
+				"org.apache.felix:org.apache.felix.log:jar:1.2.0",
+				"org.apache.felix:org.apache.felix.scr:jar:2.1.14",
+				"org.apache.felix:org.apache.felix.webconsole:jar:all:4.3.12",
+				"org.apache.felix:org.apache.felix.webconsole.plugins.ds:jar:2.1.0"
+			],
+			"4": [
+				"org.apache.felix:org.apache.felix.configadmin:jar:1.9.16"
+			]
+		}
+	},
+	"cy": {
+		"bundles": {
+			"2": [
+				"org.bndly.common.rest:org.bndly.common.rest.jetty-bundle-locator:jar:${bndly.common.version}"
+			],
+			"3": [
+				"org.bndly.common:org.bndly.common.osgi-config:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.osgi:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.json:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.runmode:jar:${bndly.common.version}",
+				"org.bndly.common.crypto:org.bndly.common.crypto.crypto-api:jar:${bndly.common.version}",
+				"org.bndly.common.crypto:org.bndly.common.crypto.crypto-impl:jar:${bndly.common.version}",
+				"org.bndly.common.data:org.bndly.common.data.data-api:jar:${bndly.common.version}",
+				"org.bndly.common.data:org.bndly.common.data.io:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.reflection:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.lang:jar:${bndly.common.version}"
+			],
+			"9": [
+				"org.bndly.common.data:org.bndly.common.data.file-system-data-impl:jar:${bndly.common.version}"
+			],
+			"10": [
+				"org.bndly.common:org.bndly.common.html:jar:${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-api:jar:${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-datastore-impl:jar:${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-impl:jar:${bndly.common.version}",
+				"org.bndly.common.bpm:org.bndly.common.bpm.bpm-schema:jar:${bndly.common.version}",
+				"org.bndly.common.code:org.bndly.common.code.common:jar:${bndly.common.version}",
+				"org.bndly.common.code:org.bndly.common.code.model:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.converter:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.cors:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.classpath:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.datasource:jar:${bndly.common.version}",
+				"org.bndly.common.event:org.bndly.common.event.event-api:jar:${bndly.common.version}",
+				"org.bndly.common.event:org.bndly.common.event.event-impl:jar:${bndly.common.version}",
+				"org.bndly.common.graph:org.bndly.common.graph.graph-api:jar:${bndly.common.version}",
+				"org.bndly.common.graph:org.bndly.common.graph.graph-impl:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.csv:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.osgi-jmx:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.documentation:jar:${bndly.common.version}",
+				"org.bndly.common.mail:org.bndly.common.mail.mail-api:jar:${bndly.common.version}",
+				"org.bndly.common.mail:org.bndly.common.mail.mail-impl:jar:${bndly.common.version}",
+				"org.bndly.common:org.bndly.common.mapper:jar:${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.document-model:jar:${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.document-pdfprinter-mapping:jar:${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.pdfprinter:jar:${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.stylesheet-model:jar:${bndly.common.version}",
+				"org.bndly.common.pdf:org.bndly.common.pdf.templates:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.jetty-bridge:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.annotation-api:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.annotation-impl:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.annotations:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.api:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.api-descriptor:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.swagger-integration:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.bpm-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.bpm-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cache-websocket:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.client-api:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.client-impl:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.cycle-breaker:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.data-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.data-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.data-cache-invalidation:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.entity-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.global-jaxbcontext-provider:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.jaxb-resource-renderer:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.jsonp-provider:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.link-injector:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.mail-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.mail-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.pdf-provider:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.pdf-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.resources:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.response-postprocessor:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.query-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.query-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-cache-invalidation:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.schema-websocket:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.security:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.security-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.security-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.search-resource:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.search-resource-beans:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.servlet-base:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.servlet-impl:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.websocket-api:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.websocket-server:jar:${bndly.common.version}",
+				"org.bndly.common.rest:org.bndly.common.rest.websocket-client:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.deletion-strategy:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-repository:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-definition-parser:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-activator:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.model:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-json:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-api:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-beans:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-fixtures:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-impl:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-vendor:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-json-beans:jar:${bndly.common.version}",
+				"org.bndly.common.search:org.bndly.common.search.search-api:jar:${bndly.common.version}",
+				"org.bndly.common.search:org.bndly.common.search.search-impl:jar:${bndly.common.version}",
+				"org.bndly.common.search:org.bndly.common.search.search-schema:jar:${bndly.common.version}",
+				"org.bndly.common.ssl:org.bndly.common.ssl.ssl-api:jar:${bndly.common.version}",
+				"org.bndly.common.ssl:org.bndly.common.ssl.ssl-httpclient:jar:${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity:jar:${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity-api:jar:${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity-datastore:jar:${bndly.common.version}",
+				"org.bndly.common.templating:org.bndly.common.templating.velocity-osgi:jar:${bndly.common.version}",
+				"org.bndly.common.service:org.bndly.common.service.validation-rules-beans:jar:${bndly.common.version}",
+				"org.bndly.common.service:org.bndly.common.service.validation-rules-interpreter:jar:${bndly.common.version}"
+			]
+		},
+		"configs": {
+			"org.bndly.rest.servlet.ResourceDelegatingServlet": {
+				"contextPath": "/bndly"
+			},
+			"org.bndly.common.crypto.impl.CryptoServiceFactoryImpl": {
+				"keystoreLocation": "conf/cryptoservice.jks",
+				"keystorePassword": "changeit",
+				"keystoreType": "jks",
+				"hashingIterations": "1000",
+				"hashingDefaultSaltLength": "8",
+				"encryptionKeyAlias": "defaultEncKey",
+				"encryptionKeyPassword": "changeit",
+				"encryptionKeyAlgorithm": "RSA",
+				"signatureKeyAlias": "defaultSignKey",
+				"signatureKeyPassword": "changeit",
+				"signatureKeyAlgorithm": "RSA",
+				"messageDigestAlgorithm": "SHA-256",
+				"secureRandomAlorithm": "SHA1PRNG",
+				"defaultInputStringEncoding": "UTF-8"
+			},
+			"org.bndly.common.data.api.DataStore.fs": {
+				"root": "${FelixMain.homeFolder}datastore",
+				"name": "store"
+			},
+			"org.bndly.rest.data.resources.DataResource": {
+				"repository": "${FelixMain.homeFolder}/temp"
+			},
+			"org.bndly.rest.pdf.controller.impl.PDFResource": {
+				"pdfTempDirectory": "${FelixMain.homeFolder}/temp"
+			},
+			"org.bndly.rest.cache.impl.CacheInterceptor": {
+				"cacheRoot": "${FelixMain.homeFolder}/restcache"
+			},
+			"org.bndly.rest.controller.impl.XMLAndJSONSupport": {
+				"renderWithLocalContext": false,
+				"parseWithLocalContext": false,
+				"xmlToJsonNamespaces": "xs@http://www.w3.org/2001/XMLSchema-instance"
+			},
+			"org.bndly.rest.repository.resources.MultipartFormDataPayloadToNodeConverter": {
+				"tempFolder": "${FelixMain.homeFolder}/temp"
+			}
+		},
+		"resources": [
+			{
+				"target": "log/jetty",
+				"excludes": [
+					"**/*"
+				]
+			},
+			{
+				"target": "restcache",
+				"excludes": [
+					"**/*"
+				]
+			},
+			{
+				"target": "temp",
+				"excludes": [
+					"**/*"
+				]
+			}
+		]
+	},
+	"jdbc": {
+		"bundles": {
+			"3": [
+				"com.h2database:h2:jar:1.4.193"
+			]
+		}
+	},
+	"it": {
+		"bundles": {
+			"10": [
+				"org.bndly.common.testfixture:org.bndly.common.testfixture.resource:jar:${bndly.common.version}",
+				"org.bndly.common.testfixture:org.bndly.common.testfixture.resource-beans:jar:${bndly.common.version}"
+			]
+		},
+		"configs": {
+			"org.bndly.rest.security.impl.SecurityHandlerResourceInterceptor": {
+				"realm": "bndly",
+				"disabled": false,
+				"actAsWebConsoleSecurityProvider": false
+			},
+			"org.bndly.rest.api.account.InitialAccount-ebx": {
+				"accountName": "ebx",
+				"password": "ebx"
+			},
+			"org.bndly.common.bpm.impl.ActivitiEngineConfiguration-ebx": {
+				"name": "ebx",
+				"datasource": "ebx",
+				"schema": "DB_SCHEMA_UPDATE_TRUE",
+				"asyncEnabled": true,
+				"asyncCorePoolSize": 10,
+				"asyncMaxPoolSize": 100,
+				"asyncQueueSize": 1000
+			},
+			"org.bndly.common.crypto.impl.SimpleCryptoServiceConfig-account": {
+				"name": "account",
+				"keystoreLocation": "${FelixMain.homeFolder}conf/account.jks",
+				"keystorePassword": "changeit",
+				"keystoreType": "jks",
+				"encryptionKeyAlias": "account-token",
+				"encryptionKeyPassword": "changeit",
+				"encryptionKeyAlgorithm": "RSA/ECB/PKCS1Padding",
+				"privateKeyEncryption": true,
+				"blockSize":256,
+				"maxDataBlockSize": 245,
+				"defaultInputStringEncoding": "UTF-8"
+			},
+			"org.bndly.common.datasource.DataSourceConfiguration-ebx": {
+				"name": "ebx",
+				"driverClass": "org.h2.Driver",
+				"jdbcUrl": "jdbc:h2:file:${FelixMain.homeFolder}h2db/ebx",
+				"user": "sa",
+				"password": "sa",
+				"connection.maxConnLifetimeMillis": 1800000,
+				"connection.defaultQueryTimeout": 30,
+				"pool.maxTotal":10
+			},
+			"org.bndly.common.datasource.DataSourceConfiguration-h2": {
+				"name": "h2",
+				"driverClass": "org.h2.Driver",
+				"jdbcUrl": "jdbc:h2:file:${FelixMain.homeFolder}h2db/default",
+				"user": "sa",
+				"password": "sa",
+				"connection.maxConnLifetimeMillis": 1800000,
+				"connection.defaultQueryTimeout": 30,
+				"pool.maxTotal":10
+			},
+			"org.bndly.ebx.adapter.LabelValueAdapter": {
+				"binding.TranslatedObject": "translationKey",
+				"binding.Country": "name",
+				"binding.CreditCardBrand": "name",
+				"binding.PersonTitle": "name",
+				"binding.ProductAttribute": "name",
+				"binding.ProductAttributeValue": "stringValue",
+				"binding.Salutation": "name",
+				"binding.ShipmentMode": "name",
+				"binding.WishListItemPriority": "name",
+				"binding.WishListPrivacy": "name"
+			},
+			"org.bndly.ebx.resources.authorization.SchemaBasedAuthorizationProvider": {
+				"skipServiceRegistration": true,
+				"createDefaultAccount": false,
+				"cachePermissions": false,
+				"cacheAccounts": true,
+				"cachedAccounts": ["ebx", "ANONYMOUS"],
+				"hashService.target": "(name=default)"
+			},
+			"org.bndly.ebx.resources.authorization.SchemaBasedAccountStore": {
+				"secureRandomLength": 8,
+				"simpleCryptoService.target": "(name=account)"
+			},
+			"org.bndly.ebx.translation.generator.PropertiesFilesToTranslationsGeneratorImpl": {
+				"propertiesFileNames": "countries,creditCardBrands,objectListTypes,personTitles,productAttributes,productAttributeValues,salutations,shipmentModes,templating,wishListItemPriorities,wishListPrivacies",
+				"propertyFileLocation": "${FelixMain.homeFolder}translations"
+			},
+			"org.bndly.schema.activator.impl.SchemaConfiguration-ebx": {
+				"name": "ebx",
+				"root": "${FelixMain.homeFolder}schema/ebx-schema.xml",
+				"schemaRestBeanPackage": "org.bndly.rest.beans.ebx",
+				"schemaBeanPackage": "org.bndly.ebx.model",
+				"extensions": "${FelixMain.homeFolder}schema/ebx-schema-jcr-extension.xml"
+			},
+			"org.bndly.schema.impl.factory.EngineConfiguration-ebx": {
+				"schema": "ebx",
+				"datasource": "ebx",
+				"dialect": "h2",
+				"connection": "pooled",
+				"validateOnly": false
+			}
+		},
+		"resources": [
+			{
+				"source": "target/resources",
+				"includes": [
+					"**/*.xml",
+					"**/*.keystore",
+					"**/*.jks",
+					"**/keystore",
+					"**/truststore",
+					"**/*.properties",
+					"**/*.ini",
+					"**/*.html",
+					"auto-deploy-data/**/*"
+				]
+			}
+		]
+	},
+	"upnp": {
+		"bundles": {
+			"25": [
+				"org.bndly.ebx:org.bndly.ebx.discovery-upnp:jar:${bndly.ebx.version}",
+				"org.apache.felix:org.apache.felix.webconsole.plugins.upnp:jar:1.0.6",
+				"org.apache.felix:org.apache.felix.upnp.extra:jar:0.4.0",
+				"org.apache.felix:org.apache.felix.upnp.basedriver:jar:0.8.0",
+				"org.osgi:org.osgi.service.upnp:jar:1.2.0"
+			]
+		}
+	},
+	"3rdparty": {
+		"bundles": {
+			"0": [
+				"javax.annotation:javax.annotation-api:jar:1.3.2",
+				"javax.xml.bind:jaxb-api:jar:2.3.1",
+				"com.sun.activation:javax.activation:jar:1.2.0",
+				"com.sun.xml.bind:com.sun.xml.bind.jaxb-impl:jar:2.3.2",
+				"javax.transaction:javax.transaction-api:jar:1.3",
+				"javax.enterprise:cdi-api:jar:2.0",
+				"javax.interceptor:javax.interceptor-api:jar:1.2.2",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.javax-inject:jar:1_3",
+				"javax.el:javax.el-api:jar:2.2.5",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.javax-el-impl:jar:2.2.6_1"
+			],
+			"2": [
+				"org.slf4j:slf4j-api:jar:1.7.26",
+
+				"ch.qos.logback:logback-classic:jar:1.2.3",
+				"ch.qos.logback:logback-core:jar:1.2.3",
+
+				"javax.mail:javax.mail-api:jar:1.6.2",
+				"com.sun.mail:javax.mail:jar:1.6.2",
+
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.solr-solrj:jar:4.8.1_1",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.velocity:jar:1.7_6",
+				"org.apache.servicemix.bundles:org.apache.servicemix.bundles.velocity-tools:jar:2.0_1",
+
+				"org.json:json:jar:20180813",
+
+				"commons-collections:commons-collections:jar:3.2.2",
+
+				"org.apache.httpcomponents:httpcore-osgi:jar:4.4.11",
+				"org.apache.httpcomponents:httpclient-osgi:jar:4.5.9",
+
+				"org.mybatis:mybatis:jar:3.2.7",
+				"org.noggit:noggit-osgi:jar:0.5",
+
+				"joda-time:joda-time:jar:2.6",
+
+				"org.codehaus.jettison:jettison:jar:1.4.0",
+
+				"de.odysseus.juel:juel-api:jar:2.2.7",
+				"de.odysseus.juel:juel-impl:jar:2.2.7",
+
+				"com.fasterxml.jackson.core:jackson-annotations:jar:2.8.4",
+				"com.fasterxml.jackson.core:jackson-databind:jar:2.8.4",
+				"com.fasterxml.jackson.core:jackson-core:jar:2.8.4",
+				"com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.8.4",
+				"com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.8.4",
+				"org.yaml:snakeyaml:jar:1.15",
+
+				"org.apache.pdfbox:pdfbox:jar:2.0.0",
+				"org.apache.pdfbox:fontbox:jar:2.0.0",
+				"org.apache.pdfbox:xmpbox:jar:2.0.0",
+
+				"org.apache.commons:commons-compress:jar:1.18",
+				"commons-fileupload:commons-fileupload:jar:1.4",
+				"commons-lang:commons-lang:jar:2.4",
+				"commons-logging:commons-logging:jar:1.1.3",
+				"commons-logging:commons-logging:jar:1.2",
+				"org.apache.commons:commons-lang3:jar:3.3.2",
+
+				"org.ow2.asm:asm:jar:7.1",
+				"org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle:jar:1.2.3",
+				"org.apache.aries:org.apache.aries.util:jar:1.1.1",
+
+				"org.mozilla:rhino:jar:1.7.11",
+				"org.codehaus.groovy:groovy-jsr223:jar:2.5.7",
+				"org.codehaus.groovy:groovy:jar:2.5.7",
+
+				"org.activiti:activiti-engine:jar:5.17.0",
+				"org.activiti:activiti-bpmn-model:jar:5.17.0",
+				"org.activiti:activiti-bpmn-converter:jar:5.17.0",
+				"org.activiti:activiti-process-validation:jar:5.17.0",
+				"org.activiti:activiti-image-generator:jar:5.17.0",
+
+				"org.eclipse.jetty.osgi:jetty-osgi-boot:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.osgi:jetty-httpservice:jar:9.4.19.v20190610",
+				"org.eclipse.equinox.http:servlet:jar:1.0.0-v20070606",
+				"org.eclipse.jetty:jetty-server:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-deploy:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-http:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-io:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.toolchain:jetty-schemas:jar:4.0.3",
+				"org.eclipse.jetty:jetty-security:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-servlet:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-util:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-webapp:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-xml:jar:9.4.19.v20190610",
+				"org.eclipse.jetty:jetty-client:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.websocket:websocket-servlet:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.websocket:websocket-api:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.websocket:websocket-server:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.websocket:websocket-client:jar:9.4.19.v20190610",
+				"org.eclipse.jetty.websocket:websocket-common:jar:9.4.19.v20190610",
+
+				"javax.servlet:javax.servlet-api:jar:3.1.0"
+			]
+		}
+	},
+	"ebx": {
+		"bundles": {
+			"20": [
+				"org.bndly.common.rest:org.bndly.common.rest.repository-resource:jar:${bndly.common.version}",
+				"org.bndly.common.schema:org.bndly.common.schema.schema-repository-datastore:jar:${bndly.common.version}"
+			],
+			"25": [
+				"org.bndly.ebx:org.bndly.ebx.solr-webapp:jar:${bndly.ebx.version}",
+
+				"org.bndly.ebx:org.bndly.ebx.cors-filter:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.bpm-tasks:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.data-deployment:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.data-provider:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.crypto-config:jar:${bndly.ebx.version}",
+
+				"com.google.guava:guava:jar:15.0",
+				"javax.jcr:jcr:jar:2.0",
+				"org.apache.jackrabbit:jackrabbit-jcr2spi-osgi:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-jcr2dav-osgi:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-spi2dav-osgi:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-webdav:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-spi-commons:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-api:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-jcr-commons:jar:2.12.2",
+				"org.apache.jackrabbit:jackrabbit-spi:jar:2.12.2",
+				"org.daisy.libs:commons-httpclient:jar:3.1.0",
+				"commons-codec:commons-codec:jar:1.10",
+
+				"org.bndly.ebx.jcr:org.bndly.ebx.jcr.importer-api:jar:${bndly.ebx.version}",
+				"org.bndly.ebx.jcr:org.bndly.ebx.jcr.importer-impl:jar:${bndly.ebx.version}",
+				"org.bndly.ebx.jcr:org.bndly.ebx.jcr.importer-resource:jar:${bndly.ebx.version}",
+				"org.bndly.ebx.jcr:org.bndly.ebx.jcr.importer-resource-beans:jar:${bndly.ebx.version}",
+
+				"org.bndly.ebx:org.bndly.ebx.schema-beans:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.schema-rest-beans:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.initial-fixture-deployer:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.price-util:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.profiler:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.resources:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.schema-authorization-provider:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.resources-beans:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.trailing-zero-removal:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.translation-resolver:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.translation-generator:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.virtual-attribute-adapters:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.search-engine-exporter:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.search-engine-exporter-api:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.search-engine-exporter-resource:jar:${bndly.ebx.version}",
+				"org.bndly.ebx:org.bndly.ebx.search-engine-exporter-resource-beans:jar:${bndly.ebx.version}",
+
+				"org.bndly.ebx:org.bndly.ebx.validation-rules:jar:${bndly.ebx.version}"
+			]
+		},
+		"configs": {
+			"org.bndly.ebx.adapter.TotalTaxValueAdapter": {
+				"mode": "TOTAL"
+			},
+			"org.bndly.ebx.adapter.TaxableItemsValueAdapter": {},
+			"org.bndly.ebx.adapter.TaxQuotaValueAdapter": {},
+			"org.bndly.ebx.adapter.QuantifiedItemValueAdapter": {},
+			"org.bndly.ebx.adapter.PurchaseOrderMerchandiseValueGrossAdapter": {},
+			"org.bndly.ebx.adapter.PurchaseOrderHasPaymentFulfillmentsValueAdapter": {},
+			"org.bndly.ebx.adapter.PurchaseOrderHasCancelationsValueAdapter": {},
+			"org.bndly.ebx.adapter.PurchaseOrderHasBillingFailuresValueAdapter": {},
+			"org.bndly.ebx.adapter.PurchaseOrderTotalGrossValueAdapter": {},
+			"org.bndly.ebx.adapter.PurchaseOrderTotalValueAdapter": {},
+			"org.bndly.ebx.adapter.PropertySetPropertiesValueAdapter": {},
+			"org.bndly.ebx.adapter.LineItemTotalValueAdapter": {},
+			"org.bndly.ebx.adapter.LineItemTotalGrossValueAdapter": {},
+			"org.bndly.ebx.adapter.ExternalObjectListAssociationsValueAdapter": {},
+			"org.bndly.ebx.adapter.CartTotalItemCountValueAdapter": {},
+			"org.bndly.ebx.adapter.CartMerchandiseValueGrossAdapter": {},
+			"org.bndly.ebx.adapter.CartItemTaxableItemValueAdapter": {},
+			"org.bndly.ebx.adapter.CartItemTaxRateValueAdapter": {},
+			"org.bndly.ebx.adapter.CartItemPriceGrossValueAdapter": {},
+			"org.bndly.ebx.adapter.CartItemCurrencyValueAdapter": {},
+			"org.bndly.ebx.adapter.CartItemContainerValueAdapter": {},
+			"org.bndly.ebx.adapter.AbstractProductAsTaxedItemValueAdapter": {},
+			"org.bndly.business.task.Activator": {
+				"paymentProviderUrl":"http://localhost"
+			},
+			"org.bndly.common.data.impl.FolderWatcherConfiguration-bme": {
+				"folder": "${FelixMain.homeFolder}bme",
+				"frequency": 1000,
+				"name": "bme"
+			},
+			"org.bndly.common.mail.impl.MailerImpl": {
+				"host": "${org.bndly.common.mail.impl.MailerImpl.host}",
+				"user": "${org.bndly.common.mail.impl.MailerImpl.user}",
+				"password": "${org.bndly.common.mail.impl.MailerImpl.password}",
+				"senderAddress": "${org.bndly.common.mail.impl.MailerImpl.senderAddress}",
+				"port": "${org.bndly.common.mail.impl.MailerImpl.port}",
+				"debug": true
+			},
+			"org.bndly.ebx.data.deployment.DataDeployerImpl": {
+				"folderToScan": "${FelixMain.homeFolder}auto-deploy-data"
+			},
+			"org.bndly.ebx.resources.custom.SearchResourceDeployer": {
+				"searchterm.format.ebx.WishList": "(WishList_name:*{searchTerm}* OR WishList_email:{searchTerm} OR WishList_email:*{searchTerm}* OR WishList_securityToken:{searchTerm})"
+			},
+			"org.bndly.rest.impl.ResourceDelegatingServlet": {
+				"contextPath": "${org.bndly.rest.impl.ResourceDelegatingServlet.contextPath}",
+				"linkUri": "${org.bndly.rest.impl.ResourceDelegatingServlet.linkUri}"
+			},
+			"org.bndly.rest.swagger.resource.SwaggerResource": {
+				"info.title": "eBX Core",
+				"info.version": "${org.bndly.rest.swagger.resource.SwaggerResource.info.version}",
+				"info.description": "This is the eBX Core. It contains various bundles and is accessible via a HATEOAS driven REST API.",
+				"license.name": "Cybercon License",
+				"license.url":" http://www.bndly.org/ebx/license.html",
+				"contact.email": "bndly@cybercon.de",
+				"contact.name": "Bndly",
+				"contact.url": "http://www.bndly.org",
+				"basePath": "${org.bndly.rest.swagger.resource.SwaggerResource.basePath}",
+				"scheme": "${org.bndly.rest.swagger.resource.SwaggerResource.scheme}",
+				"host": "${org.bndly.rest.swagger.resource.SwaggerResource.host}",
+				"tag.description.entityresource": "Generic implementation of CRUD for schema",
+				"tag.description.schema": "Implementation that is related to a deployed schema",
+				"tag.description.paginated": "Lists that can be browsed in a paginated way",
+				"tag.description.templating": "Implementation that is based on rendering a template",
+				"tag.description.solr": "Operations that are involved into the embedded SOLR",
+				"tag.description.default": "Convenience operations around the application",
+				"tag.description.maintenance": "Entities that are more about technical configuration",
+				"tag.description.ebxadmin": "Operations that are only implemented to be used in the eBX Admin",
+				"tag.description.invoice": "Entities that are used for modeling invoices",
+				"tag.description.shipment": "Entities that are used for modeling shipments",
+				"tag.description.security": "Entities that might have special security needs, because they carry sensitive data",
+				"tag.description.orders": "Entities that are used for modeling orders",
+				"tag.description.addressing": "Entities that are used for modeling addresses",
+				"tag.description.pricing": "Entities that are used for modeling prices",
+				"tag.description.wishlist": "Entities that are used for modeling wishlists",
+				"tag.description.cms": "Entities that are used for CMS integration",
+				"tag.description.tracking": "Entities that are used for tracking usage of the application",
+				"tag.description.carts": "Entities that are used for modeling carts",
+				"tag.description.payment": "Entities that are used for modeling payment information",
+				"tag.description.userdata": "Entities that are used for modeling data about the user or his interaction",
+				"tag.description.products": "Entities that are used for modeling products",
+				"tag.description.variants": "Entities that are used for modeling variants of products"
+			},
+			"org.bndly.schema.activator.impl.SchemaConfiguration-repository": {
+				"name": "repository",
+				"root": "${FelixMain.homeFolder}schema/repository-schema.xml",
+				"schemaBeanPackage" : "",
+				"schemaRestBeanPackage" : ""
+			},
+			"org.bndly.schema.impl.factory.EngineConfiguration-repository": {
+				"schema": "repository",
+				"datasource": "h2",
+				"dialect": "h2",
+				"connection": "pooled",
+				"validateOnly": false
+			},
+			"org.bndly.schema.repository.datastore.impl.PackageInstaller": {
+				"enabled": true,
+				"dataNameRegex": "\\/?[a-zA-Z0-9\\-\\_\\.]+\\.zip"
+			},
+			"org.bndly.search.impl.SolrConfiguration-ebx": {
+				"name": "default",
+				"baseUrl": "${org.bndly.search.impl.SolrConfiguration-ebx.baseUrl}"
+			},
+			"org.bndly.search.impl.SolrServerFactory": {
+				"queueSize": 100,
+				"threadCount": 10
+			},
+			"org.bndly.ssl.impl.HttpClientConfiguration-solr": {
+				"name": "solr",
+				"maxConnectionsPerHost": 100,
+				"maxConnections": 200,
+				"connectionKeepAlive": true,
+				"redirectsEnabled": true,
+				"connectionRequestTimeout": 30000,
+				"connectionTimeout": 30000
+			},
+			"org.bndly.search.schema.impl.SchemaRecordIndexerImpl": {
+				"excludedTypes": "repository:Node,repository:Property,repository:Value"
+			}
+		},
+		"resources": [
+			{
+				"target": "datastore",
+				"artifacts": [
+					"org.bndly.common:org.bndly.common.admin:zip:${bndly.common.version}",
+					"org.bndly.ebx:org.bndly.ebx.admin:zip:${bndly.ebx.version}"
+				]
+			},
+			{
+				"target": ".",
+				"unpack": true,
+				"artifacts": [
+					"org.bndly.ebx:org.bndly.ebx.app-common:zip:${bndly.ebx.version}",
+					"org.bndly.common:org.bndly.common.app-container-common:zip:${bndly.common.version}"
+				],
+				"excludes": [
+					"**/jetty-1-selector.xml",
+					"**/jetty-3-ssl.xml",
+					"**/jetty-4-https.xml",
+					"conf/logback.xml"
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,4 @@
+#foreach( $regionItem in $model.regionItems )#*
+*##nest( $regionItem )#*
+*##end#*
+*##partial($model "nodelink.edit.vm")

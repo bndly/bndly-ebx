@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  org.bndly.ebx.bpm-tasks
+  %%
+  Copyright (C) 2013 - 2020 Cybercon GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean name="abstractSchemaRelatedTaskExecutor" class="org.bndly.business.executor.AbstractSchemaRelatedTaskExecutor" abstract="true" scope="prototype">
+        <property name="schemaBeanFactory" ref="schemaBeanFactory"/>
+        <property name="jsonSchemaBeanFactory" ref="jsonSchemaBeanFactory"/>
+        <property name="engine" ref="schemaEngine"/>
+    </bean>
+    
+    <bean class="org.bndly.business.executor.AdjustPersonDataAfterCheckoutTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.AdjustProductsBoughtInConjunctionListsTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.AdjustWishListsAfterCheckoutTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.BillingFailureTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.CancelOrderTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.CreateShipmentOfferTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.ExtractUserGroupTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.FindProductByNumberTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.FindStockItemForStockRequestTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.GenerateInvoiceTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.GeneratePaymentServiceLinkTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.GenerateShipmentTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.IsUserPremiumTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.NotifyCustomerOfOrderTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor">
+        <property name="mailer" ref="mailer"/>
+    </bean>
+    <bean class="org.bndly.business.executor.OrderPaidTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.SaveTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.ShipmentModeIteratorTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+    <bean class="org.bndly.business.executor.WriteProductPriceToPriceRequestTaskExecutorImpl" parent="abstractSchemaRelatedTaskExecutor" />
+        
+</beans>

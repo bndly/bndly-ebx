@@ -1,0 +1,918 @@
+<?xml version="1.0" ?>
+<!--
+  #%L
+  org.bndly.ebx.app-common
+  %%
+  Copyright (C) 2013 - 2020 Cybercon GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<schema namespace="http://www.bndly.org/ebx/2.2" name="ebx">
+	<ClientRelated kind="mixin">
+		<client kind="type" type="Client"></client>
+		<annotations tags="maintenance"></annotations>
+	</ClientRelated>
+	<Labeled kind="mixin" virtual="true">
+		<label kind="string" virtual="true"></label>
+	</Labeled>
+	<ContextWritingJob kind="mixin">
+		<contextVar kind="string"></contextVar>
+		<rootContextVar kind="string"></rootContextVar>
+		<annotations tags="cms"></annotations>
+	</ContextWritingJob>
+	<ContentLocator kind="mixin" virtual="true">
+		<targetPath kind="string" virtual="false"></targetPath>
+		<contentTypeName kind="string" virtual="false"></contentTypeName>
+		<contentName kind="string" virtual="false"></contentName>
+		<annotations tags="cms"></annotations>
+	</ContentLocator>
+	<Addressee kind="mixin">
+		<address kind="type" type="Address" deleteOrphans="true"></address>
+		<annotations tags="addressing"></annotations>
+	</Addressee>
+	<Purchasable kind="mixin">
+		<sku kind="string"></sku>
+		<priceModel kind="jsonType" type="PriceModel"></priceModel>
+		<annotations tags="products"></annotations>
+	</Purchasable>
+	<TaxRelatedItemsContainer kind="mixin" virtual="true">
+		<taxableItems kind="inverseMixin" mixin="TaxRelatedItem" attribute="container" virtual="true"></taxableItems>
+		<annotations tags="pricing"></annotations>
+	</TaxRelatedItemsContainer>
+	<QuantifiedItem kind="mixin" virtual="true">
+		<quantifiedItemQuantity kind="decimal" decimalPlaces="0" virtual="true"></quantifiedItemQuantity>
+		<annotations tags="pricing"></annotations>
+	</QuantifiedItem>
+	<TaxRelatedItem kind="mixin" virtual="true">
+		<taxRelatedItemTaxRate kind="decimal" decimalPlaces="2" length="2" virtual="true"></taxRelatedItemTaxRate>
+		<taxRelatedItemCurrency kind="type" type="Currency" virtual="true"></taxRelatedItemCurrency>
+		<container kind="mixin" mixin="TaxRelatedItemsContainer" virtual="true"></container>
+		<annotations tags="pricing"></annotations>
+	</TaxRelatedItem>
+	<TaxedItem kind="mixin" virtual="true">
+		<taxedItemPriceGross kind="decimal" decimalPlaces="5" length="50" virtual="true"></taxedItemPriceGross>
+		<annotations tags="pricing"></annotations>
+	</TaxedItem>
+	<TaxableItem kind="mixin" virtual="true">
+		<taxableItemPriceNetto kind="decimal" decimalPlaces="5" length="50" virtual="true"></taxableItemPriceNetto>
+		<annotations tags="pricing"></annotations>
+	</TaxableItem>
+	<PriceModel kind="type" virtual="true">
+		<prices kind="inverseType" type="Price" virtual="true"></prices>
+		<annotations tags="pricing"></annotations>
+	</PriceModel>
+	<Price kind="type" abstract="true" virtual="true">
+		<currency kind="type" type="Currency" virtual="true"></currency>
+		<taxModel kind="type" type="ValueAddedTax" virtual="true"></taxModel>
+		<constraints kind="inverseType" type="PriceConstraint" virtual="true"></constraints>
+		<annotations tags="pricing"></annotations>
+	</Price>
+	<Currency kind="type">
+		<code kind="string" length="3"></code>
+		<symbol kind="string" length="10"></symbol>
+		<decimalPlaces kind="decimal" decimalPlaces="0"></decimalPlaces>
+		<annotations tags="products,pricing"></annotations>
+	</Currency>
+	<ValueAddedTax kind="type">
+		<description kind="string"></description>
+		<name kind="string"></name>
+		<value kind="decimal" decimalPlaces="0" length="2"></value>
+		<annotations tags="pricing,products"></annotations>
+	</ValueAddedTax>
+	<PriceConstraint kind="type" virtual="true">
+		<startDate kind="date" virtual="true"></startDate>
+		<endDate kind="date" virtual="true"></endDate>
+		<country kind="type" type="Country" virtual="true"></country>
+		<annotations tags="pricing"></annotations>
+	</PriceConstraint>
+	<SimplePrice kind="type" extend="Price" virtual="true">
+		<netValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></netValue>
+		<annotations tags="pricing"></annotations>
+	</SimplePrice>
+	<UserPrice kind="type" extend="Price" virtual="true">
+		<netValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></netValue>
+		<grossValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></grossValue>
+		<discountedNetValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></discountedNetValue>
+		<discountedGrossValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></discountedGrossValue>
+		<annotations tags="pricing"></annotations>
+	</UserPrice>
+	<StaggeredPrice kind="type" extend="Price" virtual="true">
+		<items kind="inverseType" type="StaggeredPriceItem" virtual="true"></items>
+		<annotations tags="pricing"></annotations>
+	</StaggeredPrice>
+	<StaggeredPriceItem kind="type" virtual="true">
+		<maxQuantity kind="decimal" decimalPlaces="0" virtual="true"></maxQuantity>
+		<minQuantity kind="decimal" decimalPlaces="0" virtual="true"></minQuantity>
+		<netValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></netValue>
+		<annotations tags="pricing"></annotations>
+	</StaggeredPriceItem>
+	<ParameterizedPrice kind="type" extend="Price" virtual="true">
+		<formula kind="string" virtual="true"></formula>
+		<parameters kind="inverseType" type="PriceParameter" virtual="true"></parameters>
+		<annotations tags="pricing"></annotations>
+	</ParameterizedPrice>
+	<PriceParameter kind="type" virtual="true">
+		<name kind="string" virtual="true"></name>
+		<annotations tags="pricing"></annotations>
+	</PriceParameter>
+	<Country kind="type" mixWith="Labeled">
+		<isoCode2 kind="string" length="2"></isoCode2>
+		<isoCode3 kind="string" length="3"></isoCode3>
+		<internalName kind="string"></internalName>
+		<name kind="type" type="TranslatedObject"></name>
+		<annotations tags="addressing"></annotations>
+	</Country>
+	<Client kind="type">
+		<name kind="string"></name>
+		<annotations tags="maintenance"></annotations>
+	</Client>
+	<ResourceMethodInvocationStatus kind="type">
+		<methodName kind="string"></methodName>
+		<invocationCount kind="decimal" decimalPlaces="0"></invocationCount>
+		<averageDuration kind="decimal" decimalPlaces="0"></averageDuration>
+		<startDate kind="date"></startDate>
+		<endDate kind="date"></endDate>
+		<annotations tags="maintenance"></annotations>
+	</ResourceMethodInvocationStatus>
+	<BackendAccount kind="type">
+		<name kind="string"></name>
+		<secret kind="string"></secret>
+		<salt kind="string"></salt>
+		<active kind="boolean"></active>
+		<locked kind="boolean"></locked><!-- added in 2.2.21 -->
+		<annotations tags="maintenance"></annotations>
+	</BackendAccount>
+	<BackendAccountActivation kind="type"><!-- added in 2.2.21 -->
+		<token kind="string" mandatory="true" length="1024"></token>
+		<createdOn kind="date" mandatory="true"></createdOn>
+		<backendAccount kind="type" type="BackendAccount" cascadeDelete="true" mandatory="true"></backendAccount>
+	</BackendAccountActivation>
+	<Permission kind="type">
+		<name kind="string"></name>
+		<annotations tags="maintenance"></annotations>
+	</Permission>
+	<Authorization kind="type">
+		<permission kind="type" type="Permission"></permission>
+		<backendAccount kind="type" type="BackendAccount"></backendAccount>
+		<annotations tags="maintenance"></annotations>
+	</Authorization>
+	<PropertySet kind="type">
+		<name kind="string"></name>
+		<properties kind="inverseType" type="Property" virtual="true"></properties>
+		<annotations tags="maintenance"></annotations>
+	</PropertySet>
+	<Property kind="type">
+		<name kind="string"></name>
+		<locale kind="string"></locale>
+		<actualValue kind="string"></actualValue>
+		<annotations tags="maintenance"></annotations>
+	</Property>
+	<PropertySetAssociation kind="type">
+		<propertySet kind="type" type="PropertySet"></propertySet>
+		<property kind="type" type="Property"></property>
+		<annotations tags="maintenance"></annotations>
+	</PropertySetAssociation>
+	<ImporterConfiguration kind="type">
+		<name kind="string"></name>
+		<active kind="boolean"></active>
+		<importEnabled kind="boolean"></importEnabled>
+		<cmsUser kind="string"></cmsUser>
+		<cmsPassword kind="string"></cmsPassword>
+		<url kind="string"></url>
+		<exportMasters kind="boolean"></exportMasters>
+		<exportMarketingProducts kind="boolean"></exportMarketingProducts>
+		<exportChannels kind="boolean"></exportChannels>
+		<paths kind="inverseType" type="PathConfiguration" attribute="configuration" deleteOrphans="true"></paths>
+		<supportedLanguages kind="inverseType" type="ImporterSupportedLanguage" attribute="configuration" deleteOrphans="true"></supportedLanguages>
+		<annotations tags="cms"></annotations>
+	</ImporterConfiguration>
+	<PathConfiguration kind="type">
+		<configuration kind="type" type="ImporterConfiguration"></configuration>
+		<name kind="string"></name>
+		<contentLanguage kind="string"></contentLanguage>
+		<cmsPath kind="string"></cmsPath>
+		<annotations tags="cms"></annotations>
+	</PathConfiguration>
+	<ImporterSupportedLanguage kind="type">
+		<language kind="type" type="Language"></language>
+		<country kind="type" type="Country"></country>
+		<configuration kind="type" type="ImporterConfiguration"></configuration>
+		<parent kind="type" type="ImporterSupportedLanguage" nullOnDelete="true"></parent>
+		<annotations tags="cms"></annotations>
+	</ImporterSupportedLanguage>
+	<Language kind="type">
+		<name kind="string"></name>
+	</Language>
+	<!-- The JobContextMap replaces the JobContext. This replacement is introduced to improve the performance of loading job context data. -->
+	<JobContextMap kind="type">
+		<mapData kind="binary"></mapData>
+		<createdOn kind="date" mandatory="true"></createdOn>
+		<annotations tags="cms"></annotations>
+	</JobContextMap>
+	
+<!--	<JobContext kind="type">
+		<parent kind="type" type="JobContext"></parent>
+		<data kind="inverseType" type="JobContextData" attribute="context" deleteOrphans="true"></data>
+		<annotations tags="cms"></annotations>
+	</JobContext>-->
+	<!--<JobContextData kind="type" virtual="true">
+		<context kind="type" type="JobContext"></context>
+		<name kind="string"></name>
+		<annotations tags="cms"></annotations>
+	</JobContextData>
+	<StringContextData kind="type" extend="JobContextData" virtual="true">
+		<stringValue kind="string"></stringValue>
+		<annotations tags="cms"></annotations>
+	</StringContextData>
+	<EntityContextData kind="type" extend="JobContextData" virtual="true">
+		<type kind="string"></type>
+		<idProperty kind="string"></idProperty>
+		<idValue kind="string"></idValue>
+		<annotations tags="cms"></annotations>
+	</EntityContextData>
+	<ContentContextData kind="type" extend="JobContextData" virtual="true">
+		<contentType kind="string"></contentType>
+		<contentId kind="string"></contentId>
+		<contentLocation kind="string"></contentLocation>
+		<annotations tags="cms"></annotations>
+	</ContentContextData>-->
+	
+	<ImporterJob kind="type" abstract="true">
+		<!--<context kind="type" type="JobContext" cascadeDelete="true"></context>-->
+		<contextKey kind="string" mandatory="true"></contextKey>
+		<contextMap kind="type" type="JobContextMap" cascadeDelete="true" mandatory="true"></contextMap>
+		<plan kind="type" type="ImportPlan" cascadeDelete="true"></plan>
+		<name kind="string"></name>
+		<note kind="string"></note>
+		<createdOn kind="date"></createdOn>
+		<startedOn kind="date"></startedOn>
+		<canceledOn kind="date"></canceledOn>
+		<finishedOn kind="date"></finishedOn>
+		<annotations tags="cms"></annotations>
+	</ImporterJob>
+	<ImportPlan kind="type">
+		<batch kind="string"></batch>
+		<annotations tags="cms"></annotations>
+	</ImportPlan>
+	<CreateContentJob kind="type" extend="ImporterJob" mixWith="ContentLocator,ContextWritingJob">
+		<contentId kind="string"></contentId>
+		<annotations tags="cms"></annotations>
+	</CreateContentJob>
+	<DeleteContentJob kind="type" extend="ImporterJob">
+		<contentTypeName kind="string"></contentTypeName>
+		<contentId kind="string"></contentId>
+		<annotations tags="cms"></annotations>
+	</DeleteContentJob>
+	<UpdateContentJob kind="type" extend="ImporterJob" mixWith="ContentLocator">
+		<contentId kind="string"></contentId>
+		<sourceVar kind="string"></sourceVar>
+		<annotations tags="cms"></annotations>
+	</UpdateContentJob>
+	<FindContentJob kind="type" extend="ImporterJob" mixWith="ContentLocator,ContextWritingJob">
+		<contentId kind="string"></contentId>
+		<annotations tags="cms"></annotations>
+	</FindContentJob>
+	<GenericContentJob kind="type" extend="ImporterJob">
+		<annotations tags="cms"></annotations>
+	</GenericContentJob>
+	<UploadBlobJob kind="type" extend="ImporterJob">
+		<data kind="type" type="BinaryData" nullOnDelete="true"></data>
+		<dataLocation kind="string"></dataLocation>
+		<propertyName kind="string"></propertyName>
+		<targetContentId kind="string"></targetContentId>
+		<annotations tags="cms"></annotations>
+	</UploadBlobJob>
+	<BinaryData kind="type">
+		<name kind="string"></name>
+		<contentType kind="string"></contentType>
+		<createdOn kind="date"></createdOn>
+		<updatedOn kind="date"></updatedOn>
+		<bytes kind="binary">
+			<annotations contentTypeProperty="contentType"></annotations>
+		</bytes>
+	</BinaryData>
+	<LinkRelatedJob kind="type" extend="ImporterJob">
+		<targetContentId kind="string"></targetContentId>
+		<linkedContentId kind="string"></linkedContentId>
+		<propertyName kind="string"></propertyName>
+		<annotations tags="cms"></annotations>
+	</LinkRelatedJob>
+	<LinkJob kind="type" extend="LinkRelatedJob">
+		<annotations tags="cms"></annotations>
+	</LinkJob>
+	<UnlinkJob kind="type" extend="LinkRelatedJob">
+		<annotations tags="cms"></annotations>
+	</UnlinkJob>
+	<DataAssociation kind="type" abstract="true">
+		<binaryData kind="type" type="BinaryData"></binaryData>
+		<relation kind="string"></relation>
+	</DataAssociation>
+	<TranslatedObject kind="type">
+		<translationKey kind="string"></translationKey>
+	</TranslatedObject>
+	<Translation kind="type">
+		<stringValue kind="string"></stringValue>
+		<language kind="type" type="Language"></language>
+		<translatedObject kind="type" type="TranslatedObject"></translatedObject>
+	</Translation>
+	<Salutation kind="type" mixWith="Labeled">
+		<internalName kind="string"></internalName>
+		<name kind="type" type="TranslatedObject"></name>
+		<annotations tags="addressing"></annotations>
+	</Salutation>
+	<PersonTitle kind="type" mixWith="Labeled">
+		<internalName kind="string"></internalName>
+		<name kind="type" type="TranslatedObject"></name>
+		<annotations tags="addressing"></annotations>
+	</PersonTitle>
+	<Address kind="type">
+		<city kind="string"></city>
+		<firstName kind="string"></firstName>
+		<lastName kind="string"></lastName>
+		<houseNumber kind="string"></houseNumber>
+		<name kind="string"></name>
+		<postCode kind="string"></postCode>
+		<state kind="string"></state>
+		<street kind="string"></street>
+		<additionalInfo kind="string"></additionalInfo>
+		<postOfficeBox kind="string"></postOfficeBox>
+		<salutation kind="type" type="Salutation"></salutation>
+		<title kind="type" type="PersonTitle"></title>
+		<country kind="type" type="Country"></country>
+		<annotations tags="addressing"></annotations>
+	</Address>
+	<Person kind="type" mixWith="Addressee">
+		<email kind="string"></email>
+		<phoneNumber kind="string"></phoneNumber>
+		<alternatePhoneNumber kind="string"></alternatePhoneNumber>
+		<faxNumber kind="string"></faxNumber>
+		<externalUserId kind="string"></externalUserId>
+		<salesTaxId kind="string"></salesTaxId>
+		<nationality kind="string"></nationality>
+		<dateOfBirth kind="date"></dateOfBirth>
+		<annotations tags="userdata"></annotations>
+	</Person>
+	<AddressAssignment kind="type">
+		<relation kind="string"></relation>
+		<address kind="type" type="Address"></address>
+		<person kind="type" type="Person"></person>
+		<annotations tags="addressing,userdata"></annotations>
+	</AddressAssignment>
+	<Manufacturer kind="type" mixWith="Addressee">
+		<name kind="string"></name>
+		<homepage kind="string"></homepage>
+		<description kind="string"></description>
+		<annotations tags="products"></annotations>
+	</Manufacturer>
+	<User kind="type">
+		<identifier kind="string"></identifier>
+		<userAttributeValues kind="inverseType" type="UserAttributeValue" attribute="user" deleteOrphans="true"></userAttributeValues>
+		<annotations tags="userdata"></annotations>
+	</User>
+	<UserAttributeValue kind="type">
+		<stringValue kind="string"></stringValue>
+		<user kind="type" type="User" cascadeDelete="true"></user>
+		<attribute kind="type" type="UserAttribute" cascadeDelete="true"></attribute>
+		<annotations tags="userdata"></annotations>
+	</UserAttributeValue>
+	<UserAttribute kind="type">
+		<name kind="string"></name>
+		<annotations tags="userdata"></annotations>
+	</UserAttribute>
+	<TaxQuotaInfo kind="type" virtual="true">
+		<valueAddedTaxForSideCosts kind="type" type="ValueAddedTax" virtual="true"></valueAddedTaxForSideCosts>
+		<quotas kind="inverseType" type="TaxQuota" virtual="true"></quotas>
+		<annotations tags="pricing"></annotations>
+	</TaxQuotaInfo>
+	<TaxQuota kind="type" virtual="true">
+		<valueAddedTax kind="type" type="ValueAddedTax" virtual="true"></valueAddedTax>
+		<currency kind="type" type="Currency" virtual="true"></currency>
+		<info kind="type" type="TaxQuotaInfo" virtual="true"></info>
+		<quota kind="decimal" decimalPlaces="5" length="50" virtual="true"></quota>
+		<merchandiseQuota kind="decimal" decimalPlaces="5" length="50" virtual="true"></merchandiseQuota>
+		<annotations tags="pricing"></annotations>
+	</TaxQuota>
+	<Category kind="type">
+		<name kind="string"></name>
+		<parentCategory kind="type" type="Category"></parentCategory>
+		<subCategories kind="inverseType" type="Category" attribute="parentCategory"></subCategories>
+		<annotations tags="products"></annotations>
+	</Category>
+	<CategoryItem kind="type">
+		<category kind="type" type="Category"></category>
+		<purchasable kind="mixin" mixin="Purchasable"></purchasable>
+		<annotations tags="products"></annotations>
+	</CategoryItem>
+	<Cart kind="type" mixWith="TaxRelatedItemsContainer">
+		<userIdentifier kind="string"></userIdentifier>
+		<lastInteraction kind="date"></lastInteraction>
+		<taxQuotaInfo kind="type" type="TaxQuotaInfo" virtual="true"></taxQuotaInfo>
+		<cartItems kind="inverseType" type="CartItem" attribute="cart" deleteOrphans="true"></cartItems>
+		<cartTerms kind="inverseType" type="CartTerm" attribute="cart" deleteOrphans="true"></cartTerms>
+		<merchandiseValueGross kind="decimal" decimalPlaces="5" length="50" virtual="true"></merchandiseValueGross>
+		<totalItemCount kind="decimal" decimalPlaces="0" virtual="true"></totalItemCount>
+		<annotations tags="carts,userdata"></annotations>
+	</Cart>
+	<CartItem kind="type" mixWith="QuantifiedItem,TaxRelatedItem,TaxedItem,TaxableItem">
+		<cart kind="type" type="Cart"></cart>
+		<sku kind="string"></sku>
+		<wishListSecurityToken kind="string"></wishListSecurityToken>
+		<contentId kind="string"></contentId>
+		<priceOnAddition kind="decimal" decimalPlaces="5" length="50"></priceOnAddition>
+		<priceGrossOnAddition kind="decimal" decimalPlaces="5" length="50"></priceGrossOnAddition>
+		<priceBeforeRefresh kind="decimal" decimalPlaces="5" length="50"></priceBeforeRefresh>
+		<priceGrossBeforeRefresh kind="decimal" decimalPlaces="5" length="50"></priceGrossBeforeRefresh>
+		<priceNow kind="decimal" decimalPlaces="5" length="50"></priceNow>
+		<priceGrossNow kind="decimal" decimalPlaces="5" length="50"></priceGrossNow>
+		<currency kind="type" type="Currency"></currency>
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<cartTerms kind="inverseType" type="CartTerm" attribute="cartItem" deleteOrphans="true"></cartTerms>
+		<annotations tags="carts,userdata"></annotations>
+	</CartItem>
+	<CartTerm kind="type">
+		<stringValue kind="string"></stringValue>
+		<type kind="type" type="CartTermType"></type>
+		<cart kind="type" type="Cart"></cart>
+		<cartItem kind="type" type="CartItem"></cartItem>
+		<annotations tags="carts"></annotations>
+	</CartTerm>
+	<CartTermType kind="type">
+		<name kind="string"></name>
+		<annotations tags="carts"></annotations>
+	</CartTermType>
+	<PaymentDetails kind="type" abstract="true">
+		<annotations tags="payment,userdata"></annotations>
+	</PaymentDetails>
+	<CreditCardBrand kind="type" mixWith="Labeled">
+		<name kind="string"></name>
+		<annotations tags="payment"></annotations>
+	</CreditCardBrand>
+	<CreditCardPaymentDetails kind="type" extend="PaymentDetails">
+		<cardHolderName kind="string"></cardHolderName>
+		<cardNumber kind="string"></cardNumber>
+		<cardExpiry kind="date"></cardExpiry>
+		<creditCardBrand kind="type" type="CreditCardBrand"></creditCardBrand>
+		<annotations tags="payment,userdata,security"></annotations>
+	</CreditCardPaymentDetails>
+	<BankPaymentDetails kind="type" abstract="true" extend="PaymentDetails">
+		<owner kind="string"></owner>
+		<bankName kind="string"></bankName>
+		<annotations tags="payment,userdata,security"></annotations>
+	</BankPaymentDetails>
+	<ClassicBankPaymentDetails kind="type" extend="BankPaymentDetails">
+		<accountNumber kind="string"></accountNumber>
+		<bankCode kind="string"></bankCode>
+		<annotations tags="payment,userdata,security"></annotations>
+	</ClassicBankPaymentDetails>
+	<IBANBankPaymentDetails kind="type" extend="BankPaymentDetails">
+		<iban kind="string"></iban>
+		<bic kind="string"></bic>
+		<annotations tags="payment,userdata,security"></annotations>
+	</IBANBankPaymentDetails>
+	<InvoicePaymentDetails kind="type" extend="PaymentDetails">
+		<annotations tags="payment,userdata"></annotations>
+	</InvoicePaymentDetails>
+	<TransferPaymentDetails kind="type" extend="PaymentDetails">
+		<annotations tags="payment,userdata"></annotations>
+	</TransferPaymentDetails>
+	<CashOnDeliveryPaymentDetails kind="type" extend="PaymentDetails">
+		<annotations tags="payment,userdata"></annotations>
+	</CashOnDeliveryPaymentDetails>
+	<PaymentDetailAssignment kind="type">
+		<relation kind="string"></relation>
+		<paymentDetail kind="type" type="PaymentDetails"></paymentDetail>
+		<person kind="type" type="Person"></person>
+		<annotations tags="payment,userdata,security"></annotations>
+	</PaymentDetailAssignment>
+	<WishListPrivacy kind="type" mixWith="Labeled">
+		<name kind="string"></name>
+		<appearsInSearchIndex kind="boolean"></appearsInSearchIndex>
+		<useNickNameAsWishListOwner kind="boolean"></useNickNameAsWishListOwner>
+		<annotations tags="wishlist"></annotations>
+	</WishListPrivacy>
+	<WishListItemPriority kind="type" mixWith="Labeled">
+		<name kind="string"></name>
+		<annotations tags="wishlist"></annotations>
+	</WishListItemPriority>
+	<WishList kind="type">
+		<city kind="string"></city>
+		<email kind="string"></email>
+		<createDate kind="date"></createDate>
+		<eventDate kind="date"></eventDate>
+		<securityToken kind="string"></securityToken>
+		<userNickName kind="string"></userNickName>
+		<name kind="string"></name>
+		<profilePictureVisible kind="boolean"></profilePictureVisible>
+		<privacy kind="type" type="WishListPrivacy"></privacy>
+		<person kind="type" type="Person"></person>
+		<items kind="inverseType" type="WishListItem" attribute="wishList" deleteOrphans="true"></items>
+		<annotations tags="wishlist,userdata"></annotations>
+	</WishList>
+	<WishListItem kind="type">
+		<addedOn kind="date"></addedOn>
+		<coremediaUUID kind="string"></coremediaUUID>
+		<sku kind="string"></sku>
+		<coremediaProductName kind="string"></coremediaProductName>
+		<wishList kind="type" type="WishList"></wishList>
+		<priority kind="type" type="WishListItemPriority"></priority>
+		<desiredAmount kind="decimal" decimalPlaces="0"></desiredAmount>
+		<remainingAmount kind="decimal" decimalPlaces="0"></remainingAmount>
+		<boughtAmount kind="decimal" decimalPlaces="0"></boughtAmount>
+		<priceOnAddition kind="decimal" decimalPlaces="5" length="50"></priceOnAddition>
+		<priceGrossOnAddition kind="decimal" decimalPlaces="5" length="50"></priceGrossOnAddition>
+		<currency kind="type" type="Currency"></currency>
+		<annotations tags="wishlist,userdata"></annotations>
+	</WishListItem>
+	<QuantityUnit kind="type">
+		<abbrevation kind="string"></abbrevation>
+		<description kind="string"></description>
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<annotations tags="products"></annotations>
+	</QuantityUnit>
+	<AbstractProduct kind="type" abstract="true" mixWith="TaxedItem">
+		<active kind="boolean"></active>
+		<gtin kind="string"></gtin>
+		<height kind="decimal" decimalPlaces="2" length="5"></height>
+		<length kind="decimal" decimalPlaces="2" length="5"></length>
+		<width kind="decimal" decimalPlaces="2" length="5"></width>
+		<weight kind="decimal" decimalPlaces="2" length="5"></weight>
+		<model kind="string"></model>
+		<name kind="string"></name>
+		<description kind="string" isLong="true"></description>
+		<supplierPID kind="string"></supplierPID>
+		<manufacturer kind="type" type="Manufacturer"></manufacturer>
+		<quantityUnit kind="type" type="QuantityUnit"></quantityUnit>
+		<annotations tags="products"></annotations>
+	</AbstractProduct>
+	<Product kind="type" extend="AbstractProduct" mixWith="Purchasable">
+		<family kind="type" type="ProductFamily"></family>
+		<annotations tags="products"></annotations>
+	</Product>
+	<ProductFamily kind="type">
+		<name kind="string"></name>
+		<annotations tags="products,variants"></annotations>
+	</ProductFamily>
+	<Variant kind="type" extend="AbstractProduct" mixWith="Purchasable">
+		<product kind="type" type="Product" cascadeDelete="true"></product>
+		<annotations tags="products,variants"></annotations>
+	</Variant>
+	<ProductData kind="type" extend="DataAssociation">
+		<product kind="type" type="Product" cascadeDelete="true"></product>
+		<annotations tags="products"></annotations>
+	</ProductData>
+	<VariantData kind="type" extend="DataAssociation">
+		<variant kind="type" type="Variant" cascadeDelete="true"></variant>
+		<annotations tags="products,variants"></annotations>
+	</VariantData>
+	<DynamicProductProperty kind="type">
+		<name kind="string"></name>
+		<annotations tags="products"></annotations>
+	</DynamicProductProperty>
+	<DynamicProductPropertyValue kind="type">
+		<stringValue kind="string"></stringValue>
+		<product kind="type" type="Product" cascadeDelete="true"></product>
+		<property kind="type" type="DynamicProductProperty"></property>
+		<annotations tags="products"></annotations>
+	</DynamicProductPropertyValue>
+	<ProductAttribute kind="type" mixWith="Labeled">
+		<name kind="string"></name>
+		<annotations tags="products,variants"></annotations>
+	</ProductAttribute>
+	<ProductAttributeValue kind="type" mixWith="Labeled">
+		<stringValue kind="string"></stringValue>
+		<productAttribute kind="type" type="ProductAttribute" cascadeDelete="true"></productAttribute>
+		<annotations tags="products,variants"></annotations>
+	</ProductAttributeValue>
+	<VariantDetail kind="type">
+		<productAttributeValue kind="type" type="ProductAttributeValue"></productAttributeValue>
+		<variant kind="type" type="Variant" cascadeDelete="true"></variant>
+		<annotations tags="products,variants"></annotations>
+	</VariantDetail>
+	<ProductFamilyAttribute kind="type">
+		<family kind="type" type="ProductFamily" cascadeDelete="true"></family>
+		<attribute kind="type" type="ProductAttribute" cascadeDelete="true"></attribute>
+		<annotations tags="products,variants"></annotations>
+	</ProductFamilyAttribute>
+	<Tag kind="type">
+		<name kind="string"></name>
+		<annotations tags="products"></annotations>
+	</Tag>
+	<TagAssociation kind="type">
+		<tag kind="type" type="Tag" cascadeDelete="true"></tag>
+		<product kind="type" type="Product" cascadeDelete="true"></product>
+		<annotations tags="products"></annotations>
+	</TagAssociation>
+	<ShipmentMode kind="type" mixWith="Labeled">
+		<name kind="string"></name>
+		<annotations tags="orders"></annotations>
+	</ShipmentMode>
+	<ShipmentOffer kind="type">
+		<mode kind="type" type="ShipmentMode"></mode>
+		<request kind="type" type="ShipmentOfferRequest"></request>
+		<currency kind="type" type="Currency"></currency>
+		<createdOn kind="date"></createdOn>
+		<price kind="decimal" decimalPlaces="5" length="50"></price>
+		<priceGross kind="decimal" decimalPlaces="5" length="50"></priceGross>
+		<annotations tags="orders,userdata"></annotations>
+	</ShipmentOffer>
+	<ShipmentOfferRequest kind="type">
+		<currency kind="type" type="Currency" nullOnDelete="true"></currency>
+		<user kind="type" type="User" nullOnDelete="true"></user>
+		<cart kind="type" type="Cart" nullOnDelete="true"></cart>
+		<shipmentOffers kind="inverseType" type="ShipmentOffer" attribute="request"></shipmentOffers>
+		<annotations tags="orders,userdata"></annotations>
+	</ShipmentOfferRequest>
+	<ProductRelation kind="type">
+		<semantic kind="string"></semantic>
+		<left kind="type" type="Product"></left>
+		<right kind="type" type="Product"></right>
+		<annotations tags="products"></annotations>
+	</ProductRelation>
+	<StockRequest kind="type">
+		<sku kind="string"></sku>
+		<user kind="type" type="User" nullOnDelete="true"></user>
+		<stock kind="decimal" decimalPlaces="0"></stock>
+		<annotations tags="products,userdata"></annotations>
+	</StockRequest>
+	<StockItem kind="type">
+		<sku kind="string"></sku>
+		<stock kind="decimal" decimalPlaces="0"></stock>
+		<annotations tags="products"></annotations>
+	</StockItem>
+	<PriceRequest kind="type">
+		<currency kind="type" type="Currency"></currency>
+		<user kind="type" type="User" nullOnDelete="true"></user>
+		<createdOn kind="date"></createdOn>
+		<sku kind="string"></sku>
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<price kind="jsonType" type="UserPrice"></price>
+		<annotations tags="products,pricing,userdata"></annotations>
+	</PriceRequest>
+	<PurchaseOrderBillingFailure kind="type">
+		<purchaseOrder kind="type" type="PurchaseOrder"></purchaseOrder>
+		<paymentConfiguration kind="type" type="PaymentConfiguration"></paymentConfiguration>
+		<createdOn kind="date"></createdOn>
+		<reason kind="string"></reason>
+		<annotations tags="orders,userdata"></annotations>
+	</PurchaseOrderBillingFailure>
+	<PurchaseOrder kind="type" mixWith="TaxRelatedItemsContainer">
+		<orderNumber kind="string"></orderNumber>
+		<orderDate kind="date"></orderDate>
+		<billingDate kind="date"></billingDate>
+		<shipmentDate kind="date"></shipmentDate>
+		<note kind="string"></note>
+		<trackingNumber kind="string"></trackingNumber>
+		<address kind="type" type="Address"></address>
+		<billingAddress kind="type" type="Address"></billingAddress>
+		<deliveryAddress kind="type" type="Address"></deliveryAddress>
+		<orderer kind="type" type="Person"></orderer>
+		<paymentDetails kind="type" type="PaymentDetails"></paymentDetails>
+		<shipmentOffer kind="type" type="ShipmentOffer"></shipmentOffer>
+		<items kind="inverseType" type="LineItem" attribute="order" deleteOrphans="true"></items>
+		<totalTax kind="decimal" decimalPlaces="5" length="50" virtual="true"></totalTax>
+		<merchandiseValue kind="decimal" decimalPlaces="5" length="50" virtual="true"></merchandiseValue>
+		<merchandiseValueGross kind="decimal" decimalPlaces="5" length="50" virtual="true"></merchandiseValueGross>
+		<total kind="decimal" decimalPlaces="5" length="50" virtual="true"></total>
+		<totalGross kind="decimal" decimalPlaces="5" length="50" virtual="true"></totalGross>
+		<taxQuotaInfo kind="type" type="TaxQuotaInfo" virtual="true"></taxQuotaInfo>
+		<hasCancelations kind="boolean" virtual="true"></hasCancelations>
+		<hasBillingFailures kind="boolean" virtual="true"></hasBillingFailures>
+		<hasPaymentFulfillments kind="boolean" virtual="true"></hasPaymentFulfillments>
+		<annotations tags="orders,userdata"></annotations>
+	</PurchaseOrder>
+	<PaymentConfiguration kind="type">
+		<successLink kind="string"></successLink>
+		<cancelLink kind="string"></cancelLink>
+		<failureLink kind="string"></failureLink>
+		<annotations tags="orders"></annotations>
+	</PaymentConfiguration>
+	<PurchaseOrderCancelation kind="type">
+		<purchaseOrder kind="type" type="PurchaseOrder"></purchaseOrder>
+		<createdOn kind="date"></createdOn>
+		<reason kind="string"></reason>
+		<annotations tags="orders,userdata"></annotations>
+	</PurchaseOrderCancelation>
+	<PurchaseOrderPaymentFulfillment kind="type">
+		<purchaseOrder kind="type" type="PurchaseOrder"></purchaseOrder>
+		<paymentConfiguration kind="type" type="PaymentConfiguration"></paymentConfiguration>
+		<createdOn kind="date"></createdOn>
+		<reason kind="string"></reason>
+		<annotations tags="orders,userdata"></annotations>
+	</PurchaseOrderPaymentFulfillment>
+	<LineItem kind="type" mixWith="QuantifiedItem">
+		<position kind="decimal" decimalPlaces="0"></position>
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<price kind="decimal" decimalPlaces="5" length="50"></price>
+		<priceGross kind="decimal" decimalPlaces="5" length="50"></priceGross>
+		<currency kind="type" type="Currency"></currency>
+		<order kind="type" type="PurchaseOrder"></order>
+		<sku kind="string"></sku>
+		<productName kind="string"></productName>
+		<taxRate kind="decimal" decimalPlaces="0" length="4"></taxRate>
+		<productImageUUID kind="string"></productImageUUID>
+		<productUUID kind="string"></productUUID>
+		<wishListSecurityToken kind="string"></wishListSecurityToken>
+		<wishListOwner kind="string"></wishListOwner>
+		<wishListName kind="string"></wishListName>
+		<total kind="decimal" decimalPlaces="5" length="50" virtual="true"></total>
+		<totalGross kind="decimal" decimalPlaces="5" length="50" virtual="true"></totalGross>
+		<annotations tags="orders,userdata"></annotations>
+	</LineItem>
+	<Shipment kind="type">
+		<number kind="string"></number>
+		<orderNumber kind="string"></orderNumber>
+		<orderDate kind="date"></orderDate>
+		<date kind="date"></date>
+		<address kind="type" type="Address"></address>
+		<senderAddress kind="type" type="Address"></senderAddress>
+		<shipmentItems kind="inverseType" type="ShipmentItem" attribute="shipment" deleteOrphans="true"></shipmentItems>
+		<annotations tags="shipment,userdata"></annotations>
+	</Shipment>
+	<ShipmentItem kind="type">
+		<pos kind="decimal" decimalPlaces="0"></pos>
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<articleId kind="string"></articleId>
+		<articleName kind="string"></articleName>
+		<shipment kind="type" type="Shipment"></shipment>
+		<annotations tags="shipment,userdata"></annotations>
+	</ShipmentItem>
+	<Invoice kind="type">
+		<number kind="string"></number>
+		<orderNumber kind="string"></orderNumber>
+		<paymentCategory kind="string"></paymentCategory>
+		<orderDate kind="date"></orderDate>
+		<date kind="date"></date>
+		<address kind="type" type="Address"></address>
+		<invoiceItems kind="inverseType" type="InvoiceItem" attribute="invoice" deleteOrphans="true"></invoiceItems>
+		<total kind="decimal" decimalPlaces="5" length="50"></total>
+		<portage kind="decimal" decimalPlaces="5" length="50"></portage>
+		<vat kind="decimal" decimalPlaces="5" length="50"></vat>
+		<grandTotal kind="decimal" decimalPlaces="5" length="50"></grandTotal>
+		<annotations tags="invoice,userdata"></annotations>
+	</Invoice>
+	<InvoiceItem kind="type">
+		<pos kind="decimal" decimalPlaces="0"></pos>
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<articleId kind="string"></articleId>
+		<articleName kind="string"></articleName>
+		<invoiceItemType kind="string"></invoiceItemType>
+		<tax kind="decimal" decimalPlaces="0" length="4"></tax>
+		<singlePrice kind="decimal" decimalPlaces="5" length="50"></singlePrice>
+		<sumPrice kind="decimal" decimalPlaces="5" length="50"></sumPrice>
+		<currency kind="type" type="Currency"></currency>
+		<invoice kind="type" type="Invoice"></invoice>
+		<annotations tags="invoice,userdata"></annotations>
+	</InvoiceItem>
+	<InvoiceTerm kind="type">
+		<invoice kind="type" type="Invoice"></invoice>
+		<invoiceItem kind="type" type="InvoiceItem"></invoiceItem>
+		<invoiceTermType kind="type" type="InvoiceTermType"></invoiceTermType>
+		<stringValue kind="string"></stringValue>
+		<annotations tags="invoice,userdata"></annotations>
+	</InvoiceTerm>
+	<InvoiceTermType kind="type">
+		<name kind="string"></name>
+		<annotations tags="invoice,userdata"></annotations>
+	</InvoiceTermType>
+	<OrderItemBilling kind="type">
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<amount kind="decimal" decimalPlaces="5" length="50"></amount>
+		<lineItem kind="type" type="LineItem"></lineItem>
+		<invoiceItem kind="type" type="InvoiceItem"></invoiceItem>
+		<annotations tags="invoice,orders,userdata"></annotations>
+	</OrderItemBilling>
+	<OrderShipment kind="type">
+		<quantity kind="decimal" decimalPlaces="0"></quantity>
+		<lineItem kind="type" type="LineItem"></lineItem>
+		<shipmentItem kind="type" type="ShipmentItem"></shipmentItem>
+		<annotations tags="shipment,orders,userdata"></annotations>
+	</OrderShipment>
+	<ExternalObject kind="type">
+		<identifier kind="string"></identifier>
+		<annotations tags="cms,tracking"></annotations>
+	</ExternalObject>
+	<ExternalObjectListType kind="type">
+		<name kind="string"></name>
+		<annotations tags="tracking"></annotations>
+	</ExternalObjectListType>
+	<ExternalObjectList kind="type" abstract="true">
+		<type kind="type" type="ExternalObjectListType"></type>
+		<associations kind="inverseType" type="ExternalObjectListAssocation" attribute="list" virtual="true"></associations>
+		<annotations tags="tracking"></annotations>
+	</ExternalObjectList>
+	<ExternalObjectListAssocation kind="type">
+		<externalObject kind="type" type="ExternalObject" cascadeDelete="true"></externalObject>
+		<list kind="type" type="ExternalObjectList" cascadeDelete="true"></list>
+		<quantity kind="decimal" decimalPlaces="5" length="50"></quantity>
+		<createdOn kind="date"></createdOn>
+		<updatedOn kind="date"></updatedOn>
+		<annotations tags="tracking"></annotations>
+	</ExternalObjectListAssocation>
+	<UserCentricExternalObjectList kind="type" extend="ExternalObjectList">
+		<user kind="type" type="User" cascadeDelete="true" mandatory="true"></user>
+		<annotations tags="tracking,userdata"></annotations>
+	</UserCentricExternalObjectList>
+	<ExternalObjectCentricExternalObjectList kind="type" extend="ExternalObjectList">
+		<externalObject kind="type" type="ExternalObject"></externalObject>
+		<annotations tags="tracking,cms"></annotations>
+	</ExternalObjectCentricExternalObjectList>
+	<ExternalObjectRegistration kind="type" abstract="true">
+		<createdOn kind="date"></createdOn>
+		<updatedOn kind="date"></updatedOn>
+		<externalObject kind="type" type="ExternalObject"></externalObject>
+		<user kind="type" type="User"></user>
+		<email kind="string"></email>
+		<sku kind="string"></sku>
+		<annotations tags="tracking,userdata"></annotations>
+	</ExternalObjectRegistration>
+	<AvailabilityRegistration kind="type" extend="ExternalObjectRegistration">
+		<annotations tags="tracking,userdata"></annotations>
+	</AvailabilityRegistration>
+	<PriceAlarmRegistration kind="type" extend="ExternalObjectRegistration">
+		<currency kind="type" type="Currency"></currency>
+		<priceLimit kind="decimal" decimalPlaces="5" length="50"></priceLimit>
+		<annotations tags="tracking,userdata"></annotations>
+	</PriceAlarmRegistration>
+	<CheckoutRequest kind="type">
+		<createdOn kind="date"></createdOn>
+		<updatedOn kind="date"></updatedOn>
+		<serviceLink kind="string"></serviceLink>
+		<processId kind="string"></processId>
+		<paymentResult kind="string"></paymentResult>
+		<order kind="type" type="PurchaseOrder"></order>
+		<paymentConfiguration kind="type" type="PaymentConfiguration"></paymentConfiguration>
+		<annotations tags="orders,userdata"></annotations>
+	</CheckoutRequest>
+	<CORSOrigin kind="type">
+		<protocol kind="string"></protocol>
+		<domainName kind="string"></domainName>
+		<port kind="decimal" decimalPlaces="0"></port>
+		<annotations tags="maintenance"></annotations>
+	</CORSOrigin>
+	<unique type="BackendAccount">
+		<name/>
+	</unique>
+	<unique type="PropertySet">
+		<name/>
+	</unique>
+	<unique type="Language">
+		<name/>
+	</unique>
+	<unique type="Salutation">
+		<name/>
+	</unique>
+	<unique type="PersonTitle">
+		<name/>
+	</unique>
+	<unique type="Country">
+		<isoCode2/>
+	</unique>
+	<unique type="Country">
+		<isoCode3/>
+	</unique>
+	<unique type="Person">
+		<externalUserId/>
+	</unique>
+	<unique type="Currency">
+		<code/>
+	</unique>
+	<unique type="User">
+		<identifier/>
+	</unique>
+	<unique type="UserAttribute">
+		<name/>
+	</unique>
+	<unique mixin="Purchasable">
+		<sku/>
+	</unique>
+	<unique type="ValueAddedTax">
+		<name/>
+	</unique>
+	<unique type="ProductAttribute">
+		<name/>
+	</unique>
+	<unique type="Tag">
+		<name/>
+	</unique>
+	<unique type="TagAssociation">
+		<tag/>
+		<product/>
+	</unique>
+	<unique type="ExternalObject">
+		<identifier/>
+	</unique>
+	<unique type="ExternalObjectListType">
+		<name/>
+	</unique>
+</schema>

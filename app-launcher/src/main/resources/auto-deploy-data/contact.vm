@@ -1,0 +1,9 @@
+<container itemId="contact" class="contact">
+	<text value="Oliver Runge" />
+	<text value="Königswinterer Str. 374" />
+	<text value="53227 Bonn" />
+	<text value="Telefon: +49 (0)228 227776 0" />
+	<text value="Fax: +49 (0)228 227776 29" />
+	<text value="www.bndly.org" />
+	<text value="info@cybercon.de" />
+</container>

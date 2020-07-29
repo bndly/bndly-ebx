@@ -1,0 +1,2 @@
+<div class="require-view" data-view-impl="${baseUrl}/repo#xss("htmlattribute" $model.viewImpl).js"></div>
+#partial($model "nodelink.edit.vm")

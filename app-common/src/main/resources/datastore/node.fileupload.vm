@@ -1,0 +1,11 @@
+<div class="well well-sm file-upload">
+	<div class="progress progress-striped hidden upload-progress-wrapper">
+		<div class="bar upload-progress" style="width: 0%;"></div>
+	</div>
+	<span class="file-upload-label"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> upload file</span>
+	<form class="hidden" action="${baseUrl}/repo${currentPath}" method="post">
+		<input type="hidden" name="name">
+		<input type="file" name="data">
+		<input type="hidden" name="nodeType" value="fs:file">
+	</form>
+</div>
