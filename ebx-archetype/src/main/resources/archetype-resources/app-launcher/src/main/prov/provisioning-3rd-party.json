@@ -38,7 +38,7 @@
 				"com.fasterxml.jackson.core:jackson-core:jar:2.11.1",
 				"com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.11.1",
 				"com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.11.1",
-				"org.yaml:snakeyaml:jar:1.15",
+				"org.yaml:snakeyaml:jar:1.26",
 				
 				"org.apache.pdfbox:pdfbox:jar:2.0.20",
 				"org.apache.pdfbox:fontbox:jar:2.0.0",
