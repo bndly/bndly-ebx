@@ -91,7 +91,7 @@
   </distributionManagement>
 
   <properties>
-    <bndly.common.version>1.0.1-SNAPSHOT</bndly.common.version>
+    <bndly.common.version>1.0.1</bndly.common.version>
     <bndly.ebx.version>${project.version}</bndly.ebx.version>
     <checkstyle.config.location>../bndly_checks.xml</checkstyle.config.location>
     <com.coremedia.cms.it.version>7.1.14-12</com.coremedia.cms.it.version>
